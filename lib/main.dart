@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medtech_mobile/features/auth/presentation/views/sign_in_view.dart';
 
 void main() {
   runApp(const MedTech());
@@ -9,6 +10,6 @@ class MedTech extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: Scaffold());
+    return const MaterialApp(home: SignInView());
   }
 }

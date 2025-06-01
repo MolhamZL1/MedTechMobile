@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:medtech_mobile/core/errors/failures.dart';
 import 'package:medtech_mobile/features/auth/domain/entities/user_entity.dart';
 
 abstract class AuthRepo {
