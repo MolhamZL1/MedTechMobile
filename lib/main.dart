@@ -10,6 +10,6 @@ class MedTech extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: SignInView());
+    return const MaterialApp(home: Center(child: SignInView()));
   }
 }
