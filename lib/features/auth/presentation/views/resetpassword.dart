@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:medtech_mobile/core/utils/app_colors.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/widgets/items/customappbar.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/widgets/items/custombuttom.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/widgets/items/customform.dart';
+import 'package:medtech_mobile/features/auth/presentation/views/widgets/customappbar.dart';
+import 'package:medtech_mobile/features/auth/presentation/views/widgets/custombuttom.dart';
+import 'package:medtech_mobile/features/auth/presentation/views/widgets/customform.dart';
 
 class Resetpassword extends StatefulWidget {
   const Resetpassword({super.key});
@@ -55,7 +55,7 @@ class _ResetpasswordState extends State<Resetpassword> {
                     if (reskey.currentState!.validate()) {}
                   },
                   text: 'Submit',
-                  BColor: AppColors.primaryColor,
+                  BColor: AppColors.primary,
                   Tcolor: Colors.white,
                 ),
               ],
