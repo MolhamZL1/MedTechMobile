@@ -3,6 +3,7 @@ import 'package:medtech_mobile/features/auth/presentation/views/widgets/sign_in_
 
 class SignInView extends StatelessWidget {
   const SignInView({super.key});
+  static const routeName = '/sign-in';
 
   @override
   Widget build(BuildContext context) {
