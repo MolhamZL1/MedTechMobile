@@ -3,13 +3,13 @@ import 'package:medtech_mobile/core/utils/app_colors.dart';
 import 'package:medtech_mobile/core/utils/app_images.dart';
 import 'package:medtech_mobile/core/utils/app_text_styles.dart';
 import 'package:medtech_mobile/features/auth/presentation/views/sign_up_view.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/widgets/home.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/widgets/items/custombuttom.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/widgets/items/customform.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/widgets/items/customlogoimage.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/widgets/items/customtext.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/widgets/items/fingerprintdesign.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/widgets/resetpassword.dart';
+
+import '../resetpassword.dart';
+import 'custombuttom.dart';
+import 'customform.dart';
+import 'customlogoimage.dart';
+import 'customtext.dart';
+import 'fingerprintdesign.dart';
 
 class SignInViewBody extends StatefulWidget {
   const SignInViewBody({super.key});
@@ -23,7 +23,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController PassWordcontroller = TextEditingController();
   bool ispassword = true;
-   bool isChecked =false;
+  bool isChecked = false;
 
   //   void checkFingerprintEnabled() async {
   //   final storage = FlutterSecureStorage(
@@ -41,7 +41,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.symmetric(vertical:30),
+        padding: EdgeInsets.symmetric(vertical: 30),
         child: ListView(
           children: [
             Form(
@@ -50,9 +50,9 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                 padding: const EdgeInsets.all(8),
                 child: Column(
                   children: [
-                  Customlogoimage(),
+                    Customlogoimage(),
                     SizedBox(height: 20),
-                    Cutomtext(text: 'LOG IN', stylee: AppTextStyles.headline,),
+                    Cutomtext(text: 'LOG IN', stylee: AppTextStyles.headline),
                     SizedBox(height: 10),
                     customform(
                       hint: "Email",
@@ -82,9 +82,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                       prefixIcon: Icons.lock,
                       ispassword: ispassword,
                       suffixIcon:
-                          ispassword
-                              ? Icons.visibility_off
-                              : Icons.visibility,
+                          ispassword ? Icons.visibility_off : Icons.visibility,
                       suffixPressed: () {
                         setState(() {
                           ispassword = !ispassword;
@@ -96,11 +94,10 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                       padding: const EdgeInsets.symmetric(horizontal: 40),
                       child: Row(
                         children: [
-                       
                           GestureDetector(
                             onTap: () {
                               setState(() {
-                                   isChecked = !isChecked;
+                                isChecked = !isChecked;
                               });
                             },
                             child: Container(
@@ -110,15 +107,18 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                                 shape: BoxShape.circle,
                                 border: Border.all(color: Colors.grey),
                                 color:
-                                     isChecked ? AppColors.primaryColor : Colors.transparent,
+                                    isChecked
+                                        ? AppColors.primary
+                                        : Colors.transparent,
                               ),
-                              child: isChecked?
-                                  Icon(
-                                Icons.check,
-                                size: 14,
-                                color: Colors.white,
-                              )
-                             : null,
+                              child:
+                                  isChecked
+                                      ? Icon(
+                                        Icons.check,
+                                        size: 14,
+                                        color: Colors.white,
+                                      )
+                                      : null,
                             ),
                           ),
 
@@ -131,25 +131,25 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                                 Text("Remember me"),
                                 GestureDetector(
                                   onTap: () {
-                                         Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => Resetpassword()));
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => Resetpassword(),
+                                      ),
+                                    );
                                   },
-                                  child: Text("Forget Password?")),
+                                  child: Text("Forget Password?"),
+                                ),
                               ],
                             ),
                           ),
                         ],
-                      ),),
+                      ),
+                    ),
                     Custombuttom(
-                      BColor: AppColors.primaryColor,
+                      BColor: AppColors.primary,
                       text: 'log in',
                       onPressed: () {
-                         if (lk.currentState!.validate() )
-                         {
-                         Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Home()));
-                         }
-                        
+                        if (lk.currentState!.validate()) {}
                       },
                       Tcolor: Colors.white,
                     ),
@@ -163,13 +163,17 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                             onTap: () {},
                             child: GestureDetector(
                               onTap: () {
-                              Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => SignUpView()));
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => SignUpView(),
+                                  ),
+                                );
                               },
                               child: Text(
                                 "Sign up",
-                                style: TextStyle(color: AppColors.primaryColor,
-                                fontWeight: FontWeight.bold
+                                style: TextStyle(
+                                  color: AppColors.primary,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),

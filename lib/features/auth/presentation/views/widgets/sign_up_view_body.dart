@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:medtech_mobile/core/utils/app_colors.dart';
 import 'package:medtech_mobile/core/utils/app_images.dart';
 import 'package:medtech_mobile/core/utils/app_text_styles.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/widgets/home.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/widgets/items/custombuttom.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/widgets/items/customdriver.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/widgets/items/customform.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/widgets/items/customlogoimage.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/widgets/items/customtext.dart';
+
+import 'custombuttom.dart';
+import 'customdriver.dart';
+import 'customform.dart';
+import 'customlogoimage.dart';
+import 'customtext.dart';
 
 class SignUpViewBody extends StatefulWidget {
   const SignUpViewBody({super.key});
@@ -37,7 +37,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   children: [
                     Customlogoimage(),
                     SizedBox(height: 20),
-                 Cutomtext(text: 'SIGN UP',stylee: AppTextStyles.headline,),
+                    Cutomtext(text: 'SIGN UP', stylee: AppTextStyles.headline),
                     SizedBox(height: 10),
                     customform(
                       hint: "Name",
@@ -90,14 +90,10 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     ),
                     SizedBox(height: 15),
                     Custombuttom(
-                      BColor: AppColors.primaryColor,
+                      BColor: AppColors.primary,
                       text: 'sign up',
                       onPressed: () {
-                        if (sk.currentState!.validate()) {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => Home()),
-                          );
-                        }
+                        if (sk.currentState!.validate()) {}
                       },
                       Tcolor: Colors.white,
                     ),
