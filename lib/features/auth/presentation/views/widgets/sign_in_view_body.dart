@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:medtech_mobile/core/utils/app_colors.dart';
-import 'package:medtech_mobile/core/utils/app_images.dart';
-import 'package:medtech_mobile/core/utils/app_text_styles.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/sign_up_view.dart';
+import 'package:medtech_mobile/core/functions/custom_validator.dart';
 
-import '../resetpassword.dart';
-import 'custombuttom.dart';
-import 'customform.dart';
+import '../../../../../core/widgets/custom_checkBox.dart';
+import 'CustomPasswordTextField.dart';
+import 'DontHaveAnAccountSection.dart';
+import 'customdriver.dart';
 import 'customlogoimage.dart';
-import 'customtext.dart';
-import 'fingerprintdesign.dart';
 
 class SignInViewBody extends StatefulWidget {
   const SignInViewBody({super.key});
@@ -21,171 +17,60 @@ class SignInViewBody extends StatefulWidget {
 class _SignInViewBodyState extends State<SignInViewBody> {
   GlobalKey<FormState> lk = GlobalKey();
   TextEditingController emailcontroller = TextEditingController();
-  TextEditingController PassWordcontroller = TextEditingController();
-  bool ispassword = true;
-  bool isChecked = false;
-
-  //   void checkFingerprintEnabled() async {
-  //   final storage = FlutterSecureStorage(
-  //       aOptions: AndroidOptions(encryptedSharedPreferences: true));
-  //   String? fprint = await storage.read(key: "fingerprint");
-
-  //   if (fprint != null && fprint.isNotEmpty) {
-  //     setState(() {
-  //       isFingerprintEnabled = true;
-  //     });
-  //   }
-  // }
+  TextEditingController passWordcontroller = TextEditingController();
+  bool isRememberMeValue = false;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        padding: EdgeInsets.symmetric(vertical: 30),
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 48, horizontal: 24),
+      child: Form(
+        key: lk,
         child: ListView(
           children: [
-            Form(
-              key: lk,
-              child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: Column(
-                  children: [
-                    Customlogoimage(),
-                    SizedBox(height: 20),
-                    Cutomtext(text: 'LOG IN', stylee: AppTextStyles.headline),
-                    SizedBox(height: 10),
-                    customform(
-                      hint: "Email",
-                      mycontroller: emailcontroller,
-                      validate: (value) {
-                        if (value!.isEmpty) {
-                          return 'Email must not be empty';
-                        } else {
-                          return null;
-                        }
-                      },
-                      keyboardType: TextInputType.emailAddress,
-                      prefixIcon: Icons.email,
-                    ),
-                    SizedBox(height: 15),
-                    customform(
-                      hint: "PassWord",
-                      mycontroller: PassWordcontroller,
-                      validate: (value) {
-                        if (value!.isEmpty) {
-                          return 'PassWord must not be empty';
-                        } else {
-                          return null;
-                        }
-                      },
-                      keyboardType: TextInputType.visiblePassword,
-                      prefixIcon: Icons.lock,
-                      ispassword: ispassword,
-                      suffixIcon:
-                          ispassword ? Icons.visibility_off : Icons.visibility,
-                      suffixPressed: () {
-                        setState(() {
-                          ispassword = !ispassword;
-                        });
-                      },
-                    ),
-                    SizedBox(height: 15),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
-                      child: Row(
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                isChecked = !isChecked;
-                              });
-                            },
-                            child: Container(
-                              width: 20,
-                              height: 20,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border: Border.all(color: Colors.grey),
-                                color:
-                                    isChecked
-                                        ? AppColors.primary
-                                        : Colors.transparent,
-                              ),
-                              child:
-                                  isChecked
-                                      ? Icon(
-                                        Icons.check,
-                                        size: 14,
-                                        color: Colors.white,
-                                      )
-                                      : null,
-                            ),
-                          ),
-
-                          SizedBox(width: 15),
-
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text("Remember me"),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) => Resetpassword(),
-                                      ),
-                                    );
-                                  },
-                                  child: Text("Forget Password?"),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Custombuttom(
-                      BColor: AppColors.primary,
-                      text: 'log in',
-                      onPressed: () {
-                        if (lk.currentState!.validate()) {}
-                      },
-                      Tcolor: Colors.white,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
-                      child: Row(
-                        children: [
-                          Text("Don’t have an account?"),
-                          SizedBox(width: 2),
-                          GestureDetector(
-                            onTap: () {},
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) => SignUpView(),
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                "Sign up",
-                                style: TextStyle(
-                                  color: AppColors.primary,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    buildfingerprintBlocBuilder(),
-                  ],
-                ),
+            Customlogoimage(),
+            SizedBox(height: 20),
+            Text("Sign In", style: Theme.of(context).textTheme.headlineSmall),
+            SizedBox(height: 10),
+            TextFormField(
+              validator: CustomValidator.emailValidator,
+              keyboardType: TextInputType.emailAddress,
+              controller: emailcontroller,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.email),
+                labelText: "Email",
               ),
             ),
+            SizedBox(height: 15),
+            CustomPasswordTextField(textEditingController: passWordcontroller),
+            SizedBox(height: 5),
+            Row(
+              children: [
+                CustomCheckBox(
+                  value: isRememberMeValue,
+                  onChanged: (p0) {
+                    isRememberMeValue = p0!;
+                    setState(() {});
+                  },
+                  title: "Remember Me",
+                ),
+                Spacer(),
+                GestureDetector(onTap: () {}, child: Text("Forget Password?")),
+              ],
+            ),
+            SizedBox(height: 10),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  if (lk.currentState!.validate()) {}
+                },
+                child: Text("Sign In"),
+              ),
+            ),
+            SizedBox(height: 15),
+            DontHaveAnAccountSection(),
+            CustomOrDivider(text: 'OR'),
           ],
         ),
       ),

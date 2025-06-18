@@ -34,6 +34,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
+  flutter_svg: ^2.2.0
   get_it: ^8.0.3
 
 dev_dependencies:
@@ -80,6 +81,6 @@ flutter_assets:
   assets_path: assets/images/
   output_path: lib/core/utils/
   filename: app_images.dart
-  field_prefix:
+  field_prefix: null
   ignore_comments: true
   classname: AppImages

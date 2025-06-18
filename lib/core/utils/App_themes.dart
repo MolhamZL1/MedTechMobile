@@ -1,20 +1,90 @@
 import 'package:flutter/material.dart';
-import 'package:medtech_mobile/core/utils/app_colors.dart';
+
+import 'app_colors.dart';
 
 class AppTheme {
   static final lightTheme = ThemeData(
+    fontFamily: 'Poppins',
     brightness: Brightness.light,
     primaryColor: AppColors.primary,
     scaffoldBackgroundColor: Colors.white,
+
     colorScheme: ColorScheme.light(
       primary: AppColors.primary,
       secondary: AppColors.secondary,
       error: AppColors.error,
     ),
-    // textTheme: const TextTheme(
-    //   bodyLarge: TextStyle(color: AppColors.textPrimary),
-    //   bodyMedium: TextStyle(color: AppColors.textSecondary),
-    // ),
+    appBarTheme: AppBarTheme(),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.primary,
+        foregroundColor: Colors.white,
+        textStyle: const TextStyle(fontWeight: FontWeight.bold),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      prefixIconColor: Colors.grey,
+      suffixIconColor: Colors.grey,
+      hintStyle: const TextStyle(color: Colors.grey),
+      labelStyle: const TextStyle(color: Colors.grey),
+      filled: true,
+      fillColor: Colors.white,
+      hoverColor: Colors.transparent,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: BorderSide.none,
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: BorderSide(color: Colors.grey, width: .1),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: BorderSide(color: AppColors.primary),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: BorderSide(color: AppColors.error),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: BorderSide(color: AppColors.primary),
+      ),
+    ),
+    textTheme: TextTheme(
+      headlineSmall: TextStyle(
+        // للعناوين داخل صفحات أو أقسام
+        fontSize: 22,
+        fontWeight: FontWeight.w600,
+        color: Colors.black,
+      ),
+      titleMedium: TextStyle(
+        // لعناوين الكروت أو العناصر المهمة
+        fontSize: 18,
+        fontWeight: FontWeight.w600,
+        color: Colors.black,
+      ),
+      bodyMedium: TextStyle(
+        // للنصوص العامة
+        fontSize: 14,
+        fontWeight: FontWeight.normal,
+        color: Colors.black87,
+      ),
+      bodySmall: TextStyle(
+        // لنصوص المساعدة أو التقييم أو السعر
+        fontSize: 12,
+        fontWeight: FontWeight.normal,
+        color: Colors.grey[600],
+      ),
+      labelSmall: TextStyle(
+        // لتفاصيل صغيرة مثل "خصم" أو تصنيف
+        fontSize: 10,
+        fontWeight: FontWeight.w500,
+        color: Colors.grey[500],
+      ),
+    ),
   );
 
   static final darkTheme = ThemeData(

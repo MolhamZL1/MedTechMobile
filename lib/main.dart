@@ -5,6 +5,7 @@ import 'package:medtech_mobile/core/services/get_it_service.dart';
 import 'package:medtech_mobile/features/auth/presentation/views/sign_in_view.dart';
 import 'package:medtech_mobile/core/utils/app_themes.dart';
 import 'package:medtech_mobile/core/functions/on_generate_route.dart';
+import 'package:medtech_mobile/features/main/presentaion/views/main_view.dart';
 
 void main() {
   Bloc.observer = CustomBlocObserver();
@@ -22,10 +23,10 @@ class MedTech extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
       onGenerateRoute: (settings) => onGenerateRoute(settings),
-      initialRoute: SignInView.routeName,
+      // initialRoute: SignInView.routeName,
       debugShowCheckedModeBanner: false,
 
-      home: Center(child: SignInView()),
+      home: MainView(),
     );
   }
 }

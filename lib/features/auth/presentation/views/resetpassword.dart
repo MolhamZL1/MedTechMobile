@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:medtech_mobile/core/utils/app_colors.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/widgets/customappbar.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/widgets/custombuttom.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/widgets/customform.dart';
 
 class Resetpassword extends StatefulWidget {
   const Resetpassword({super.key});
@@ -18,7 +14,7 @@ class _ResetpasswordState extends State<Resetpassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBars(),
+      appBar: AppBar(title: Text('Reset Password')),
       body: SingleChildScrollView(
         child: Form(
           key: reskey,
@@ -26,38 +22,31 @@ class _ResetpasswordState extends State<Resetpassword> {
             padding: const EdgeInsets.symmetric(vertical: 150),
             child: Column(
               children: [
-                customform(
-                  hint: 'Enter New Password',
-                  mycontroller: newpass,
-                  validate: (value) {
-                    if (value!.isEmpty) {
-                      return '8 symbols at least';
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
-                SizedBox(height: 15),
-                customform(
-                  hint: 'Confirm Password',
-                  mycontroller: newpass,
-                  validate: (value) {
-                    if (value!.isEmpty) {
-                      return '8 symbols at least';
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
+                // customform(
+                //   hint: 'Enter New Password',
+                //   mycontroller: newpass,
+                //   validate: (value) {
+                //     if (value!.isEmpty) {
+                //       return '8 symbols at least';
+                //     } else {
+                //       return null;
+                //     }
+                //   },
+                // ),
+                // SizedBox(height: 15),
+                // customform(
+                //   hint: 'Confirm Password',
+                //   mycontroller: newpass,
+                //   validate: (value) {
+                //     if (value!.isEmpty) {
+                //       return '8 symbols at least';
+                //     } else {
+                //       return null;
+                //     }
+                //   },
+                // ),
                 SizedBox(height: 50),
-                Custombuttom(
-                  onPressed: () {
-                    if (reskey.currentState!.validate()) {}
-                  },
-                  text: 'Submit',
-                  BColor: AppColors.primary,
-                  Tcolor: Colors.white,
-                ),
+                ElevatedButton(onPressed: () {}, child: Text("Submit")),
               ],
             ),
           ),

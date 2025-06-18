@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:medtech_mobile/core/utils/app_colors.dart';
-import 'package:medtech_mobile/core/utils/app_images.dart';
-import 'package:medtech_mobile/core/utils/app_text_styles.dart';
 
-import 'custombuttom.dart';
-import 'customdriver.dart';
-import 'customform.dart';
+import '../../../../../core/functions/custom_validator.dart';
+import 'CustomPasswordTextField.dart';
+import 'HaveAnAccountSection.dart';
 import 'customlogoimage.dart';
-import 'customtext.dart';
 
 class SignUpViewBody extends StatefulWidget {
   const SignUpViewBody({super.key});
@@ -20,91 +16,55 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
   GlobalKey<FormState> sk = GlobalKey();
   TextEditingController namecontroller = TextEditingController();
   TextEditingController emailcontroller = TextEditingController();
-  TextEditingController PassWordcontroller = TextEditingController();
-  bool ispassword = true;
+  TextEditingController passWordcontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Container(
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 48, horizontal: 24),
+      child: Form(
+        key: sk,
         child: ListView(
           children: [
-            Form(
-              key: sk,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    Customlogoimage(),
-                    SizedBox(height: 20),
-                    Cutomtext(text: 'SIGN UP', stylee: AppTextStyles.headline),
-                    SizedBox(height: 10),
-                    customform(
-                      hint: "Name",
-                      mycontroller: namecontroller,
-                      validate: (value) {
-                        if (value!.isEmpty) {
-                          return 'Name must not be empty';
-                        } else {
-                          return null;
-                        }
-                      },
-                      keyboardType: TextInputType.text,
-                      prefixIcon: Icons.person,
-                    ),
-                    SizedBox(height: 15),
-                    customform(
-                      hint: "Email",
-                      mycontroller: emailcontroller,
-                      validate: (value) {
-                        if (value!.isEmpty) {
-                          return 'Email must not be empty';
-                        } else {
-                          return null;
-                        }
-                      },
-                      keyboardType: TextInputType.emailAddress,
-                      prefixIcon: Icons.email,
-                    ),
-                    SizedBox(height: 15),
-                    customform(
-                      hint: "PassWord",
-                      mycontroller: PassWordcontroller,
-                      validate: (value) {
-                        if (value!.isEmpty) {
-                          return 'PassWord must not be empty';
-                        } else {
-                          return null;
-                        }
-                      },
-                      keyboardType: TextInputType.visiblePassword,
-                      prefixIcon: Icons.lock,
-                      ispassword: ispassword,
-                      suffixIcon:
-                          ispassword ? Icons.visibility_off : Icons.visibility,
-                      suffixPressed: () {
-                        setState(() {
-                          ispassword = !ispassword;
-                        });
-                      },
-                    ),
-                    SizedBox(height: 15),
-                    Custombuttom(
-                      BColor: AppColors.primary,
-                      text: 'sign up',
-                      onPressed: () {
-                        if (sk.currentState!.validate()) {}
-                      },
-                      Tcolor: Colors.white,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25),
-                      child: Customdriver(text: 'OR Log In With '),
-                    ),
-                  ],
-                ),
+            Customlogoimage(),
+            SizedBox(height: 20),
+            Text("Sign Up", style: Theme.of(context).textTheme.headlineSmall),
+            SizedBox(height: 10),
+            TextFormField(
+              validator: CustomValidator.nameValidator,
+              keyboardType: TextInputType.name,
+              controller: namecontroller,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.person),
+                labelText: "Name",
               ),
             ),
+            SizedBox(height: 15),
+            TextFormField(
+              validator: CustomValidator.emailValidator,
+              keyboardType: TextInputType.emailAddress,
+              controller: emailcontroller,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.email),
+                labelText: "Email",
+              ),
+            ),
+            SizedBox(height: 15),
+            CustomPasswordTextField(textEditingController: passWordcontroller),
+            SizedBox(height: 5),
+
+            SizedBox(height: 10),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  if (sk.currentState!.validate()) {}
+                },
+                child: Text("Sign Up"),
+              ),
+            ),
+            SizedBox(height: 15),
+            HaveAnAccountSection(),
           ],
         ),
       ),
