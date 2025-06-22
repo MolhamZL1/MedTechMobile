@@ -7,11 +7,11 @@ class AppTheme {
     fontFamily: 'Poppins',
     brightness: Brightness.light,
     primaryColor: AppColors.primary,
-    scaffoldBackgroundColor: Colors.white,
-
+    scaffoldBackgroundColor: AppColors.background,
+    dividerTheme: DividerThemeData(color: Colors.grey, thickness: .1, space: 0),
     colorScheme: ColorScheme.light(
       primary: AppColors.primary,
-      secondary: AppColors.secondary,
+
       error: AppColors.error,
     ),
     appBarTheme: AppBarTheme(),
@@ -93,7 +93,7 @@ class AppTheme {
     scaffoldBackgroundColor: Colors.black,
     colorScheme: ColorScheme.dark(
       primary: AppColors.primary,
-      secondary: AppColors.secondary,
+
       error: AppColors.error,
     ),
     textTheme: const TextTheme(

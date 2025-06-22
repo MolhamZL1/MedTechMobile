@@ -6,7 +6,9 @@ import 'package:medtech_mobile/features/auth/presentation/views/sign_in_view.dar
 import 'package:medtech_mobile/core/utils/app_themes.dart';
 import 'package:medtech_mobile/core/functions/on_generate_route.dart';
 import 'package:medtech_mobile/features/main/presentaion/views/main_view.dart';
-import 'package:medtech_mobile/features/products/presentation/views/products_view.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'generated/l10n.dart';
 
 void main() {
   Bloc.observer = CustomBlocObserver();
@@ -24,10 +26,18 @@ class MedTech extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
       onGenerateRoute: (settings) => onGenerateRoute(settings),
+      localizationsDelegates: [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
+      locale: Locale("ar"),
       // initialRoute: SignInView.routeName,
       debugShowCheckedModeBanner: false,
 
-      home: ProductsView(),
+      home: MainView(),
     );
   }
 }

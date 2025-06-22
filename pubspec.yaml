@@ -34,6 +34,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
+  flutter_localizations:
+    sdk: flutter
   flutter_svg: ^2.2.0
   font_awesome_flutter: ^10.8.0
   get_it: ^8.0.3
@@ -42,6 +44,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
+  intl_utils: ^2.8.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -85,3 +88,5 @@ flutter_assets:
   field_prefix: null
   ignore_comments: true
   classname: AppImages
+flutter_intl:
+  enabled: true
