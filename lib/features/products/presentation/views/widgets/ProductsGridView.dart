@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../domain/entities/product_entitie.dart';
-import 'product_card.dart';
+import 'product_card/product_card.dart';
 
 class ProductsGridView extends StatelessWidget {
   const ProductsGridView({super.key});
