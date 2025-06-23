@@ -28,6 +28,11 @@ List<BottomNavigationBarEntity> get bottomNavigationBarItems => [
     name: 'سلة التسوق',
   ),
   BottomNavigationBarEntity(
+    activeImage: AppImages.imagesFavorite24dpE3E3E3FILL0Wght400GRAD0Opsz24,
+    inActiveImage: AppImages.imagesFavorite24dpE3E3E3FILL0Wght400GRAD0Opsz24,
+    name: "المفضلة",
+  ),
+  BottomNavigationBarEntity(
     activeImage: AppImages.imagesUser,
     inActiveImage: AppImages.imagesUser,
     name: 'حسابي',

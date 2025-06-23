@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medtech_mobile/core/widgets/favorite_button.dart';
 import 'package:medtech_mobile/features/products/domain/entities/product_entitie.dart';
 
 import 'widgets/ProductDetailsViewBody.dart';
@@ -10,7 +11,14 @@ class ProductDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(productEntitie.category)),
+      appBar: AppBar(
+        title: Text(productEntitie.category),
+        actions: [
+          FavoriteButton(),
+          SizedBox(width: 8),
+          IconButton(onPressed: () {}, icon: Icon(Icons.share_outlined)),
+        ],
+      ),
       body: ProductDetailsViewBody(productEntitie: productEntitie),
     );
   }

@@ -5,6 +5,9 @@ class FavoriteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Icon(Icons.favorite_border, color: Colors.red);
+    return GestureDetector(
+      onTap: () {},
+      child: Icon(Icons.favorite_border, color: Colors.red),
+    );
   }
 }
