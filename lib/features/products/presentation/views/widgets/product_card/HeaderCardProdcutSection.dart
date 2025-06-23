@@ -15,7 +15,13 @@ class HeaderCardProdcutSection extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: const BorderRadius.vertical(top: Radius.circular(12)),
-          child: CustomImageNetwork(imageUrl: productEntitie.image),
+          child: SizedBox(
+            height: 100,
+            child: Hero(
+              tag: productEntitie.id,
+              child: CustomImageNetwork(imageUrl: productEntitie.image),
+            ),
+          ),
         ),
 
         Visibility(

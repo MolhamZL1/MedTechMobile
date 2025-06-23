@@ -14,7 +14,14 @@ class AppTheme {
 
       error: AppColors.error,
     ),
-    appBarTheme: AppBarTheme(),
+    appBarTheme: AppBarTheme(
+      centerTitle: true,
+      titleTextStyle: TextStyle(
+        fontSize: 22,
+        fontWeight: FontWeight.w600,
+        color: Colors.black,
+      ),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: AppColors.primary,

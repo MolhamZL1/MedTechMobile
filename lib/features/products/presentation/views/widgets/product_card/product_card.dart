@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medtech_mobile/features/product_details/presentation/views/product_details_view.dart';
 import 'package:medtech_mobile/features/products/domain/entities/product_entitie.dart';
 
 import 'BodyProductCardSection.dart';
@@ -11,15 +12,24 @@ class CustomProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          HeaderCardProdcutSection(productEntitie: productEntitie),
-          BodyProductCardSection(productEntitie: productEntitie),
-        ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          ProductDetailsView.routeName,
+          arguments: productEntitie,
+        );
+      },
+      child: Card(
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            HeaderCardProdcutSection(productEntitie: productEntitie),
+            BodyProductCardSection(productEntitie: productEntitie),
+          ],
+        ),
       ),
     );
   }

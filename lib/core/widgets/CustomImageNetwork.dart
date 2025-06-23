@@ -7,11 +7,6 @@ class CustomImageNetwork extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.network(
-      imageUrl,
-      height: 100,
-      width: double.infinity,
-      fit: BoxFit.cover,
-    );
+    return Image.network(imageUrl, width: double.infinity, fit: BoxFit.cover);
   }
 }

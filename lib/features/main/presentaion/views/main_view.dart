@@ -5,6 +5,7 @@ import 'widgets/MainViewBody.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
+  static const routeName = '/MainView';
 
   @override
   State<MainView> createState() => _MainViewState();

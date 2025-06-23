@@ -34,10 +34,8 @@ class MedTech extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       locale: Locale("ar"),
-      // initialRoute: SignInView.routeName,
+      initialRoute: MainView.routeName,
       debugShowCheckedModeBanner: false,
-
-      home: MainView(),
     );
   }
 }
