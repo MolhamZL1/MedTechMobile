@@ -1,7 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:medtech_mobile/core/functions/custom_validator.dart';
+import 'dart:developer';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medtech_mobile/core/functions/custom_validator.dart';
+import 'package:medtech_mobile/features/auth/presentation/cubits/signin/sign_in_cubit.dart';
+import 'package:medtech_mobile/features/auth/presentation/views/forget_password_view.dart';
+import 'package:medtech_mobile/features/main/presentaion/views/main_view.dart';
+
+import '../../../../../core/widgets/CustomLoadingCircle.dart';
 import '../../../../../core/widgets/custom_checkBox.dart';
+import '../../../../../core/widgets/show_err_dialog.dart';
 import 'CustomPasswordTextField.dart';
 import 'DontHaveAnAccountSection.dart';
 import 'customdriver.dart';
@@ -55,18 +63,46 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                   title: "Remember Me",
                 ),
                 Spacer(),
-                GestureDetector(onTap: () {}, child: Text("Forget Password?")),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, ForgetPasswordView.routeName);
+                  },
+                  child: Text("Forget Password?"),
+                ),
               ],
             ),
             SizedBox(height: 10),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  if (lk.currentState!.validate()) {}
-                },
-                child: Text("Sign In"),
-              ),
+            BlocConsumer<SignInCubit, SignInState>(
+              listener: (context, state) {
+                if (state is SignInSuccess) {
+                  Navigator.pushNamed(context, MainView.routeName);
+                } else if (state is SignInError) {
+                  showerrorDialog(
+                    context: context,
+                    title: "!Oops",
+                    description: state.errMessage,
+                  );
+                }
+              },
+              builder: (context, state) {
+                return state is SignInLoading
+                    ? Center(child: CustomLoadingCircle())
+                    : SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (lk.currentState!.validate()) {
+                            log(emailcontroller.text + passWordcontroller.text);
+                            context.read<SignInCubit>().signIn(
+                              email: emailcontroller.text,
+                              password: passWordcontroller.text,
+                            );
+                          }
+                        },
+                        child: Text("Sign In"),
+                      ),
+                    );
+              },
             ),
             SizedBox(height: 15),
             DontHaveAnAccountSection(),

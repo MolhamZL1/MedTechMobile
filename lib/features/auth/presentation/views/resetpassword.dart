@@ -1,56 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medtech_mobile/features/auth/presentation/cubits/resetpassword/resetpassword_cubit.dart';
 
-class Resetpassword extends StatefulWidget {
-  const Resetpassword({super.key});
+import '../../../../core/services/get_it_service.dart';
+import '../../domain/repos/auth_repo.dart';
+import 'widgets/ResetPasswordViewBody.dart';
 
-  @override
-  State<Resetpassword> createState() => _ResetpasswordState();
-}
+class ResetpasswordView extends StatelessWidget {
+  const ResetpasswordView({super.key});
 
-class _ResetpasswordState extends State<Resetpassword> {
-  GlobalKey<FormState> reskey = GlobalKey();
-  TextEditingController newpass = TextEditingController();
-  TextEditingController confirmpass = TextEditingController();
+  static const routeName = '/resetpassword';
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Reset Password')),
-      body: SingleChildScrollView(
-        child: Form(
-          key: reskey,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 150),
-            child: Column(
-              children: [
-                // customform(
-                //   hint: 'Enter New Password',
-                //   mycontroller: newpass,
-                //   validate: (value) {
-                //     if (value!.isEmpty) {
-                //       return '8 symbols at least';
-                //     } else {
-                //       return null;
-                //     }
-                //   },
-                // ),
-                // SizedBox(height: 15),
-                // customform(
-                //   hint: 'Confirm Password',
-                //   mycontroller: newpass,
-                //   validate: (value) {
-                //     if (value!.isEmpty) {
-                //       return '8 symbols at least';
-                //     } else {
-                //       return null;
-                //     }
-                //   },
-                // ),
-                SizedBox(height: 50),
-                ElevatedButton(onPressed: () {}, child: Text("Submit")),
-              ],
-            ),
-          ),
-        ),
+    return BlocProvider(
+      create: (context) => ResetpasswordCubit(getIt.get<AuthRepo>()),
+      child: Scaffold(
+        appBar: AppBar(title: const Text('Reset Password')),
+        body: ResetPasswordViewBody(),
       ),
     );
   }

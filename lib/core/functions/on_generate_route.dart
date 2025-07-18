@@ -1,7 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:medtech_mobile/features/auth/presentation/views/verify_email_view.dart';
 
+import '../../features/auth/presentation/views/forget_password_view.dart';
+import '../../features/auth/presentation/views/resetpassword.dart';
 import '../../features/auth/presentation/views/sign_in_view.dart';
 import '../../features/auth/presentation/views/sign_up_view.dart';
 import '../../features/main/presentaion/views/main_view.dart';
@@ -18,6 +21,15 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const SignInView());
     case SignUpView.routeName:
       return MaterialPageRoute(builder: (context) => const SignUpView());
+    case ForgetPasswordView.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const ForgetPasswordView(),
+      );
+    case ResetpasswordView.routeName:
+      return MaterialPageRoute(builder: (context) => const ResetpasswordView());
+    case VerifyEmailView.routeName:
+      return MaterialPageRoute(builder: (context) => const VerifyEmailView());
+
     case MainView.routeName:
       return MaterialPageRoute(builder: (context) => const MainView());
     case ProductDetailsView.routeName:

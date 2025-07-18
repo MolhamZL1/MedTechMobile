@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medtech_mobile/core/services/custom_bloc_observer.dart';
 import 'package:medtech_mobile/core/services/get_it_service.dart';
+import 'package:medtech_mobile/features/auth/presentation/views/forget_password_view.dart';
+import 'package:medtech_mobile/features/auth/presentation/views/resetpassword.dart';
 import 'package:medtech_mobile/features/auth/presentation/views/sign_in_view.dart';
 import 'package:medtech_mobile/core/utils/app_themes.dart';
 import 'package:medtech_mobile/core/functions/on_generate_route.dart';
+import 'package:medtech_mobile/features/auth/presentation/views/verify_email_view.dart';
 import 'package:medtech_mobile/features/main/presentaion/views/main_view.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -34,7 +37,7 @@ class MedTech extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       locale: Locale("ar"),
-      initialRoute: MainView.routeName,
+      initialRoute: SignInView.routeName,
       debugShowCheckedModeBanner: false,
     );
   }
