@@ -29,7 +29,6 @@ class MedTech extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
@@ -41,19 +40,8 @@ class MedTech extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-<<<<<<< HEAD
-      locale: Locale("ar"),
-     initialRoute: 
-         MainView.routeName,
-    //  'DettailesType',
-  
-    //  routes: {
-    //    'DettailesType': (context) => Addtocardsec(),
-    //  },
-=======
       locale: Locale("en"),
       initialRoute: MainView.routeName,
->>>>>>> c108cbcabd240665468154c243c60fdc3509245f
       debugShowCheckedModeBanner: false,
     );
   }

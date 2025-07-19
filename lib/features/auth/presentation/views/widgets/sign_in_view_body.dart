@@ -53,6 +53,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
             CustomPasswordTextField(textEditingController: passWordcontroller),
             SizedBox(height: 5),
             Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 CustomCheckBox(
                   value: isRememberMeValue,
