@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medtech_mobile/core/widgets/favorite_button.dart';
+import 'package:medtech_mobile/features/product_details/presentation/views/widgets/addtocardsection/addtocard.dart';
 import 'package:medtech_mobile/features/products/domain/entities/product_entitie.dart';
 
 import 'widgets/ProductDetailsViewBody.dart';
@@ -20,6 +21,7 @@ class ProductDetailsView extends StatelessWidget {
         ],
       ),
       body: ProductDetailsViewBody(productEntitie: productEntitie),
+      bottomNavigationBar : Addtocardsec(),
     );
   }
 }

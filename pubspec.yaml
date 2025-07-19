@@ -39,6 +39,8 @@ dependencies:
   flutter_svg: ^2.2.0
   font_awesome_flutter: ^10.8.0
   get_it: ^8.0.3
+  shared_preferences: ^2.5.3
+  video_player: ^2.10.0
 
 dev_dependencies:
   flutter_lints: ^5.0.0

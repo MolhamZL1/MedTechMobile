@@ -7,7 +7,11 @@ import 'package:medtech_mobile/core/utils/app_themes.dart';
 import 'package:medtech_mobile/core/functions/on_generate_route.dart';
 import 'package:medtech_mobile/features/main/presentaion/views/main_view.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
+import 'package:medtech_mobile/features/product_details/presentation/views/product_details_view.dart';
+import 'package:medtech_mobile/features/product_details/presentation/views/widgets/addtocardsection/addtocard.dart';
+import 'package:medtech_mobile/features/product_details/presentation/views/widgets/detaile_type_view/detals_type_list.dart';
+import 'package:medtech_mobile/features/product_details/presentation/views/widgets/detaile_type_view/dettailes_type.dart';
+import 'package:medtech_mobile/features/product_details/presentation/views/widgets/totuialssection.dart';
 import 'generated/l10n.dart';
 
 void main() {
@@ -22,6 +26,7 @@ class MedTech extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
@@ -34,7 +39,13 @@ class MedTech extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       locale: Locale("ar"),
-      initialRoute: MainView.routeName,
+     initialRoute: 
+         MainView.routeName,
+    //  'DettailesType',
+  
+    //  routes: {
+    //    'DettailesType': (context) => Addtocardsec(),
+    //  },
       debugShowCheckedModeBanner: false,
     );
   }
