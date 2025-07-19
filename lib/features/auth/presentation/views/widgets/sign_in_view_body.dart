@@ -75,7 +75,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
             BlocConsumer<SignInCubit, SignInState>(
               listener: (context, state) {
                 if (state is SignInSuccess) {
-                  Navigator.pushNamed(context, MainView.routeName);
+                  Navigator.pushReplacementNamed(context, MainView.routeName);
                 } else if (state is SignInError) {
                   showerrorDialog(
                     context: context,

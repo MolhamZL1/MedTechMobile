@@ -9,9 +9,9 @@ void showerrorDialog({
   AwesomeDialog(
     context: context,
     dialogType: DialogType.error,
-    animType: AnimType.rightSlide,
+    // animType: AnimType.rightSlide,
     title: title,
     desc: description,
     btnOkOnPress: () {},
-  );
+  ).show();
 }

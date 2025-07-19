@@ -36,8 +36,8 @@ class MedTech extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      locale: Locale("ar"),
-      initialRoute: SignInView.routeName,
+      locale: Locale("en"),
+      initialRoute: MainView.routeName,
       debugShowCheckedModeBanner: false,
     );
   }

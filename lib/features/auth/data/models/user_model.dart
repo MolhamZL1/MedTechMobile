@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../domain/entities/user_entity.dart';
 
 class UserModel {
@@ -17,5 +21,37 @@ class UserModel {
       token: json['token'],
     );
   }
+  factory UserModel.fromEntity(UserEntity userEntity) {
+    return UserModel(
+      name: userEntity.name,
+      email: userEntity.email,
+      token: userEntity.token,
+    );
+  }
+
+  toJson() => {"username": name, "email": email, "token": token};
   toEntity() => UserEntity(name: name, email: email, token: token);
+}
+
+class UserPrefs {
+  static Future<void> saveUser(UserEntity user) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(
+      'userData',
+      UserModel.fromEntity(user).toJson().toString(),
+    );
+  }
+
+  static Future<UserEntity?> getUser() async {
+    final prefs = await SharedPreferences.getInstance();
+    final raw = prefs.getString('userData');
+    if (raw == null) return null;
+    final json = Map<String, dynamic>.from(jsonDecode(raw));
+    return UserModel.fromJson(json).toEntity();
+  }
+
+  static Future<void> clear() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('userData');
+  }
 }

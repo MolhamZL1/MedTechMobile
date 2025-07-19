@@ -6,7 +6,6 @@ import 'package:medtech_mobile/features/auth/presentation/views/resetpassword.da
 import '../../../../../core/functions/custom_validator.dart';
 import '../../../../../core/widgets/CustomLoadingCircle.dart';
 import '../../../../../core/widgets/show_err_dialog.dart';
-import '../../cubits/resetpassword/resetpassword_cubit.dart';
 
 class ForegetPasswordViewBody extends StatefulWidget {
   const ForegetPasswordViewBody({super.key});
@@ -39,8 +38,7 @@ class _ForegetPasswordViewBodyState extends State<ForegetPasswordViewBody> {
                 controller: emailController,
                 decoration: const InputDecoration(
                   labelText: 'Email',
-                  hintText: 'Enter your email',
-                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.email),
                 ),
                 validator: CustomValidator.emailValidator,
               ),

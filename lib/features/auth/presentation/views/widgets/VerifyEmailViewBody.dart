@@ -4,87 +4,76 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/functions/custom_validator.dart';
 import '../../../../../core/widgets/CustomLoadingCircle.dart';
 import '../../../../../core/widgets/show_err_dialog.dart';
-import '../../cubits/resetpassword/resetpassword_cubit.dart';
+import '../../cubits/verifycode/verifycode_cubit.dart';
 import '../sign_in_view.dart';
 
-class ResetPasswordViewBody extends StatefulWidget {
-  const ResetPasswordViewBody({super.key});
+class VerifyEmailViewBody extends StatefulWidget {
+  const VerifyEmailViewBody({super.key});
 
   @override
-  State<ResetPasswordViewBody> createState() => _ResetPasswordViewBodyState();
+  State<VerifyEmailViewBody> createState() => _VerifyEmailViewBodyState();
 }
 
-class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody> {
-  final GlobalKey<FormState> reskey = GlobalKey();
+class _VerifyEmailViewBodyState extends State<VerifyEmailViewBody> {
+  final GlobalKey<FormState> reskey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController codeController = TextEditingController();
-  final TextEditingController newpassController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Form(
-        key: reskey,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+        child: Form(
+          key: reskey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Please enter your registered email address, the reset code you received, and your new password.',
+                'Please enter the verification code sent to your email address',
                 style: TextStyle(fontSize: 16, color: Colors.grey),
               ),
               const SizedBox(height: 16),
               TextFormField(
                 controller: emailController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'Email',
-                  prefixIcon: Icon(Icons.email),
+                  prefixIcon: const Icon(Icons.email),
                 ),
                 validator: CustomValidator.emailValidator,
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 20),
               TextFormField(
                 controller: codeController,
-                decoration: const InputDecoration(
-                  labelText: 'Reset Code',
-                  prefixIcon: Icon(Icons.code),
+                decoration: InputDecoration(
+                  labelText: 'Verification code',
+                  prefixIcon: const Icon(Icons.code),
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter the reset code';
+                    return 'Please enter the verification code';
                   }
                   return null;
                 },
               ),
-              const SizedBox(height: 16),
-              TextFormField(
-                controller: newpassController,
-                decoration: const InputDecoration(
-                  labelText: 'New Password',
-                  hintText: 'Enter your new password',
-                  border: OutlineInputBorder(),
-                ),
-                obscureText: true,
-                validator: CustomValidator.passwordValidator,
-              ),
-              const SizedBox(height: 30),
-              BlocConsumer<ResetpasswordCubit, ResetpasswordState>(
+              const SizedBox(height: 20),
+              BlocConsumer<VerifycodeCubit, VerifycodeState>(
                 listener: (context, state) {
-                  if (state is ResetPasswordSuccess) {
+                  if (state is VerifycodeSuccess) {
                     Navigator.pushReplacementNamed(
                       context,
                       SignInView.routeName,
                     );
-                  } else if (state is ResetPasswordError) {
+                  } else if (state is VerifycodeError) {
                     showerrorDialog(
                       context: context,
                       title: "!Oops",
-                      description: state.message,
+                      description: state.errMessage,
                     );
                   }
                 },
                 builder: (context, state) {
-                  return state is ResetPasswordLoading
+                  return state is VerifycodeLoading
                       ? Center(child: CustomLoadingCircle())
                       : SizedBox(
                         width: double.infinity,
@@ -92,10 +81,9 @@ class _ResetPasswordViewBodyState extends State<ResetPasswordViewBody> {
                         child: ElevatedButton(
                           onPressed: () {
                             if (reskey.currentState!.validate()) {
-                              context.read<ResetpasswordCubit>().resetpassword(
+                              context.read<VerifycodeCubit>().verifyCode(
                                 email: emailController.text,
                                 code: codeController.text,
-                                newpassword: newpassController.text,
                               );
                             }
                           },
