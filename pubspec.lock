@@ -245,14 +245,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.3"
-  html:
-    dependency: transitive
-    description:
-      name: html
-      sha256: "6d1264f2dffa1b1101c25a91dff0dc2daee4c18e87cd8538729773c073dbf602"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.15.6"
   graphs:
     dependency: transitive
     description:
@@ -261,6 +253,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
+  html:
+    dependency: transitive
+    description:
+      name: html
+      sha256: "6d1264f2dffa1b1101c25a91dff0dc2daee4c18e87cd8538729773c073dbf602"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.15.6"
   http:
     dependency: transitive
     description:
@@ -453,8 +453,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
-<<<<<<< HEAD
-=======
   rive:
     dependency: transitive
     description:
@@ -471,7 +469,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.4.15"
->>>>>>> c108cbcabd240665468154c243c60fdc3509245f
   shared_preferences:
     dependency: "direct main"
     description:
