@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medtech_mobile/core/services/custom_bloc_observer.dart';
 import 'package:medtech_mobile/core/services/get_it_service.dart';
+import 'package:medtech_mobile/features/auth/presentation/views/forget_password_view.dart';
+import 'package:medtech_mobile/features/auth/presentation/views/resetpassword.dart';
 import 'package:medtech_mobile/features/auth/presentation/views/sign_in_view.dart';
 import 'package:medtech_mobile/core/utils/app_themes.dart';
 import 'package:medtech_mobile/core/functions/on_generate_route.dart';
+import 'package:medtech_mobile/features/auth/presentation/views/verify_email_view.dart';
 import 'package:medtech_mobile/features/main/presentaion/views/main_view.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:medtech_mobile/features/product_details/presentation/views/product_details_view.dart';
@@ -38,6 +41,7 @@ class MedTech extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
+<<<<<<< HEAD
       locale: Locale("ar"),
      initialRoute: 
          MainView.routeName,
@@ -46,6 +50,10 @@ class MedTech extends StatelessWidget {
     //  routes: {
     //    'DettailesType': (context) => Addtocardsec(),
     //  },
+=======
+      locale: Locale("en"),
+      initialRoute: MainView.routeName,
+>>>>>>> c108cbcabd240665468154c243c60fdc3509245f
       debugShowCheckedModeBanner: false,
     );
   }

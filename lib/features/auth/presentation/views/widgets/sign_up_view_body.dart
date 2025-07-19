@@ -1,6 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medtech_mobile/core/widgets/show_err_dialog.dart';
+import 'package:medtech_mobile/features/auth/presentation/cubits/signup/sign_up_cubit.dart';
+import 'package:medtech_mobile/features/auth/presentation/views/verify_email_view.dart';
 
 import '../../../../../core/functions/custom_validator.dart';
+import '../../../../../core/widgets/CustomLoadingCircle.dart';
 import 'CustomPasswordTextField.dart';
 import 'HaveAnAccountSection.dart';
 import 'customlogoimage.dart';
@@ -54,14 +61,38 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
             SizedBox(height: 5),
 
             SizedBox(height: 10),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  if (sk.currentState!.validate()) {}
-                },
-                child: Text("Sign Up"),
-              ),
+            BlocConsumer<SignUpCubit, SignUpState>(
+              listener: (context, state) {
+                if (state is SignUpSuccess) {
+                  Navigator.pushNamed(context, VerifyEmailView.routeName);
+                } else if (state is SignUpError) {
+                  log(state.errMessage);
+                  showerrorDialog(
+                    context: context,
+                    title: "!Oops",
+                    description: state.errMessage,
+                  );
+                }
+              },
+              builder: (context, state) {
+                return state is SignUpLoading
+                    ? Center(child: CustomLoadingCircle())
+                    : SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (sk.currentState!.validate()) {
+                            context.read<SignUpCubit>().signUp(
+                              name: namecontroller.text,
+                              email: emailcontroller.text,
+                              password: passWordcontroller.text,
+                            );
+                          }
+                        },
+                        child: Text("Sign Up"),
+                      ),
+                    );
+              },
             ),
             SizedBox(height: 15),
             HaveAnAccountSection(),
