@@ -15,12 +15,17 @@ import 'package:medtech_mobile/features/product_details/presentation/views/widge
 import 'package:medtech_mobile/features/product_details/presentation/views/widgets/detaile_type_view/detals_type_list.dart';
 import 'package:medtech_mobile/features/product_details/presentation/views/widgets/detaile_type_view/dettailes_type.dart';
 import 'package:medtech_mobile/features/product_details/presentation/views/widgets/totuialssection.dart';
+import 'package:medtech_mobile/features/profile/presentation/views/widgets/pagescards/profile/editprofile/editprofile.dart';
+import 'package:medtech_mobile/features/profile/presentation/views/widgets/pagescards/profile/payment/paymentpage.dart';
+import 'package:medtech_mobile/features/profile/presentation/views/widgets/pagescards/setting/safety&privacy/safetypage.dart';
+import 'package:medtech_mobile/features/profile/presentation/views/widgets/profilecolumn/paymentcard.dart';
 import 'generated/l10n.dart';
 
 void main() {
   Bloc.observer = CustomBlocObserver();
   setupSingltonGetIt();
   runApp(const MedTech());
+  
 }
 
 class MedTech extends StatelessWidget {
@@ -29,6 +34,7 @@ class MedTech extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
@@ -41,7 +47,12 @@ class MedTech extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       locale: Locale("en"),
-      initialRoute: MainView.routeName,
+    initialRoute: MainView.routeName,
+//      initialRoute: 'editprofile',
+//      routes: {
+//   'editprofile': (context) => Safetypage(),
+// },
+
       debugShowCheckedModeBanner: false,
     );
   }

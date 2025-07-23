@@ -7,9 +7,11 @@ class Customlogoimage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      radius: 100,
-      backgroundColor: Colors.transparent,
-      child: Image.asset(AppImages.imagesMedtechlogo, fit: BoxFit.cover),
-    );
+  radius: 100,
+  backgroundImage: AssetImage(AppImages.imagesMedtechlogo),
+  backgroundColor: Colors.transparent,
+);
+
+
   }
 }
