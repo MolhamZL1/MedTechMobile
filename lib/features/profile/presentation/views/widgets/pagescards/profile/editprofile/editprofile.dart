@@ -8,7 +8,7 @@ import 'package:medtech_mobile/features/profile/presentation/views/widgets/pages
 import 'package:medtech_mobile/features/profile/presentation/views/widgets/pagescards/profile/editprofile/numbersection.dart';
 import 'package:medtech_mobile/features/profile/presentation/views/widgets/pagescards/profile/editprofile/picturesection.dart';
 import 'package:medtech_mobile/features/profile/presentation/views/widgets/pagescards/profile/editprofile/savebutton.dart';
-import 'package:medtech_mobile/features/profile/presentation/views/widgets/profilepicture.dart';
+import 'package:medtech_mobile/features/profile/headerdesign/profilepicture.dart';
 
 class Editprofile extends StatelessWidget { 
    Editprofile({super.key});
@@ -17,7 +17,7 @@ class Editprofile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
     appBar: customAppBar(title: 'تعديل الملف الشخصي',
-     icon: Icons.save,),
+     icon: Icons.save, color1: Colors.blue,),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(

@@ -5,7 +5,7 @@ class Row1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return       Row(
+    return Row(
       
                 children: [
                   Icon(Icons.home,color: Colors.green,),

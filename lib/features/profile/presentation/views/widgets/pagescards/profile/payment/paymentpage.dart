@@ -10,7 +10,7 @@ class Paymentpage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(title: 'طرق الدفع',
-      icon: Icons.add,),
+      icon: Icons.add, color1: Colors.orange,),
       body: Paymentcarddetailes(),
     );
   }

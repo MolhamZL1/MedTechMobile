@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:medtech_mobile/features/profile/presentation/views/widgets/Profilestate.dart';
-import 'package:medtech_mobile/features/profile/presentation/views/widgets/doctornamwtext.dart';
-import 'package:medtech_mobile/features/profile/presentation/views/widgets/email.dart';
-import 'package:medtech_mobile/features/profile/presentation/views/widgets/profilepicture.dart';
+import 'package:medtech_mobile/features/profile/headerdesign/profilestate.dart';
+import 'package:medtech_mobile/features/profile/headerdesign/doctornamwtext.dart';
+import 'package:medtech_mobile/features/profile/headerdesign/email.dart';
+import 'package:medtech_mobile/features/profile/headerdesign/profilepicture.dart';
 
 class Dcinfo extends StatelessWidget {
   const Dcinfo({super.key});
