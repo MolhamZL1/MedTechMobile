@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medtech_mobile/features/profile/presentation/views/widgets/stateitem.dart';
+import 'package:medtech_mobile/features/profile/headerdesign/stateitem.dart';
 
 
 class profileStats extends StatelessWidget {

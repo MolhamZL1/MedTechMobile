@@ -14,7 +14,7 @@ class Safetypage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(title: 'الخصوصية والأمان',icon: Icons.shield,),
+      appBar: customAppBar(title: 'الخصوصية والأمان',icon: Icons.shield_outlined, color1: Colors.green,),
       body: Container(
          color: Colors.grey.shade100,
         child: SingleChildScrollView(
@@ -35,3 +35,5 @@ class Safetypage extends StatelessWidget {
     );
   }
 }
+
+

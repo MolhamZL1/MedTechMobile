@@ -18,6 +18,7 @@ import 'package:medtech_mobile/features/product_details/presentation/views/widge
 import 'package:medtech_mobile/features/profile/presentation/views/widgets/pagescards/profile/editprofile/editprofile.dart';
 import 'package:medtech_mobile/features/profile/presentation/views/widgets/pagescards/profile/payment/paymentpage.dart';
 import 'package:medtech_mobile/features/profile/presentation/views/widgets/pagescards/setting/safety&privacy/safetypage.dart';
+import 'package:medtech_mobile/features/profile/presentation/views/widgets/pagescards/setting/settings/mainsettingpage.dart';
 import 'package:medtech_mobile/features/profile/presentation/views/widgets/profilecolumn/paymentcard.dart';
 import 'generated/l10n.dart';
 
