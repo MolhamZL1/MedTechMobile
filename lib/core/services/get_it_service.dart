@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:medtech_mobile/core/services/api_service.dart';
+import 'package:medtech_mobile/features/cart/data/repo/cart_repo_imp.dart';
+import 'package:medtech_mobile/features/cart/domain/repos/cart_repo.dart';
 import 'package:medtech_mobile/features/products/data/repo/products_repo_imp.dart';
 import 'package:medtech_mobile/features/products/domain/repo/products_repo.dart';
 
@@ -38,5 +40,8 @@ void setupSingltonGetIt() {
   );
   getIt.registerSingleton<ProductsRepo>(
     ProductsRepoImp(databaseService: getIt.get<DatabaseService>()),
+  );
+  getIt.registerSingleton<CartRepo>(
+    CartRepoImp(databaseService: getIt.get<DatabaseService>()),
   );
 }

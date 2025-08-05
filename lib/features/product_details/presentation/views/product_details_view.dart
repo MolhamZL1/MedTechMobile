@@ -21,7 +21,7 @@ class ProductDetailsView extends StatelessWidget {
         ],
       ),
       body: ProductDetailsViewBody(productEntitie: productEntitie),
-      bottomNavigationBar: Addtocardsec(),
+      bottomNavigationBar: Addtocardsec(id: productEntitie.id.toString()),
     );
   }
 }

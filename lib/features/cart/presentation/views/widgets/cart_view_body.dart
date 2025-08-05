@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medtech_mobile/features/cart/presentation/cubits/fetch_Cart/fetch_cart_cubit.dart';
 
 class CartviewBody extends StatelessWidget {
   const CartviewBody({super.key});
@@ -16,7 +18,7 @@ class CartviewBody extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               trailing: Text(
-                "0 items",
+                "${context.read<FetchCartCubit>().cartItems.length} items",
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ),

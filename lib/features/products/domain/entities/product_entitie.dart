@@ -1,14 +1,16 @@
+import 'vedio_entity.dart';
+
 class ProductEntity {
   final num id;
 
   final String nameEn;
   final String nameAr;
   final String categoryEn;
-  final String categoryAr;
+  final String? categoryAr;
   final String companyEn;
-  final String companyAr;
+  final String? companyAr;
   final String descriptionEn;
-  final String descriptionAr;
+  final String? descriptionAr;
   final num rentStock;
   final num saleStock;
   final num salePrice;
@@ -18,18 +20,18 @@ class ProductEntity {
   final bool availableForSale;
   final String qrCode;
   final List<String> imagesUrl;
-  final List<String> vedioUrls;
+  final List<VedioEntity> vedios;
 
   ProductEntity({
     required this.id,
     required this.nameEn,
     required this.nameAr,
     required this.categoryEn,
-    required this.categoryAr,
+    this.categoryAr,
     required this.companyEn,
-    required this.companyAr,
+    this.companyAr,
     required this.descriptionEn,
-    required this.descriptionAr,
+    this.descriptionAr,
     required this.rentStock,
     required this.saleStock,
     required this.salePrice,
@@ -39,6 +41,6 @@ class ProductEntity {
     required this.availableForSale,
     required this.qrCode,
     required this.imagesUrl,
-    required this.vedioUrls,
+    required this.vedios,
   });
 }

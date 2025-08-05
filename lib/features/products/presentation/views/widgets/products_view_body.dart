@@ -8,7 +8,7 @@ import 'ProductsGridView.dart';
 import 'category_list.dart';
 
 class ProductsViewBody extends StatelessWidget {
-  ProductsViewBody({super.key});
+  const ProductsViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
