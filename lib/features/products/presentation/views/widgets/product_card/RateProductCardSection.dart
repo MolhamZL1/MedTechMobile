@@ -5,7 +5,7 @@ import '../../../../domain/entities/product_entitie.dart';
 class RateProductCardSection extends StatelessWidget {
   const RateProductCardSection({super.key, required this.productEntitie});
 
-  final ProductEntitie productEntitie;
+  final ProductEntity productEntitie;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class RateProductCardSection extends StatelessWidget {
         const Icon(Icons.star, color: Colors.orange, size: 16),
         const SizedBox(width: 4),
         Text(
-          '${productEntitie.rate} (${productEntitie.ratingCount})',
+          '${productEntitie.rate} ', //(${productEntitie.ratingCount})
           style: const TextStyle(fontSize: 12),
         ),
       ],

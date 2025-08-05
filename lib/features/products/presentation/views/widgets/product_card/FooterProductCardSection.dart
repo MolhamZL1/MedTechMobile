@@ -5,7 +5,7 @@ import '../../../../domain/entities/product_entitie.dart';
 class FooterProductCardSection extends StatelessWidget {
   const FooterProductCardSection({super.key, required this.productEntitie});
 
-  final ProductEntitie productEntitie;
+  final ProductEntity productEntitie;
 
   @override
   Widget build(BuildContext context) {
@@ -17,23 +17,23 @@ class FooterProductCardSection extends StatelessWidget {
           children: [
             Text(
               r"$ "
-              '${productEntitie.price}',
+              '${productEntitie.salePrice}',
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.blue,
               ),
             ),
             const SizedBox(width: 6),
-            Visibility(
-              visible: productEntitie.oldPrice != null,
-              child: Text(
-                r"$ "
-                '${productEntitie.oldPrice}',
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  decoration: TextDecoration.lineThrough,
-                ),
-              ),
-            ),
+            // Visibility(
+            //   visible: productEntitie.oldPrice != null,
+            //   child: Text(
+            //     r"$ "
+            //     '${productEntitie.oldPrice}',
+            //     style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            //       decoration: TextDecoration.lineThrough,
+            //     ),
+            //   ),
+            // ),
           ],
         ),
         IconButton(

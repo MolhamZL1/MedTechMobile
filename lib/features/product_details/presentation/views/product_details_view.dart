@@ -8,12 +8,12 @@ import 'widgets/ProductDetailsViewBody.dart';
 class ProductDetailsView extends StatelessWidget {
   const ProductDetailsView({super.key, required this.productEntitie});
   static const String routeName = 'ProductDetailsView';
-  final ProductEntitie productEntitie;
+  final ProductEntity productEntitie;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(productEntitie.category),
+        title: Text(productEntitie.categoryEn),
         actions: [
           FavoriteButton(),
           SizedBox(width: 8),
@@ -21,7 +21,7 @@ class ProductDetailsView extends StatelessWidget {
         ],
       ),
       body: ProductDetailsViewBody(productEntitie: productEntitie),
-      bottomNavigationBar : Addtocardsec(),
+      bottomNavigationBar: Addtocardsec(),
     );
   }
 }

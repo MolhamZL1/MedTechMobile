@@ -37,12 +37,12 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
         builder: (context) {
           final args = settings.arguments;
 
-          if (args == null || args is! ProductEntitie) {
+          if (args == null || args is! ProductEntity) {
             log(args.toString());
             return Scaffold(body: Center(child: Text("No product found")));
           }
 
-          final product = args as ProductEntitie;
+          final product = args as ProductEntity;
           return ProductDetailsView(productEntitie: product);
         },
       );

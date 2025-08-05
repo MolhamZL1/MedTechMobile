@@ -6,7 +6,7 @@ import 'BodyProductCardSection.dart';
 import 'HeaderCardProdcutSection.dart';
 
 class CustomProductCard extends StatelessWidget {
-  final ProductEntitie productEntitie;
+  final ProductEntity productEntitie;
 
   const CustomProductCard({super.key, required this.productEntitie});
 

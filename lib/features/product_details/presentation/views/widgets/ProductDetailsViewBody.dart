@@ -14,7 +14,7 @@ import 'package:medtech_mobile/features/products/domain/entities/product_entitie
 
 class ProductDetailsViewBody extends StatelessWidget {
   const ProductDetailsViewBody({super.key, required this.productEntitie});
-  final ProductEntitie productEntitie;
+  final ProductEntity productEntitie;
 
   @override
   Widget build(BuildContext context) {
@@ -29,22 +29,23 @@ class ProductDetailsViewBody extends StatelessWidget {
               child: InteractiveViewer(
                 maxScale: 5,
                 minScale: 1,
-                child: CustomImageNetwork(imageUrl: productEntitie.image),
+                child: CustomImageNetwork(
+                  imageUrl: productEntitie.imagesUrl[0],
+                ),
               ),
             ),
           ),
-          SizedBox(height: 8,),
-         Productnamewidget(),
-           Text1(),
+          SizedBox(height: 8),
+          Productnamewidget(),
+          Text1(),
           Text2(),
           SizedBox(height: 10),
-         Text3(),
-         Optionbuttonsection(),
-           Pricesection(),
-           Totuialssection(),
+          Text3(),
+          Optionbuttonsection(),
+          Pricesection(),
+          Totuialssection(),
 
-           DetalsTypeList(),
-       
+          DetalsTypeList(),
         ],
       ),
     );

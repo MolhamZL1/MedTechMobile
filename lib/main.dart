@@ -25,7 +25,6 @@ void main() {
   Bloc.observer = CustomBlocObserver();
   setupSingltonGetIt();
   runApp(const MedTech());
-  
 }
 
 class MedTech extends StatelessWidget {
@@ -34,7 +33,6 @@ class MedTech extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: ThemeMode.system,
@@ -47,12 +45,12 @@ class MedTech extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       locale: Locale("en"),
-    initialRoute: MainView.routeName,
-//      initialRoute: 'editprofile',
-//      routes: {
-//   'editprofile': (context) => Safetypage(),
-// },
+      initialRoute: MainView.routeName,
 
+      //      initialRoute: 'editprofile',
+      //      routes: {
+      //   'editprofile': (context) => Safetypage(),
+      // },
       debugShowCheckedModeBanner: false,
     );
   }
