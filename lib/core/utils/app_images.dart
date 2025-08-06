@@ -8,6 +8,8 @@ class AppImages {
 
   static const String imagesMedtechlogo = "assets/images/medtechlogo.jpg";
 
+  static const String imagesOrderSvgrepoCom = "assets/images/order-svgrepo-com.svg";
+
   static const String imagesProducts = "assets/images/products.svg";
 
   static const String imagesShoppingCart = "assets/images/shopping-cart.svg";
