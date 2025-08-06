@@ -46,7 +46,7 @@ class Addtocartbutton extends StatelessWidget {
             },
             builder: (context, state) {
               if (state is UpdateCartLoading) {
-                return CircularProgressIndicator(color: Colors.white);
+                return Text("Loading", style: TextStyle(color: Colors.white));
               }
               return Row(
                 mainAxisAlignment: MainAxisAlignment.center,

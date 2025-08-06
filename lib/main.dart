@@ -36,7 +36,7 @@ class MedTech extends StatelessWidget {
     return MaterialApp(
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       onGenerateRoute: (settings) => onGenerateRoute(settings),
       localizationsDelegates: [
         S.delegate,

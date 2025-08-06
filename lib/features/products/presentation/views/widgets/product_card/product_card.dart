@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medtech_mobile/core/services/get_it_service.dart';
+import 'package:medtech_mobile/features/cart/domain/repos/cart_repo.dart';
+import 'package:medtech_mobile/features/cart/presentation/cubits/update_cart/update_cart_cubit.dart';
 import 'package:medtech_mobile/features/product_details/presentation/views/product_details_view.dart';
 import 'package:medtech_mobile/features/products/domain/entities/product_entitie.dart';
 

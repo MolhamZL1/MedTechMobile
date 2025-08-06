@@ -55,7 +55,9 @@ class ProductsViewBody extends StatelessWidget {
           SizedBox(height: 15),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text("4 منتجات"),
+            child: Text(
+              "${context.watch<ProductsCubit>().products.length} منتجات",
+            ),
           ),
           SizedBox(height: 10),
           Expanded(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medtech_mobile/features/products/presentation/cubits/cubit/products_cubit.dart';
 
 import 'category_item.dart';
 
@@ -20,6 +22,7 @@ class _CategoriesListState extends State<CategoriesList> {
           (context, index) => GestureDetector(
             onTap: () {
               selectedIndex = index;
+              context.read<ProductsCubit>().setCategory(index);
               setState(() {});
             },
             child: CategoryItem(

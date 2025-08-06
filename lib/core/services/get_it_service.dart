@@ -24,7 +24,7 @@ void setupSingltonGetIt() {
           baseUrl: BackendEndpoints.url,
           headers: {
             "Authorization":
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtb2xoYW1zYTQ5QGdtYWlsLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc1MzUyODg0OSwiZXhwIjoxNzU0MTMzNjQ5fQ.e5latSTB2QTT4avWcWqyfdaQHznAeC7GDwVRIuCnYSs",
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtb2xoYW1zYTQ5QGdtYWlsLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc1NDEzOTg4MSwiZXhwIjoxNzU0NzQ0NjgxfQ.sHjBxFFdJDGGcKJHUwTTNKeSP4zT2l_S3QMRMsnmups",
           },
           // getIt<UserService>().user?.token != null
           //     ? {
