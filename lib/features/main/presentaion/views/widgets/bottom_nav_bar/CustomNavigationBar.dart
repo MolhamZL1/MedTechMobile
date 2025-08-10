@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medtech_mobile/features/main/presentaion/cubits/cubit/nav_bar_cubit.dart';
 import 'package:medtech_mobile/features/main/presentaion/views/widgets/bottom_nav_bar/NaivgationBarItem.dart';
 
 import 'bottom_navigation_bar_entity.dart';
 
-class CustomNavigationBar extends StatefulWidget {
-  const CustomNavigationBar({super.key, required this.onChanged});
-  final ValueChanged<int> onChanged;
+class CustomNavigationBar extends StatelessWidget {
+  const CustomNavigationBar({super.key});
 
-  @override
-  State<CustomNavigationBar> createState() => _CustomNavigationBarState();
-}
-
-class _CustomNavigationBarState extends State<CustomNavigationBar> {
-  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,12 +18,11 @@ class _CustomNavigationBarState extends State<CustomNavigationBar> {
           return Expanded(
             child: GestureDetector(
               onTap: () {
-                setState(() => currentIndex = index);
-                widget.onChanged(currentIndex);
+                context.read<NavBarCubit>().changeIndex(index);
               },
               child: NaivgationBarItem(
                 bottomNavigationBarEntity: bottomNavigationBarItems[index],
-                isSelected: currentIndex == index,
+                isSelected: context.watch<NavBarCubit>().currentIndex == index,
               ),
             ),
           );

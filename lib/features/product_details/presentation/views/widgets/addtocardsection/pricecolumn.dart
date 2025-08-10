@@ -6,22 +6,25 @@ class Pricecolumn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       height: 50,
-      alignment: Alignment.topLeft,
+
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Text("\$ 2,200,000",
-           style: TextStyle(fontSize: 20,color: AppColors.primary),),
-     
-             Text(
-              "Purchase Price"
-             ,style: TextStyle(fontSize: 10,
-            color:  Theme.of(context).textTheme.bodySmall?.color,),
-                         
-             ),
-        ],),
+          Text(
+            "\$ 2,200,000",
+            style: TextStyle(fontSize: 20, color: AppColors.primary),
+          ),
+
+          Text(
+            "Purchase Price",
+            style: TextStyle(
+              fontSize: 10,
+              color: Theme.of(context).textTheme.bodySmall?.color,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -26,9 +26,31 @@ class ApiService implements DatabaseService {
     Map<String, dynamic>? quary,
   }) async {
     if (rowid != null) {
-      return await dio.get(endpoint + rowid);
+      Response response = await dio.get(
+        endpoint + rowid,
+        queryParameters: quary,
+      );
+      return response.data;
     } else {
-      return await dio.get(endpoint);
+      Response response = await dio.get(endpoint, queryParameters: quary);
+      return response.data;
     }
+  }
+
+  @override
+  Future deleteData({required String endpoint, String? rowid}) async {
+    if (rowid == null) {
+      return await dio.delete(endpoint);
+    }
+    return await dio.delete(endpoint + rowid);
+  }
+
+  @override
+  Future updateData({
+    required String endpoint,
+    String? rowid,
+    Map<String, dynamic>? data,
+  }) async {
+    return await dio.put(endpoint + (rowid ?? ""), data: data);
   }
 }

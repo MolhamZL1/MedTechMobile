@@ -9,4 +9,10 @@ abstract class DatabaseService {
     String? rowid,
     Map<String, dynamic>? quary,
   });
+  Future<dynamic> deleteData({required String endpoint, String? rowid});
+  Future<dynamic> updateData({
+    required String endpoint,
+    String? rowid,
+    Map<String, dynamic>? data,
+  });
 }

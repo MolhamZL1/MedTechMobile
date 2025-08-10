@@ -1,62 +1,122 @@
-class ProductEntitie {
-  final String id;
-  final String name;
-  final String description;
-  final double price;
-  final String image;
-  final String category;
-  final double oldPrice;
-  final double rate;
-  final int ratingCount;
+import '../../../../core/utils/app_images.dart';
+import 'vedio_entity.dart';
 
-  ProductEntitie({
-    required this.category,
-    required this.oldPrice,
-    required this.rate,
-    required this.ratingCount,
+class ProductEntity {
+  final num id;
+
+  final String nameEn;
+  final String nameAr;
+  final String categoryEn;
+  final String? categoryAr;
+  final String companyEn;
+  final String? companyAr;
+  final String descriptionEn;
+  final String? descriptionAr;
+  final num rentStock;
+  final num saleStock;
+  final num salePrice;
+  final num rentalPrice;
+  final num rate;
+  final bool availableForRent;
+  final bool availableForSale;
+  final String qrCode;
+  final List<String> imagesUrl;
+  final List<VedioEntity> vedios;
+
+  ProductEntity({
     required this.id,
-    required this.name,
-    required this.description,
-    required this.price,
-    required this.image,
+    required this.nameEn,
+    required this.nameAr,
+    required this.categoryEn,
+    this.categoryAr,
+    required this.companyEn,
+    this.companyAr,
+    required this.descriptionEn,
+    this.descriptionAr,
+    required this.rentStock,
+    required this.saleStock,
+    required this.salePrice,
+    required this.rentalPrice,
+    required this.rate,
+    required this.availableForRent,
+    required this.availableForSale,
+    required this.qrCode,
+    required this.imagesUrl,
+    required this.vedios,
   });
 }
 
-List<ProductEntitie> products = [
-  ProductEntitie(
-    id: "1",
-    name: "Product1",
-    description: "description1",
-    price: 10.0,
-    image:
-        "https://th.bing.com/th/id/R.780bb0b70e3c2cd69ef00b23992e2762?rik=UJidpe0gztC1dQ&pid=ImgRaw&r=0",
-    category: "category1",
-    oldPrice: 15.0,
-    rate: 4.0,
-    ratingCount: 200,
-  ),
-  ProductEntitie(
-    id: "2",
-    name: "Product2",
-    description: "description2",
-    price: 20.0,
-    image:
-        "https://www.bikhamhealthcare.com/provider-resources/wp-content/uploads/2022/12/Diabetes4152.jpg",
-    category: "category2",
-    oldPrice: 30.0,
+List<ProductEntity> featuredProducts = [
+  ProductEntity(
+    id: 1,
+    nameEn: "Device 1",
+    nameAr: "",
+    categoryEn: "Category 1",
+    companyEn: "Company 1",
+    descriptionEn: "This is a description of device 1",
+    rentStock: 10,
+    saleStock: 5,
+    salePrice: 100,
+    rentalPrice: 50,
     rate: 4.5,
-    ratingCount: 300,
+    availableForRent: true,
+    availableForSale: true,
+    qrCode: "1234567890",
+    imagesUrl: [AppImages.imagesMedtechlogo],
+    vedios: [],
   ),
-  ProductEntitie(
-    id: "3",
-    name: "Product3",
-    description: "description3",
-    price: 30.0,
-    image:
-        "https://th.bing.com/th/id/R.780bb0b70e3c2cd69ef00b23992e2762?rik=UJidpe0gztC1dQ&pid=ImgRaw&r=0",
-    category: "category3",
-    oldPrice: 40.0,
-    rate: 4.8,
-    ratingCount: 400,
+  ProductEntity(
+    id: 1,
+    nameEn: "Device 1",
+    nameAr: "",
+    categoryEn: "Category 1",
+    companyEn: "Company 1",
+    descriptionEn: "This is a description of device 1",
+    rentStock: 10,
+    saleStock: 5,
+    salePrice: 100,
+    rentalPrice: 50,
+    rate: 4.5,
+    availableForRent: true,
+    availableForSale: true,
+    qrCode: "1234567890",
+    imagesUrl: [AppImages.imagesMedtechlogo],
+    vedios: [],
+  ),
+  ProductEntity(
+    id: 1,
+    nameEn: "Device 1",
+    nameAr: "",
+    categoryEn: "Category 1",
+    companyEn: "Company 1",
+    descriptionEn: "This is a description of device 1",
+    rentStock: 10,
+    saleStock: 5,
+    salePrice: 100,
+    rentalPrice: 50,
+    rate: 4.5,
+    availableForRent: true,
+    availableForSale: true,
+    qrCode: "1234567890",
+    imagesUrl: [AppImages.imagesMedtechlogo],
+    vedios: [],
+  ),
+  ProductEntity(
+    id: 1,
+    nameEn: "Device 1",
+    nameAr: "",
+    categoryEn: "Category 1",
+    companyEn: "Company 1",
+    descriptionEn: "This is a description of device 1",
+    rentStock: 10,
+    saleStock: 5,
+    salePrice: 100,
+    rentalPrice: 50,
+    rate: 4.5,
+    availableForRent: true,
+    availableForSale: true,
+    qrCode: "1234567890",
+    imagesUrl: [AppImages.imagesMedtechlogo],
+    vedios: [],
   ),
 ];

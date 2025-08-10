@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medtech_mobile/core/utils/app_colors.dart';
 import 'package:medtech_mobile/features/products/presentation/views/widgets/custtom_filter_icon.dart';
 
+import '../../cubits/cubit/products_cubit.dart';
 import 'ProductsGridView.dart';
 import 'category_list.dart';
 
 class ProductsViewBody extends StatelessWidget {
-  ProductsViewBody({super.key});
+  const ProductsViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,10 +55,24 @@ class ProductsViewBody extends StatelessWidget {
           SizedBox(height: 15),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text("4 منتجات"),
+            child: Text(
+              "${context.watch<ProductsCubit>().products.length} منتجات",
+            ),
           ),
           SizedBox(height: 10),
-          Expanded(child: ProductsGridView()),
+          Expanded(
+            child: BlocBuilder<ProductsCubit, ProductsState>(
+              builder: (context, state) {
+                if (state is ProductsSuccess) {
+                  return ProductsGridView(products: state.products);
+                } else if (state is ProductsError) {
+                  return Center(child: Text(state.errorMessage));
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
+              },
+            ),
+          ),
         ],
       ),
     );

@@ -7,7 +7,7 @@ import 'RateProductCardSection.dart';
 class BodyProductCardSection extends StatelessWidget {
   const BodyProductCardSection({super.key, required this.productEntitie});
 
-  final ProductEntitie productEntitie;
+  final ProductEntity productEntitie;
 
   @override
   Widget build(BuildContext context) {
@@ -17,12 +17,12 @@ class BodyProductCardSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            productEntitie.category,
+            productEntitie.categoryEn,
             style: Theme.of(context).textTheme.bodySmall,
           ),
           const SizedBox(height: 4),
           Text(
-            productEntitie.name,
+            productEntitie.nameEn,
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 4),

@@ -4,7 +4,9 @@ import '../../../domain/entities/product_entitie.dart';
 import 'product_card/product_card.dart';
 
 class ProductsGridView extends StatelessWidget {
-  const ProductsGridView({super.key});
+  const ProductsGridView({super.key, required this.products});
+
+  final List<ProductEntity> products;
 
   @override
   Widget build(BuildContext context) {
