@@ -17,7 +17,7 @@ class Editprofile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
     appBar: customAppBar(title: 'تعديل الملف الشخصي',
-     icon: Icons.save, color1: Colors.blue,),
+     icon: Icons.save, ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(

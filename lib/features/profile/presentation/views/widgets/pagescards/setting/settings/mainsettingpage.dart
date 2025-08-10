@@ -10,7 +10,7 @@ class Mainsettingpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(title: 'الإعدادات العامة',icon: Icons.settings, color1: Colors.grey,),
+      appBar: customAppBar(title: 'الإعدادات العامة',icon: Icons.settings, ),
       body: Container(
          color: Colors.grey.shade100,
         child: SingleChildScrollView(

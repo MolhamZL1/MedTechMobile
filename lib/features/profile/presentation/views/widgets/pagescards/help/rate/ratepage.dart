@@ -13,7 +13,7 @@ class Ratepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(title: 'تقييم التطبيق',icon: Icons.star, color1: Colors.orange,),
+      appBar: customAppBar(title: 'تقييم التطبيق',icon: Icons.star,),
        body: Container(color: Colors.grey.shade100,
          child: SingleChildScrollView(child: 
            Padding(padding: EdgeInsets.all(4),

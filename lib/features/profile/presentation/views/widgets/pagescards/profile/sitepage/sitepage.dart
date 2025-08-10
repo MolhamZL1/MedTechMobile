@@ -13,7 +13,7 @@ class Sitepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: customAppBar(title: 'العناوين والمواقع',
-     icon: Icons.add, color1: Colors.green,),
+     icon: Icons.add, ),
       body: Sitecard1(),
     );
   }

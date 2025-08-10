@@ -19,7 +19,7 @@ class Helpandsupportpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(title: 'الدعم والمساعدة',icon: Icons.help_outline, color1: Colors.green,),
+      appBar: customAppBar(title: 'الدعم والمساعدة',icon: Icons.help_outline, ),
        body: Container(color: Colors.grey.shade100,
          child: SingleChildScrollView(child: 
            Padding(padding: EdgeInsets.all(4),

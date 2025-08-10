@@ -37,6 +37,7 @@ dependencies:
   flutter_bloc: ^9.1.1
   flutter_localizations:
     sdk: flutter
+  flutter_rating_bar: ^4.0.1
   flutter_svg: ^2.2.0
   font_awesome_flutter: ^10.8.0
   get_it: ^8.0.3
