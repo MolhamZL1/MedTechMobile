@@ -20,6 +20,8 @@ import 'package:medtech_mobile/features/profile/presentation/views/widgets/pages
 import 'package:medtech_mobile/features/profile/presentation/views/widgets/pagescards/setting/safety&privacy/safetypage.dart';
 import 'package:medtech_mobile/features/profile/presentation/views/widgets/pagescards/setting/settings/mainsettingpage.dart';
 import 'package:medtech_mobile/features/profile/presentation/views/widgets/profilecolumn/paymentcard.dart';
+import 'features/auth/domain/repos/auth_repo.dart';
+import 'features/auth/presentation/cubits/signin/sign_in_cubit.dart';
 import 'generated/l10n.dart';
 
 void main() {
@@ -33,26 +35,29 @@ class MedTech extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.light,
-      onGenerateRoute: (settings) => onGenerateRoute(settings),
-      localizationsDelegates: [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      locale: Locale("en"),
-      initialRoute: MainView.routeName,
+    return BlocProvider(
+      create: (context) => SignInCubit(getIt.get<AuthRepo>()),
+      child: MaterialApp(
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: ThemeMode.light,
+        onGenerateRoute: (settings) => onGenerateRoute(settings),
+        localizationsDelegates: [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        locale: Locale("en"),
+        initialRoute: MainView.routeName,
 
-      //      initialRoute: 'editprofile',
-      //      routes: {
-      //   'editprofile': (context) => Safetypage(),
-      // },
-      debugShowCheckedModeBanner: false,
+        //      initialRoute: 'editprofile',
+        //      routes: {
+        //   'editprofile': (context) => Safetypage(),
+        // },
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }

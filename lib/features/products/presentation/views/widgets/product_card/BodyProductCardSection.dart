@@ -23,6 +23,7 @@ class BodyProductCardSection extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             productEntitie.nameEn,
+            overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.titleMedium,
           ),
           const SizedBox(height: 4),
