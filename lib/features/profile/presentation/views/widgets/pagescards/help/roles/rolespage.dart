@@ -10,7 +10,7 @@ class Rolespage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: customAppBar(title: 'الشروط والأحكام',icon: Icons.policy_outlined, color1: Colors.blue,),
+       appBar: customAppBar(title: 'الشروط والأحكام',icon: Icons.policy_outlined,),
        body: Padding(
          padding: EdgeInsets.all(9),
          child: Column(

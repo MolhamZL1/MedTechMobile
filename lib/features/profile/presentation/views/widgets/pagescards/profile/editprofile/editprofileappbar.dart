@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class customAppBar extends StatelessWidget implements PreferredSizeWidget {
   String title;
   IconData? icon;
-  Color? color1;
+  // Color? color1;
    customAppBar({super.key,required this.title, this.icon,
-   required this.color1,
+  //  required this.color1,
    });
 
   @override
@@ -17,12 +17,12 @@ class customAppBar extends StatelessWidget implements PreferredSizeWidget {
         child: Container(
           margin: EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: color1?.withOpacity(0.1),
+            color: Colors.blue.withOpacity(0.1),
             shape: BoxShape.circle,
           ),
           child: Icon(
             Icons.arrow_back,
-            color: color1,
+            color: Colors.blue,
           ),
         ),
       ),
@@ -38,12 +38,12 @@ class customAppBar extends StatelessWidget implements PreferredSizeWidget {
             height: 70,
             margin: EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: color1?.withOpacity(0.1),
+              color: Colors.blue.withOpacity(0.1),
               shape: BoxShape.circle,
             ),
             child:  Icon(
               icon,
-              color: color1,
+              color: Colors.blue,
            size: 24,
             ),
           ),

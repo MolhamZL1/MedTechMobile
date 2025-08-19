@@ -9,7 +9,7 @@ class Notificationpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: customAppBar(title: 'إعدادات الإشعارات',icon: Icons.notifications_outlined, color1: Colors.purple,),
+      appBar: customAppBar(title: 'إعدادات الإشعارات',icon: Icons.notifications_outlined, ),
       body: Container(
          color: Colors.grey.shade100,
         child: SingleChildScrollView(
