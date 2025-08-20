@@ -15,4 +15,8 @@ class UpdateCartCubit extends Cubit<UpdateCartState> {
       (r) => emit(UpdateCartSuccess()),
     );
   }
+
+  removeCartItem(String id) {
+    updateCart(id: id, qty: 0);
+  }
 }

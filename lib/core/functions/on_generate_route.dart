@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:medtech_mobile/features/auth/presentation/views/verify_email_view.dart';
 
+import '../../features/ai chat/presentation/views/ai_chat_view.dart';
 import '../../features/auth/presentation/views/forget_password_view.dart';
 import '../../features/auth/presentation/views/resetpassword.dart';
 import '../../features/auth/presentation/views/sign_in_view.dart';
@@ -46,7 +47,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
           return ProductDetailsView(productEntitie: product);
         },
       );
-
+    case AiChatView.routeName:
+      return MaterialPageRoute(builder: (context) => const AiChatView());
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }

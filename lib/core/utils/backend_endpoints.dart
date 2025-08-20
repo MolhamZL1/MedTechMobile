@@ -13,7 +13,7 @@ abstract class BackendEndpoints {
   //
   static const String getProducts = "api/products/get-products";
   //
-  static const String getCartItems = "api/products/get-cart";
+  static const String getCartItems = "api/products/cart";
   static const String updateCartItem = "api/products/add-to-cart";
   //
   static const String sendAiMessage = "api/ai-chat/message";

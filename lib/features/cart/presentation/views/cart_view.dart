@@ -15,7 +15,8 @@ class CartView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => FetchCartCubit(getIt.get<CartRepo>()),
+          create:
+              (context) => FetchCartCubit(getIt.get<CartRepo>())..fetchCart(),
         ),
         BlocProvider(
           create: (context) => UpdateCartCubit(getIt.get<CartRepo>()),

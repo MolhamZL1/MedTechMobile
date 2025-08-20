@@ -6,7 +6,7 @@ sealed class FetchCartState {}
 final class FetchCartInitial extends FetchCartState {}
 
 final class FetchCartSuccess extends FetchCartState {
-  final List<CartItemEntity> cartEntity;
+  final CartEntity cartEntity;
   FetchCartSuccess(this.cartEntity);
 }
 
