@@ -6,7 +6,7 @@ import 'package:medtech_mobile/features/auth/presentation/views/forget_password_
 import 'package:medtech_mobile/features/auth/presentation/views/resetpassword.dart';
 import 'package:medtech_mobile/features/auth/presentation/views/sign_in_view.dart';
 import 'package:medtech_mobile/core/utils/app_themes.dart';
-import 'package:medtech_mobile/core/functions/on_generate_route.dart';
+import 'package:medtech_mobile/core/routing/on_generate_route.dart';
 import 'package:medtech_mobile/features/auth/presentation/views/verify_email_view.dart';
 import 'package:medtech_mobile/features/main/presentaion/views/main_view.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';

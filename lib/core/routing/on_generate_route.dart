@@ -8,6 +8,7 @@ import '../../features/auth/presentation/views/forget_password_view.dart';
 import '../../features/auth/presentation/views/resetpassword.dart';
 import '../../features/auth/presentation/views/sign_in_view.dart';
 import '../../features/auth/presentation/views/sign_up_view.dart';
+import '../../features/checkout/presentation/views/checkout_view.dart';
 import '../../features/main/presentaion/views/main_view.dart';
 import '../../features/product_details/presentation/views/product_details_view.dart';
 import '../../features/products/domain/entities/product_entitie.dart';
@@ -49,6 +50,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       );
     case AiChatView.routeName:
       return MaterialPageRoute(builder: (context) => const AiChatView());
+    case CheckoutView.routeName:
+      return MaterialPageRoute(builder: (context) => CheckoutView());
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }

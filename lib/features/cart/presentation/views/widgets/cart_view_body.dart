@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medtech_mobile/features/cart/presentation/cubits/fetch_Cart/fetch_cart_cubit.dart';
+import 'package:medtech_mobile/features/checkout/presentation/views/checkout_view.dart';
 
 import 'CartItemWidget.dart';
 import 'SummaryOrderWidget.dart';
@@ -141,7 +142,9 @@ class CartviewBody extends StatelessWidget {
             border: Border(top: BorderSide(color: Colors.grey.shade300)),
           ),
           child: ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, CheckoutView.routeName);
+            },
             icon: Icon(Icons.check),
             label: Text("Checkout"),
           ),
