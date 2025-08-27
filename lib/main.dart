@@ -10,6 +10,7 @@ import 'package:medtech_mobile/core/functions/on_generate_route.dart';
 import 'package:medtech_mobile/features/auth/presentation/views/verify_email_view.dart';
 import 'package:medtech_mobile/features/main/presentaion/views/main_view.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:medtech_mobile/features/order/presentation/views/widgets/order_view_body.dart';
 import 'package:medtech_mobile/features/product_details/presentation/views/product_details_view.dart';
 import 'package:medtech_mobile/features/product_details/presentation/views/widgets/addtocardsection/addtocard.dart';
 import 'package:medtech_mobile/features/product_details/presentation/views/widgets/detaile_type_view/detals_type_list.dart';
@@ -46,12 +47,12 @@ class MedTech extends StatelessWidget {
       ],
       supportedLocales: S.delegate.supportedLocales,
       locale: Locale("en"),
-      initialRoute: MainView.routeName,
+     // initialRoute: MainView.routeName,
 
-      //      initialRoute: 'editprofile',
-      //      routes: {
-      //   'editprofile': (context) => Safetypage(),
-      // },
+           initialRoute: 'editprofile',
+           routes: {
+        'editprofile': (context) => OrderViewBody(),
+      },
       debugShowCheckedModeBanner: false,
     );
   }

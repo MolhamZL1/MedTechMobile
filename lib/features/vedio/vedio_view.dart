@@ -2,7 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
-import 'package:chewie/chewie.dart';
+import "package:chewie/chewie.dart";
+
 
 class FullscreenVideoPage extends StatefulWidget {
   final String videoUrl;
