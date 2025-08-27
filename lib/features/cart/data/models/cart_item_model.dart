@@ -1,27 +1,30 @@
+import 'package:medtech_mobile/features/cart/domain/entities/cart_item_entity.dart';
 import 'package:medtech_mobile/features/products/data/models/product_model.dart';
 
 class CartItemModel {
-  final String id;
   final ProductModel productModel;
   final int quantity;
+  final num lineTotal;
 
   CartItemModel({
-    required this.id,
+    required this.lineTotal,
     required this.productModel,
     required this.quantity,
   });
 
   factory CartItemModel.fromJson(Map<String, dynamic> json) => CartItemModel(
-    id: json['id'],
     productModel: ProductModel.fromJson(json['product']),
     quantity: json['quantity'],
+    lineTotal: json["lineTotal"],
   );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
     "product": productModel.toJson(),
     "quantity": quantity,
   };
-  toEntity() =>
-      CartItemModel(id: id, productModel: productModel, quantity: quantity);
+  toEntity() => CartItemEntity(
+    productEntity: productModel.toEntity(),
+    quantity: quantity,
+    lineTotal: lineTotal,
+  );
 }

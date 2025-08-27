@@ -6,7 +6,7 @@ import 'package:medtech_mobile/features/auth/presentation/views/forget_password_
 import 'package:medtech_mobile/features/auth/presentation/views/resetpassword.dart';
 import 'package:medtech_mobile/features/auth/presentation/views/sign_in_view.dart';
 import 'package:medtech_mobile/core/utils/app_themes.dart';
-import 'package:medtech_mobile/core/functions/on_generate_route.dart';
+import 'package:medtech_mobile/core/routing/on_generate_route.dart';
 import 'package:medtech_mobile/features/auth/presentation/views/verify_email_view.dart';
 import 'package:medtech_mobile/features/main/presentaion/views/main_view.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -21,6 +21,8 @@ import 'package:medtech_mobile/features/profile/presentation/views/widgets/pages
 import 'package:medtech_mobile/features/profile/presentation/views/widgets/pagescards/setting/safety&privacy/safetypage.dart';
 import 'package:medtech_mobile/features/profile/presentation/views/widgets/pagescards/setting/settings/mainsettingpage.dart';
 import 'package:medtech_mobile/features/profile/presentation/views/widgets/profilecolumn/paymentcard.dart';
+import 'features/auth/domain/repos/auth_repo.dart';
+import 'features/auth/presentation/cubits/signin/sign_in_cubit.dart';
 import 'generated/l10n.dart';
 
 void main() {
@@ -34,6 +36,7 @@ class MedTech extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     return MaterialApp(
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
@@ -54,6 +57,31 @@ class MedTech extends StatelessWidget {
         'editprofile': (context) => OrderViewBody(),
       },
       debugShowCheckedModeBanner: false,
+=======
+    return BlocProvider(
+      create: (context) => SignInCubit(getIt.get<AuthRepo>()),
+      child: MaterialApp(
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: ThemeMode.light,
+        onGenerateRoute: (settings) => onGenerateRoute(settings),
+        localizationsDelegates: [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        locale: Locale("en"),
+        initialRoute: MainView.routeName,
+
+        //      initialRoute: 'editprofile',
+        //      routes: {
+        //   'editprofile': (context) => Safetypage(),
+        // },
+        debugShowCheckedModeBanner: false,
+      ),
+>>>>>>> b3280c51a09ab5d264d53d44e8446abe4f1a47c8
     );
   }
 }

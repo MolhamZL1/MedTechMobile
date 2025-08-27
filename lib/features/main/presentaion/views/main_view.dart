@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medtech_mobile/features/ai%20chat/presentation/views/ai_chat_view.dart';
 import 'package:medtech_mobile/features/main/presentaion/cubits/cubit/nav_bar_cubit.dart';
 import 'package:medtech_mobile/features/main/presentaion/views/widgets/bottom_nav_bar/CustomNavigationBar.dart';
 
+import 'widgets/AiFAB.dart';
 import 'widgets/MainViewBody.dart';
 
 class MainView extends StatefulWidget {
@@ -14,14 +16,19 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
-  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => NavBarCubit())],
+      providers: [BlocProvider(create: (_) => NavBarCubit())],
       child: Scaffold(
-        bottomNavigationBar: CustomNavigationBar(),
-        body: SafeArea(child: MainViewBody()),
+        bottomNavigationBar: const CustomNavigationBar(),
+        floatingActionButton: AiFAB(
+          onPressed: () {
+            Navigator.pushNamed(context, AiChatView.routeName);
+          },
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        body: const SafeArea(child: MainViewBody()),
       ),
     );
   }

@@ -1,4 +1,3 @@
-import '../../../../core/utils/app_images.dart';
 import 'vedio_entity.dart';
 
 class ProductEntity {
@@ -62,11 +61,13 @@ List<ProductEntity> featuredProducts = [
     availableForRent: true,
     availableForSale: true,
     qrCode: "1234567890",
-    imagesUrl: [AppImages.imagesMedtechlogo],
+    imagesUrl: [
+      "https://png.pngtree.com/png-clipart/20250127/original/pngtree-medical-ultrasound-machine-diagnostic-equipment-png-image_20349325.png",
+    ],
     vedios: [],
   ),
   ProductEntity(
-    id: 1,
+    id: 2,
     nameEn: "Device 1",
     nameAr: "",
     categoryEn: "Category 1",
@@ -80,11 +81,13 @@ List<ProductEntity> featuredProducts = [
     availableForRent: true,
     availableForSale: true,
     qrCode: "1234567890",
-    imagesUrl: [AppImages.imagesMedtechlogo],
+    imagesUrl: [
+      "https://png.pngtree.com/png-clipart/20250127/original/pngtree-medical-ultrasound-machine-diagnostic-equipment-png-image_20349325.png",
+    ],
     vedios: [],
   ),
   ProductEntity(
-    id: 1,
+    id: 3,
     nameEn: "Device 1",
     nameAr: "",
     categoryEn: "Category 1",
@@ -98,11 +101,13 @@ List<ProductEntity> featuredProducts = [
     availableForRent: true,
     availableForSale: true,
     qrCode: "1234567890",
-    imagesUrl: [AppImages.imagesMedtechlogo],
+    imagesUrl: [
+      "https://png.pngtree.com/png-clipart/20250127/original/pngtree-medical-ultrasound-machine-diagnostic-equipment-png-image_20349325.png",
+    ],
     vedios: [],
   ),
   ProductEntity(
-    id: 1,
+    id: 4,
     nameEn: "Device 1",
     nameAr: "",
     categoryEn: "Category 1",
@@ -116,7 +121,9 @@ List<ProductEntity> featuredProducts = [
     availableForRent: true,
     availableForSale: true,
     qrCode: "1234567890",
-    imagesUrl: [AppImages.imagesMedtechlogo],
+    imagesUrl: [
+      "https://png.pngtree.com/png-clipart/20250127/original/pngtree-medical-ultrasound-machine-diagnostic-equipment-png-image_20349325.png",
+    ],
     vedios: [],
   ),
 ];

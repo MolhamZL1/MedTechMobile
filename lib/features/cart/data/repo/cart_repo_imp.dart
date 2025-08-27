@@ -1,27 +1,29 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:medtech_mobile/core/errors/failures.dart';
 import 'package:medtech_mobile/core/services/database_service.dart';
-import 'package:medtech_mobile/features/cart/domain/entities/cart_item_entity.dart';
+import 'package:medtech_mobile/features/cart/data/models/cart_model.dart';
+import 'package:medtech_mobile/features/cart/domain/entities/cart_entity.dart';
 import 'package:medtech_mobile/features/cart/domain/repos/cart_repo.dart';
 
 import '../../../../core/utils/backend_endpoints.dart';
-import '../models/cart_item_model.dart';
 
 class CartRepoImp extends CartRepo {
   final DatabaseService databaseService;
 
   CartRepoImp({required this.databaseService});
   @override
-  Future<Either<Failure, List<CartItemEntity>>> getCartItems() async {
+  Future<Either<Failure, CartEntity>> getCartItems() async {
     try {
-      var data = await databaseService.getData(
+      final data = await databaseService.getData(
         endpoint: BackendEndpoints.getCartItems,
       );
-      List<CartItemEntity> cartItems =
-          data.map((e) => CartItemModel.fromJson(e).toEntity()).toList();
-      return right(cartItems);
+      CartEntity cartEntity = CartModel.fromJson(data).toEntity();
+      return right(cartEntity);
     } catch (e) {
+      log(e.toString());
       if (e is DioException) {
         return left(ServerFailure.fromDioError(e));
       }
@@ -35,7 +37,7 @@ class CartRepoImp extends CartRepo {
     required int qty,
   }) async {
     try {
-      var data = await databaseService.addData(
+      await databaseService.addData(
         endpoint: BackendEndpoints.updateCartItem,
         data: {"productId": id, "quantity": qty},
       );

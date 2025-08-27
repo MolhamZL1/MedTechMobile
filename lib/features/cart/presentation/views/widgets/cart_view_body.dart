@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medtech_mobile/features/cart/presentation/cubits/fetch_Cart/fetch_cart_cubit.dart';
+import 'package:medtech_mobile/features/checkout/presentation/views/checkout_view.dart';
+
+import 'CartItemWidget.dart';
+import 'SummaryOrderWidget.dart';
 
 class CartviewBody extends StatelessWidget {
   const CartviewBody({super.key});
@@ -18,12 +22,115 @@ class CartviewBody extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               trailing: Text(
-                "${context.read<FetchCartCubit>().cartItems.length} items",
+                "${context.watch<FetchCartCubit>().cartEntity?.cartItems.length ?? ".."} items",
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
             ),
-            Expanded(child: ListView(children: [CartItemWidget()])),
-            SummaryOrderWidget(deliveryFee: 55, orderPrice: 55),
+            Expanded(
+              child: BlocBuilder<FetchCartCubit, FetchCartState>(
+                builder: (context, state) {
+                  if (state is FetchCartSuccess) {
+                    final items = state.cartEntity.cartItems;
+                    if (items.isEmpty) {
+                      return const Center(child: Text('Your cart is empty'));
+                    }
+
+                    return ListView.builder(
+                      itemCount: items.length,
+                      itemBuilder: (context, index) {
+                        final item =
+                            items[index]; // خزن العنصر قبل أي تعديل على الليست
+
+                        return Dismissible(
+                          key: ValueKey(item.productEntity.id),
+                          direction: DismissDirection.endToStart,
+
+                          // لازم تكون موجودة بما إنك عرّفت secondaryBackground
+                          background: Container(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 8,
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color:
+                                  Colors
+                                      .transparent, // ما بتبين لأن الاتجاه endToStart فقط
+                              border: Border.all(color: Colors.transparent),
+                            ),
+                          ),
+
+                          // هاي بتظهر لما تسحب من اليمين لليسار (end -> start)
+                          secondaryBackground: Container(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 8,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.red.withOpacity(.1),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: Colors.red.withOpacity(.3),
+                              ),
+                            ),
+                            alignment: Alignment.centerRight,
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: const [
+                                Text(
+                                  'Delete',
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                                SizedBox(width: 8),
+                                Icon(Icons.delete_outline, color: Colors.red),
+                              ],
+                            ),
+                          ),
+
+                          confirmDismiss: (direction) async {
+                            // إذا بدك تأكيد قبل الحذف رجّع true/false بعد showDialog
+                            return true;
+                          },
+
+                          onDismissed: (direction) {
+                            context.read<FetchCartCubit>().deleteCartItem(
+                              item: item,
+                            );
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Removed ${item.productEntity.nameEn}',
+                                ),
+                              ),
+                            );
+                          },
+
+                          child: CartItemWidget(cartItemEntity: item),
+                        );
+                      },
+                    );
+                  } else if (state is FetchCartError) {
+                    return Center(child: Text(state.message));
+                  } else {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                },
+              ),
+            ),
+
+            SummaryOrderWidget(
+              orderPrice:
+                  context
+                      .watch<FetchCartCubit>()
+                      .cartEntity
+                      ?.total
+                      .toDouble() ??
+                  0,
+            ),
             SizedBox(height: 80),
           ],
         ),
@@ -35,139 +142,14 @@ class CartviewBody extends StatelessWidget {
             border: Border(top: BorderSide(color: Colors.grey.shade300)),
           ),
           child: ElevatedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, CheckoutView.routeName);
+            },
             icon: Icon(Icons.check),
             label: Text("Checkout"),
           ),
         ),
       ],
-    );
-  }
-}
-
-class SummaryOrderWidget extends StatelessWidget {
-  final double orderPrice;
-  final double deliveryFee;
-
-  const SummaryOrderWidget({
-    super.key,
-    required this.orderPrice,
-    required this.deliveryFee,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final double total = orderPrice + deliveryFee;
-
-    return Card(
-      elevation: 4,
-      margin: const EdgeInsets.all(16),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            _buildRow('Order', orderPrice),
-            const SizedBox(height: 8),
-            _buildRow('Delivery', deliveryFee),
-            const Divider(height: 32),
-            _buildRow('Total', total, isBold: true),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildRow(String title, double value, {bool isBold = false}) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style:
-              isBold
-                  ? const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)
-                  : const TextStyle(fontSize: 14),
-        ),
-        Text(
-          '${value.toStringAsFixed(2)} \$',
-          style:
-              isBold
-                  ? const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)
-                  : const TextStyle(fontSize: 14),
-        ),
-      ],
-    );
-  }
-}
-
-class CartItemWidget extends StatelessWidget {
-  const CartItemWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      elevation: 2,
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Row(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(12),
-              child: Image.network(
-                "imageUrl",
-                width: 80,
-                height: 80,
-                fit: BoxFit.cover,
-                errorBuilder:
-                    (context, error, stackTrace) =>
-                        const Icon(Icons.broken_image, size: 80),
-              ),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "title",
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    "",
-                    //  '${price.toStringAsFixed(2)} \$',
-                    style: const TextStyle(color: Colors.grey),
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.remove_circle_outline),
-                      ),
-                      Text('5'),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.add_circle_outline),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.delete, color: Colors.red),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

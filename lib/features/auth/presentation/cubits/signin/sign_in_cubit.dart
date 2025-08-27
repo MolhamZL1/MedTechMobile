@@ -34,4 +34,8 @@ class SignInCubit extends Cubit<SignInState> {
       },
     );
   }
+
+  Future<void> signout() async {
+    await LocalStorageService.clear();
+  }
 }
