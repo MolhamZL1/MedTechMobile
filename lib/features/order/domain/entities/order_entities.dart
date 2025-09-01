@@ -1,25 +1,26 @@
 enum OrderStatus { processing, shipped, completed, canceled }
 
-class OrderModel {
-  final String id;
-  final DateTime date;
+class OrderEntity {
+  final int id;
   final String title;
-  final int quantity;
+  final DateTime date;
   final OrderStatus status;
+  final double price;
+  final int quantity;
+  final String imageUrl;
   final String? tracking;
   final DateTime? deliveryDate;
-  final double price;
-  final String imageUrl;
 
-  OrderModel({
+  OrderEntity({
     required this.id,
-    required this.date,
     required this.title,
-    required this.quantity,
+    required this.date,
     required this.status,
-    required this.tracking,
-    required this.deliveryDate,
     required this.price,
+    required this.quantity,
     required this.imageUrl,
+    this.tracking,
+    this.deliveryDate,
   });
 }
+  
