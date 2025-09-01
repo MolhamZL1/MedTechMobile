@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:medtech_mobile/features/order/data/model/order_model.dart';
 import 'package:medtech_mobile/features/order/domain/entities/card_order_model.dart';
 import 'package:medtech_mobile/features/order/domain/entities/order_entities.dart';
 import 'package:medtech_mobile/features/order/presentation/views/widgets/ordercard.dart';
 
 class Customcard extends StatelessWidget {
   final int selectedStatus;
-   Customcard({super.key, required this.selectedStatus});
+  final List<OrderEntity> orders; 
+   Customcard({super.key, required this.selectedStatus, required this.orders});
 
 
-  List<OrderModel> get filteredOrders {
+  List<OrderEntity> get filteredOrders {
     switch (selectedStatus) {
       case 1: 
         return orders.where((o) => o.status == OrderStatus.processing).toList();

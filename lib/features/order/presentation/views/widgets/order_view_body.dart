@@ -44,7 +44,7 @@ class _OrderViewBodyState extends State<OrderViewBody> {
             // الشريط الثاني
            DownbarBody(),
        
-            Customcard(selectedStatus: selectedStatus,),
+            Customcard(selectedStatus: selectedStatus, orders: [],),
         
           ],
         ),

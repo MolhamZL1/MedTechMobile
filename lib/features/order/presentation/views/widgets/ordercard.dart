@@ -2,28 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:medtech_mobile/features/order/domain/entities/order_entities.dart';
 
 class OrderCard extends StatelessWidget {
-    final OrderModel order;
+    final OrderEntity order;
    OrderCard({super.key, required this.order});
-  // final String imageUrl;
-  // final String orderId;
-  // final String date;
-  // final String title;
-  // final String quantity;
-  // final String trackingId;
-  // final String deliveryDate;
-  // final String price;
-
-  // const OrderCard({
-  //   super.key,
-  //   required this.imageUrl,
-  //   required this.orderId,
-  //   required this.date,
-  //   required this.title,
-  //   required this.quantity,
-  //   required this.trackingId,
-  //   required this.deliveryDate,
-  //   required this.price,
-  // });
 
   String getStatusText(OrderStatus status) {
     switch (status) {
