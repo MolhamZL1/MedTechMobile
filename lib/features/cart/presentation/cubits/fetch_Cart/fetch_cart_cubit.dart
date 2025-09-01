@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:medtech_mobile/features/cart/data/models/cart_item_model.dart';
 import 'package:medtech_mobile/features/cart/domain/entities/cart_entity.dart';
 import 'package:medtech_mobile/features/cart/domain/entities/cart_item_entity.dart';
 import 'package:medtech_mobile/features/cart/domain/repos/cart_repo.dart';
@@ -29,23 +30,29 @@ class FetchCartCubit extends Cubit<FetchCartState> {
       ),
     );
     emit(FetchCartSuccess(cartEntity!));
-    UpdateCartCubit(
-      getIt.get<CartRepo>(),
-    ).updateCart(id: item.productEntity.id.toString(), qty: item.quantity);
+    UpdateCartCubit(getIt.get<CartRepo>()).updateCart(
+      id: item.productEntity.id.toString(),
+      qty: item.quantity,
+      transactionType: item.transactionType,
+    );
   }
 
   decrement(CartItemEntity item) {
-    if (item.quantity > 1) {
-      cartEntity!.decrementQuantity(
-        cartEntity!.cartItems.firstWhere(
-          (e) => e.productEntity.id == item.productEntity.id,
-        ),
-      );
-      emit(FetchCartSuccess(cartEntity!));
-      UpdateCartCubit(
-        getIt.get<CartRepo>(),
-      ).updateCart(id: item.productEntity.id.toString(), qty: item.quantity);
+    if (item.quantity < 1) {
+      emit(FetchCartError("Quantity can't be less than 1"));
+      return;
     }
+    cartEntity!.decrementQuantity(
+      cartEntity!.cartItems.firstWhere(
+        (e) => e.productEntity.id == item.productEntity.id,
+      ),
+    );
+    emit(FetchCartSuccess(cartEntity!));
+    UpdateCartCubit(getIt.get<CartRepo>()).updateCart(
+      id: item.productEntity.id.toString(),
+      qty: item.quantity,
+      transactionType: item.transactionType,
+    );
   }
 
   deleteCartItem({required CartItemEntity item}) async {

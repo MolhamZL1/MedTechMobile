@@ -35,11 +35,16 @@ class CartRepoImp extends CartRepo {
   Future<Either<Failure, void>> updateCartItem({
     required String id,
     required int qty,
+    required String transactionType,
   }) async {
     try {
       await databaseService.addData(
         endpoint: BackendEndpoints.updateCartItem,
-        data: {"productId": id, "quantity": qty},
+        data: {
+          "productId": id,
+          "quantity": qty,
+          "transactionType": transactionType,
+        },
       );
 
       return right(null);

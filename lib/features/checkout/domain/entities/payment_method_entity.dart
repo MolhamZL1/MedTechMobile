@@ -17,11 +17,7 @@ class PaymentMethodEntity {
 
 final paymentMethods = const [
   PaymentMethodEntity(id: 'cash', title: 'Cash', logo: Icon(Icons.payments)),
-  PaymentMethodEntity(
-    id: 'card',
-    title: 'Pay By Card',
-    logo: Icon(Icons.credit_card),
-  ),
+  PaymentMethodEntity(id: 'card', title: 'Card', logo: Icon(Icons.credit_card)),
   PaymentMethodEntity(
     id: 'shamCash',
     title: 'Sham Cash',

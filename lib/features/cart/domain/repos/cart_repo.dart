@@ -6,6 +6,7 @@ abstract class CartRepo {
   Future<Either<Failure, void>> updateCartItem({
     required String id,
     required int qty,
+    required String transactionType,
   });
   Future<Either<Failure, CartEntity>> getCartItems();
 }

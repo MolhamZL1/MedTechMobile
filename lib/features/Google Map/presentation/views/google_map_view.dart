@@ -4,6 +4,7 @@ import 'widgets/GoogleMapViewBody.dart';
 
 class GoogleMapView extends StatelessWidget {
   const GoogleMapView({super.key});
+  static const routeName = "/googleMapView";
 
   @override
   Widget build(BuildContext context) {

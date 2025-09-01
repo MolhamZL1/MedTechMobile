@@ -36,28 +36,6 @@ class MedTech extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    return MaterialApp(
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.light,
-      onGenerateRoute: (settings) => onGenerateRoute(settings),
-      localizationsDelegates: [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
-      locale: Locale("en"),
-     // initialRoute: MainView.routeName,
-
-           initialRoute: 'editprofile',
-           routes: {
-        'editprofile': (context) => OrderViewBody(),
-      },
-      debugShowCheckedModeBanner: false,
-=======
     return BlocProvider(
       create: (context) => SignInCubit(getIt.get<AuthRepo>()),
       child: MaterialApp(
@@ -81,7 +59,6 @@ class MedTech extends StatelessWidget {
         // },
         debugShowCheckedModeBanner: false,
       ),
->>>>>>> b3280c51a09ab5d264d53d44e8446abe4f1a47c8
     );
   }
 }

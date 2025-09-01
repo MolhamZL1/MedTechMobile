@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:medtech_mobile/core/utils/app_colors.dart';
-import 'package:medtech_mobile/features/product_details/presentation/views/widgets/buybutton.dart';
-import 'package:medtech_mobile/features/product_details/presentation/views/widgets/rentbotton.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medtech_mobile/features/cart/data/models/cart_item_model.dart';
+import 'package:medtech_mobile/features/product_details/presentation/cubits/cubit/transaction_type_cubit.dart';
 
-class Optionbuttonsection extends StatefulWidget {
+class Optionbuttonsection extends StatelessWidget {
   const Optionbuttonsection({super.key});
 
-  @override
-  State<Optionbuttonsection> createState() => _OptionbuttonsectionState();
-}
-
-class _OptionbuttonsectionState extends State<Optionbuttonsection> {
-  bool isBuySelected = true;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,10 +14,13 @@ class _OptionbuttonsectionState extends State<Optionbuttonsection> {
         children: [
           Expanded(
             child: AnimatedCrossFadeButton(
-              isSelected: isBuySelected,
+              isSelected:
+                  context.watch<TransactionTypeCubit>().getTransactionType() ==
+                  TransactionType.sale,
               onTap: () {
-                isBuySelected = true;
-                setState(() {});
+                context.read<TransactionTypeCubit>().changeTransactionType(
+                  TransactionType.sale,
+                );
               },
               text: "Buy",
               icon: Icons.shopping_cart_outlined,
@@ -32,10 +29,13 @@ class _OptionbuttonsectionState extends State<Optionbuttonsection> {
           SizedBox(width: 12),
           Expanded(
             child: AnimatedCrossFadeButton(
-              isSelected: !isBuySelected,
+              isSelected:
+                  context.watch<TransactionTypeCubit>().getTransactionType() ==
+                  TransactionType.rent,
               onTap: () {
-                isBuySelected = false;
-                setState(() {});
+                context.read<TransactionTypeCubit>().changeTransactionType(
+                  TransactionType.rent,
+                );
               },
               text: "Rent",
               icon: Icons.calendar_today_outlined,

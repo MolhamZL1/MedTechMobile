@@ -4,11 +4,15 @@ class CartItemEntity {
   final ProductEntity productEntity;
   int quantity;
   num lineTotal;
+  final num id;
+  String transactionType;
 
   CartItemEntity({
+    required this.id,
     required this.lineTotal,
     required this.productEntity,
     required this.quantity,
+    required this.transactionType,
   });
   incrementQuantity() {
     quantity++;

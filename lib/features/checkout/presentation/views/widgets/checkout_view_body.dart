@@ -9,9 +9,23 @@ class CheckoutViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        title(context, "My Address"),
         title(context, "Pay with"),
         PaymentMethodsList(),
+        title(context, "Rented Products"),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: TextFormField(
+            decoration: InputDecoration(label: Text("Address")),
+          ),
+        ),
+        title(context, "My Address"),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: TextFormField(
+            decoration: InputDecoration(label: Text("Address")),
+          ),
+        ),
+
         title(context, "Instructions"),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

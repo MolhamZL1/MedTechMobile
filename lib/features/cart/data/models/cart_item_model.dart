@@ -5,8 +5,12 @@ class CartItemModel {
   final ProductModel productModel;
   final int quantity;
   final num lineTotal;
+  final String transactionType;
+  final num id;
 
   CartItemModel({
+    required this.id,
+    required this.transactionType,
     required this.lineTotal,
     required this.productModel,
     required this.quantity,
@@ -16,15 +20,26 @@ class CartItemModel {
     productModel: ProductModel.fromJson(json['product']),
     quantity: json['quantity'],
     lineTotal: json["lineTotal"],
+    transactionType: json["transactionType"],
+    id: json["id"],
   );
 
   Map<String, dynamic> toJson() => {
     "product": productModel.toJson(),
     "quantity": quantity,
+    "transactionType": transactionType,
+    "id": id,
   };
   toEntity() => CartItemEntity(
     productEntity: productModel.toEntity(),
     quantity: quantity,
     lineTotal: lineTotal,
+    transactionType: transactionType,
+    id: id,
   );
+}
+
+abstract class TransactionType {
+  static const String sale = "SALE";
+  static const String rent = "RENT";
 }
