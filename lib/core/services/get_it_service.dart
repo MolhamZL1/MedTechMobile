@@ -7,6 +7,8 @@ import 'package:medtech_mobile/features/cart/data/repo/cart_repo_imp.dart';
 import 'package:medtech_mobile/features/cart/domain/repos/cart_repo.dart';
 import 'package:medtech_mobile/features/products/data/repo/products_repo_imp.dart';
 import 'package:medtech_mobile/features/products/domain/repo/products_repo.dart';
+import 'package:medtech_mobile/features/profile/data/repo/profile_repo_impl.dart';
+import 'package:medtech_mobile/features/profile/domain/repo/profile_repo.dart';
 
 import '../../features/auth/data/repos/auth_repo_imp.dart';
 import '../../features/auth/domain/repos/auth_repo.dart';
@@ -26,7 +28,7 @@ void setupSingltonGetIt() {
           baseUrl: BackendEndpoints.url,
           headers: {
             "Authorization":
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IlVTRVIiLCJpYXQiOjE3NTU1MzU2NDgsImV4cCI6MTc1NjE0MDQ0OH0.vRPnr5_iaNU2YH3MQdG4xjyg1pomcmsIeAv1DCdd1Qo",
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJoYWxha21vbjMyQGdtYWlsLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTc1NjU5MTk5MCwiZXhwIjoxNzU3MTk2NzkwfQ._cvanI6y4ACPf8UY36OAcMBHe7KjfJMFj7IQ-L2kRZM",
           },
           // getIt<UserService>().user?.token != null
           //     ? {
@@ -39,6 +41,10 @@ void setupSingltonGetIt() {
 
   getIt.registerSingleton<AuthRepo>(
     AuthRepoImp(databaseService: getIt.get<DatabaseService>()),
+  );
+   getIt.registerSingleton<ProfileRepo>(
+    ProfileRepoImpl(   getIt.get<DatabaseService>(), 
+    BackendEndpoints.url,),
   );
   getIt.registerSingleton<ProductsRepo>(
     ProductsRepoImp(databaseService: getIt.get<DatabaseService>()),

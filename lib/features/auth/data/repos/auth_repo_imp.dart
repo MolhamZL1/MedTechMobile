@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:medtech_mobile/core/errors/failures.dart';
 import 'package:medtech_mobile/core/services/database_service.dart';
+import 'package:medtech_mobile/core/services/get_it_service.dart';
 import 'package:medtech_mobile/core/utils/backend_endpoints.dart';
 import 'package:medtech_mobile/features/auth/data/models/user_model.dart';
 import 'package:medtech_mobile/features/auth/domain/entities/user_entity.dart';
@@ -64,7 +65,18 @@ class AuthRepoImp implements AuthRepo {
         data: {"identifier": email, "password": password},
       );
 
-      return right(UserModel.fromJson(response.data).toEntity());
+
+final userModel = UserModel.fromJson(response.data);
+
+await getIt.get<DatabaseService>().saveToken(userModel.token);
+final savedToken = await getIt.get<DatabaseService>().getToken();
+log("✅ Token after login: $savedToken");
+log("Token saved: ${userModel.token}");
+
+log("Token saved: ${userModel.token}");
+
+return right(userModel.toEntity());
+   
     } catch (e) {
       log(e.toString());
       if (e is DioException) {
