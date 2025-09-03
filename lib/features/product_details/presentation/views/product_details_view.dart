@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medtech_mobile/core/widgets/favorite_button.dart';
+import 'package:medtech_mobile/features/product_details/presentation/cubits/cubit/transaction_type_cubit.dart';
 import 'package:medtech_mobile/features/product_details/presentation/views/widgets/addtocardsection/addtocard.dart';
 import 'package:medtech_mobile/features/products/domain/entities/product_entitie.dart';
 
@@ -15,19 +16,22 @@ class ProductDetailsView extends StatelessWidget {
   final ProductEntity productEntitie;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(productEntitie.categoryEn),
-        actions: [
-          FavoriteButton(),
-          SizedBox(width: 8),
-          IconButton(onPressed: () {}, icon: Icon(Icons.share_outlined)),
-        ],
-      ),
-      body: ProductDetailsViewBody(productEntitie: productEntitie),
-      bottomNavigationBar: BlocProvider(
-        create: (context) => UpdateCartCubit(getIt.get<CartRepo>()),
-        child: Addtocardsec(id: productEntitie.id.toString()),
+    return BlocProvider(
+      create: (context) => TransactionTypeCubit(),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(productEntitie.categoryEn),
+          actions: [
+            FavoriteButton(id: productEntitie.id.toString()),
+            SizedBox(width: 8),
+            IconButton(onPressed: () {}, icon: Icon(Icons.share_outlined)),
+          ],
+        ),
+        body: ProductDetailsViewBody(productEntitie: productEntitie),
+        bottomNavigationBar: BlocProvider(
+          create: (context) => UpdateCartCubit(getIt.get<CartRepo>()),
+          child: Addtocardsec(id: productEntitie.id.toString()),
+        ),
       ),
     );
   }

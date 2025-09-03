@@ -48,7 +48,7 @@ class HeaderCardProdcutSection extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             padding: const EdgeInsets.all(6),
-            child: FavoriteButton(),
+            child: FavoriteButton(id: productEntitie.id.toString()),
           ),
         ),
       ],

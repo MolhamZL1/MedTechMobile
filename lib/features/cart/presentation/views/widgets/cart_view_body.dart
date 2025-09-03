@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medtech_mobile/core/widgets/CustomLoadingCircle.dart';
 import 'package:medtech_mobile/features/cart/presentation/cubits/fetch_Cart/fetch_cart_cubit.dart';
 import 'package:medtech_mobile/features/checkout/presentation/views/checkout_view.dart';
 
@@ -91,17 +92,13 @@ class CartviewBody extends StatelessWidget {
                             ),
                           ),
 
-                          confirmDismiss: (direction) async {
-                            // إذا بدك تأكيد قبل الحذف رجّع true/false بعد showDialog
-                            return true;
-                          },
-
                           onDismissed: (direction) {
                             context.read<FetchCartCubit>().deleteCartItem(
                               item: item,
                             );
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
+                                backgroundColor: Colors.red,
                                 content: Text(
                                   'Removed ${item.productEntity.nameEn}',
                                 ),
@@ -116,7 +113,7 @@ class CartviewBody extends StatelessWidget {
                   } else if (state is FetchCartError) {
                     return Center(child: Text(state.message));
                   } else {
-                    return const Center(child: CircularProgressIndicator());
+                    return const CustomLoadingCircle();
                   }
                 },
               ),

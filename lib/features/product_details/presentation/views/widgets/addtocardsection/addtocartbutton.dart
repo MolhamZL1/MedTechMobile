@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:medtech_mobile/core/utils/app_colors.dart';
 import 'package:medtech_mobile/core/widgets/show_err_dialog.dart';
 import 'package:medtech_mobile/features/cart/presentation/cubits/update_cart/update_cart_cubit.dart';
+import 'package:medtech_mobile/features/product_details/presentation/cubits/cubit/transaction_type_cubit.dart';
 
 class Addtocartbutton extends StatelessWidget {
   const Addtocartbutton({super.key, required this.id});
@@ -18,7 +19,12 @@ class Addtocartbutton extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
 
         onTap: () {
-          context.read<UpdateCartCubit>().updateCart(id: id, qty: 1);
+          context.read<UpdateCartCubit>().updateCart(
+            id: id,
+            qty: 1,
+            transactionType:
+                context.read<TransactionTypeCubit>().getTransactionType(),
+          );
         },
         child: Container(
           padding: EdgeInsets.all(17),

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:medtech_mobile/features/auth/presentation/views/verify_email_view.dart';
 
+import '../../features/Google Map/presentation/views/google_map_view.dart';
 import '../../features/ai chat/presentation/views/ai_chat_view.dart';
 import '../../features/auth/presentation/views/forget_password_view.dart';
 import '../../features/auth/presentation/views/resetpassword.dart';
@@ -52,6 +53,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const AiChatView());
     case CheckoutView.routeName:
       return MaterialPageRoute(builder: (context) => CheckoutView());
+    case GoogleMapView.routeName:
+      return MaterialPageRoute(builder: (context) => GoogleMapView());
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }
