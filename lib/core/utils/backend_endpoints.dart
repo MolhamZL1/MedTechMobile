@@ -20,4 +20,5 @@ abstract class BackendEndpoints {
   static const String getAiMessages = "api/ai-chat/messages";
   //
   static const String profile = "api/user/get-profile/1";
+  static const String  searchProducts="api/products/search";
 }
