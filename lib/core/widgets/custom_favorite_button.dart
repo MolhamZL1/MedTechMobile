@@ -28,7 +28,7 @@ class _CustomFavoriteButtonState extends State<CustomFavoriteButton> {
   Widget build(BuildContext context) {
     return AnimatedReactButton(
       reactColor: Colors.red,
-      isFavorite: isFavorite,
+      //isFavorite: isFavorite,
       onPressed: () {
         isFavorite = !isFavorite;
         setState(() {});

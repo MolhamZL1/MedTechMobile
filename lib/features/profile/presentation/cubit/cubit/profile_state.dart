@@ -1,19 +1,21 @@
+
+
+import 'package:flutter/material.dart';
 import 'package:medtech_mobile/features/profile/domain/entites/profile_entity.dart';
 
-abstract class ProfileState {}
+@immutable
+sealed class ProfileState {}
 
-class ProfileInitial extends ProfileState {}
+final class ProfileInitial extends ProfileState {}
 
-class ProfileLoading extends ProfileState {}
+final class ProfileLoading extends ProfileState {}
 
-class ProfileLoaded extends ProfileState {
+final class ProfileLoaded extends ProfileState {
   final ProfileEntity profile;
-
   ProfileLoaded(this.profile);
 }
 
-class ProfileError extends ProfileState {
+final class ProfileError extends ProfileState {
   final String message;
-
   ProfileError(this.message);
 }

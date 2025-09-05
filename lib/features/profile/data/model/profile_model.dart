@@ -2,7 +2,8 @@
 import 'package:medtech_mobile/features/profile/domain/entites/profile_entity.dart';
 
 
-class ProfileModel extends ProfileEntity {
+
+class ProfileModel {
   final int id;
   final String username;
   final String email;
@@ -25,18 +26,7 @@ class ProfileModel extends ProfileEntity {
     required this.isBanned,
     required this.role,
     required this.createdAt,
-  }) : super(
-          id: id,
-          username: username,
-          email: email,
-          number: number,
-          image: image,
-          jobTitle: jobTitle,
-          bio: bio,
-          isBanned: isBanned,
-          role: role,
-          createdAt: createdAt,
-        );
+  });
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) {
     return ProfileModel(
@@ -53,5 +43,29 @@ class ProfileModel extends ProfileEntity {
     );
   }
 
-  
+  factory ProfileModel.fromEntity(ProfileEntity entity) => ProfileModel(
+        id: entity.id,
+        username: entity.username,
+        email: entity.email,
+        number: entity.number,
+        image: entity.image,
+        jobTitle: entity.jobTitle,
+        bio: entity.bio,
+        isBanned: entity.isBanned,
+        role: entity.role,
+        createdAt: entity.createdAt,
+      );
+
+  ProfileEntity toEntity() => ProfileEntity(
+        id: id,
+        username: username,
+        email: email,
+        number: number,
+        image: image,
+        jobTitle: jobTitle,
+        bio: bio,
+        isBanned: isBanned,
+        role: role,
+        createdAt: createdAt,
+      );
 }
