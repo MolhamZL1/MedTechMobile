@@ -37,7 +37,9 @@ class _ProductsViewBodyState extends State<ProductsViewBody>
     setState(() {
       showHistory = value;
       if (showHistory) {
-        _historyAnimationController.forward(from: 0); // تشغيل الأنيميشن عند الفتح
+        _historyAnimationController.forward(
+          from: 0,
+        ); // تشغيل الأنيميشن عند الفتح
       }
     });
   }
@@ -77,11 +79,16 @@ class _ProductsViewBodyState extends State<ProductsViewBody>
                       }
                     },
                     decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 50),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 50,
+                      ),
                       hintText: 'ابحث عن الاجهزة الطبية ... ',
                       prefixIcon: IconButton(
                         onPressed: () {},
-                        icon: Icon(Icons.qr_code_scanner_outlined, color: AppColors.primary),
+                        icon: Icon(
+                          Icons.qr_code_scanner_outlined,
+                          color: AppColors.primary,
+                        ),
                       ),
                       fillColor: AppColors.formcolor,
                     ),
@@ -106,9 +113,10 @@ class _ProductsViewBodyState extends State<ProductsViewBody>
                   ),
                 );
               },
-              child: showHistory && history.isNotEmpty
-                  ? _buildSearchHistory(context, history)
-                  : _buildProductsDisplay(context),
+              child:
+                  showHistory && history.isNotEmpty
+                      ? _buildSearchHistory(context, history)
+                      : _buildProductsDisplay(context),
             ),
           ),
         ],
@@ -156,8 +164,7 @@ class _ProductsViewBodyState extends State<ProductsViewBody>
                       title: Text(query),
                       trailing: IconButton(
                         icon: const Icon(Icons.clear, size: 20),
-                        onPressed: () {
-                        },
+                        onPressed: () {},
                       ),
                       onTap: () {
                         context.read<ProductsCubit>().searchProducts(query);
@@ -177,23 +184,24 @@ class _ProductsViewBodyState extends State<ProductsViewBody>
   Widget _buildProductsDisplay(BuildContext context) {
     return Padding(
       key: const ValueKey('products'),
-      padding: const EdgeInsets.symmetric(horizontal: 16), // توحيد الـ padding
+      padding: const EdgeInsets.symmetric(horizontal: 0), // توحيد الـ padding
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: 35, child: CategoriesList()),
           const SizedBox(height: 15),
-          Text(
-            "${context.watch<ProductsCubit>().products.length} منتجات",
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              "${context.watch<ProductsCubit>().products.length} منتجات",
+            ),
           ),
           const SizedBox(height: 10),
           Expanded(
             child: BlocBuilder<ProductsCubit, ProductsState>(
               builder: (context, state) {
                 if (state is ProductsSuccess) {
-                  return ProductsGridView(
-                    products: state.products,
-                  );
+                  return ProductsGridView(products: state.products);
                 } else if (state is ProductsError) {
                   return Center(child: Text(state.errorMessage));
                 } else {
