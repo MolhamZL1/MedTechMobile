@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import '../../data/models/cart_item_model.dart';
 import 'cart_item_entity.dart';
 
 class CartEntity {
@@ -23,5 +26,15 @@ class CartEntity {
   decrementQuantity(CartItemEntity cartItemEntity) {
     cartItemEntity.decrementQuantity();
     total -= cartItemEntity.productEntity.salePrice;
+  }
+
+  List<CartItemEntity> getRentedProducts() {
+    List<CartItemEntity> rentedItems = [];
+    for (var element in cartItems) {
+      if (element.transactionType == TransactionType.rent) {
+        rentedItems.add(element);
+      }
+    }
+    return rentedItems;
   }
 }

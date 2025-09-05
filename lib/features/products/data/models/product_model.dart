@@ -19,12 +19,14 @@ class ProductModel {
   final num rentalPrice;
   final bool availableForRent;
   final bool availableForSale;
+  final bool isFavorite;
   final String qrCode;
   final List<String> imagesUrl;
   final num rate;
   final List<VedioModel> videos;
 
   ProductModel({
+    required this.isFavorite,
     required this.id,
     required this.nameEn,
     required this.nameAr,
@@ -70,6 +72,7 @@ class ProductModel {
       (json["videos"] as List<dynamic>?)?.map((x) => VedioModel.fromJson(x)) ??
           [],
     ),
+    isFavorite: json["isFavorite"] ?? false,
   );
 
   factory ProductModel.fromEntity(ProductEntity entity) => ProductModel(
@@ -94,6 +97,7 @@ class ProductModel {
     videos: List<VedioModel>.from(
       entity.vedios.map((x) => VedioModel.fromEntity(x)),
     ),
+    isFavorite: entity.isFavorite,
   );
 
   Map<String, dynamic> toJson() => {
@@ -115,6 +119,7 @@ class ProductModel {
     "qrCode": qrCode,
     "images": List<dynamic>.from(imagesUrl.map((x) => x)),
     "videos": List<dynamic>.from(videos.map((x) => x)),
+    "isFavorite": isFavorite,
   };
   toEntity() => ProductEntity(
     id: id,
@@ -136,5 +141,6 @@ class ProductModel {
     qrCode: qrCode,
     imagesUrl: imagesUrl.map((url) => "${BackendEndpoints.url}$url").toList(),
     vedios: List<VedioEntity>.from(videos.map((x) => x.toEntity())),
+    isFavorite: isFavorite,
   );
 }

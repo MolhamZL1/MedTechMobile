@@ -23,6 +23,8 @@ import 'package:medtech_mobile/features/profile/presentation/views/widgets/pages
 import 'package:medtech_mobile/features/profile/presentation/views/widgets/profilecolumn/paymentcard.dart';
 import 'features/auth/domain/repos/auth_repo.dart';
 import 'features/auth/presentation/cubits/signin/sign_in_cubit.dart';
+import 'features/favorites/domain/repo/favorite_repo.dart';
+import 'features/favorites/presentation/cubits/cubit/addto_favorite_cubit.dart';
 import 'generated/l10n.dart';
 
 void main() {
@@ -36,8 +38,13 @@ class MedTech extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SignInCubit(getIt.get<AuthRepo>()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => SignInCubit(getIt.get<AuthRepo>())),
+        BlocProvider(
+          create: (_) => AddtoFavoriteCubit(getIt.get<FavoriteRepo>()),
+        ),
+      ],
       child: MaterialApp(
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,

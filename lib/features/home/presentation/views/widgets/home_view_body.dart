@@ -30,9 +30,9 @@ class HomeViewBody extends StatelessWidget {
               ),
               trailing: CircleAvatar(
                 backgroundColor: AppColors.primary.withOpacity(.3),
-                child: Transform.rotate(
-                  angle: 0.7,
-                  child: Icon(Icons.turn_sharp_right, color: AppColors.primary),
+                child: Icon(
+                  Icons.notifications_active,
+                  color: AppColors.primary,
                 ),
               ),
             ),
@@ -55,7 +55,7 @@ class HomeViewBody extends StatelessWidget {
             slides: [
               const OfferSlide(
                 imageUrl:
-                    "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b",
+                    "http://10.0.2.2:8383/uploads/images/1755632051655-595297845.png",
                 title: "Ultrasound Week",
                 subtitle: "Save up to 30%",
               ),

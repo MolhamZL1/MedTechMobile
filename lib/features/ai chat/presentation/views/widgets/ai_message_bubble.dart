@@ -29,7 +29,7 @@ class AiMessageBubble extends StatelessWidget {
             bottomRight: Radius.circular(isUser ? 4 : 12),
           ),
         ),
-        child: Text(
+        child: SelectableText(
           text,
           style: theme.textTheme.bodyMedium?.copyWith(height: 1.35),
         ),

@@ -21,9 +21,12 @@ class DashboardActionButton extends StatelessWidget {
               SizedBox(height: 8),
               Text(
                 dashboardActionButtonModel.text,
-                style: Theme.of(
-                  context,
-                ).textTheme.bodySmall?.copyWith(color: Colors.black),
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  color:
+                      Theme.of(context).brightness == Brightness.dark
+                          ? Colors.white
+                          : Colors.black,
+                ),
               ),
             ],
           ),

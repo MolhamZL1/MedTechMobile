@@ -59,12 +59,12 @@ class AuthRepoImp implements AuthRepo {
     required String password,
   }) async {
     try {
-      Response response = await databaseService.addData(
+      var data = await databaseService.addData(
         endpoint: BackendEndpoints.signIn,
         data: {"identifier": email, "password": password},
       );
 
-      return right(UserModel.fromJson(response.data).toEntity());
+      return right(UserModel.fromJson(data).toEntity());
     } catch (e) {
       log(e.toString());
       if (e is DioException) {

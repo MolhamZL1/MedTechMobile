@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/widgets/CustomImageNetwork.dart';
-import '../../../../../../core/widgets/favorite_button.dart';
+import '../../../../../../core/widgets/custom_favorite_button.dart';
 import '../../../../domain/entities/product_entitie.dart';
 
 class HeaderCardProdcutSection extends StatelessWidget {
@@ -48,7 +48,10 @@ class HeaderCardProdcutSection extends StatelessWidget {
               shape: BoxShape.circle,
             ),
             padding: const EdgeInsets.all(6),
-            child: FavoriteButton(id: productEntitie.id.toString()),
+            child: CustomFavoriteButton(
+              isFavorite: productEntitie.isFavorite,
+              id: productEntitie.id.toString(),
+            ),
           ),
         ),
       ],

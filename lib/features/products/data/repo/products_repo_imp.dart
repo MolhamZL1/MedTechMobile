@@ -20,7 +20,7 @@ class ProductsRepoImp extends ProductsRepo {
     try {
       var data = await databaseService.getData(
         endpoint: BackendEndpoints.getProducts,
-        quary: {"withVideos": true},
+        quary: {"withVideos": true, "category": category},
       );
       List<ProductEntity> products = List<ProductEntity>.from(
         data["products"].map((e) => ProductModel.fromJson(e).toEntity()),

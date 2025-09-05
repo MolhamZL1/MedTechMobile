@@ -18,11 +18,13 @@ class ProductEntity {
   final num rate;
   final bool availableForRent;
   final bool availableForSale;
+  final bool isFavorite;
   final String qrCode;
   final List<String> imagesUrl;
   final List<VedioEntity> vedios;
 
   ProductEntity({
+    required this.isFavorite,
     required this.id,
     required this.nameEn,
     required this.nameAr,
@@ -48,9 +50,9 @@ class ProductEntity {
 List<ProductEntity> featuredProducts = [
   ProductEntity(
     id: 1,
-    nameEn: "Device 1",
+    nameEn: "Ultrasound Machine",
     nameAr: "",
-    categoryEn: "Category 1",
+    categoryEn: "Diagnostic Equipment",
     companyEn: "Company 1",
     descriptionEn: "This is a description of device 1",
     rentStock: 10,
@@ -62,15 +64,16 @@ List<ProductEntity> featuredProducts = [
     availableForSale: true,
     qrCode: "1234567890",
     imagesUrl: [
-      "https://png.pngtree.com/png-clipart/20250127/original/pngtree-medical-ultrasound-machine-diagnostic-equipment-png-image_20349325.png",
+      "http://10.0.2.2:8383/uploads/images/1755632051655-595297845.png",
     ],
     vedios: [],
+    isFavorite: false,
   ),
   ProductEntity(
     id: 2,
-    nameEn: "Device 1",
+    nameEn: "MRI Machine",
     nameAr: "",
-    categoryEn: "Category 1",
+    categoryEn: "Diagnostic Equipment",
     companyEn: "Company 1",
     descriptionEn: "This is a description of device 1",
     rentStock: 10,
@@ -82,15 +85,16 @@ List<ProductEntity> featuredProducts = [
     availableForSale: true,
     qrCode: "1234567890",
     imagesUrl: [
-      "https://png.pngtree.com/png-clipart/20250127/original/pngtree-medical-ultrasound-machine-diagnostic-equipment-png-image_20349325.png",
+      "http://10.0.2.2:8383/uploads/images/1755632051655-595297845.png",
     ],
     vedios: [],
+    isFavorite: false,
   ),
   ProductEntity(
     id: 3,
-    nameEn: "Device 1",
+    nameEn: "X-ray Machine",
     nameAr: "",
-    categoryEn: "Category 1",
+    categoryEn: "Diagnostic Equipment",
     companyEn: "Company 1",
     descriptionEn: "This is a description of device 1",
     rentStock: 10,
@@ -102,15 +106,16 @@ List<ProductEntity> featuredProducts = [
     availableForSale: true,
     qrCode: "1234567890",
     imagesUrl: [
-      "https://png.pngtree.com/png-clipart/20250127/original/pngtree-medical-ultrasound-machine-diagnostic-equipment-png-image_20349325.png",
+      "http://10.0.2.2:8383/uploads/images/1755632051655-595297845.png",
     ],
     vedios: [],
+    isFavorite: false,
   ),
   ProductEntity(
     id: 4,
-    nameEn: "Device 1",
+    nameEn: "ECG Machine",
     nameAr: "",
-    categoryEn: "Category 1",
+    categoryEn: "Diagnostic Equipment",
     companyEn: "Company 1",
     descriptionEn: "This is a description of device 1",
     rentStock: 10,
@@ -122,8 +127,9 @@ List<ProductEntity> featuredProducts = [
     availableForSale: true,
     qrCode: "1234567890",
     imagesUrl: [
-      "https://png.pngtree.com/png-clipart/20250127/original/pngtree-medical-ultrasound-machine-diagnostic-equipment-png-image_20349325.png",
+      "http://10.0.2.2:8383/uploads/images/1755632051655-595297845.png",
     ],
     vedios: [],
+    isFavorite: false,
   ),
 ];

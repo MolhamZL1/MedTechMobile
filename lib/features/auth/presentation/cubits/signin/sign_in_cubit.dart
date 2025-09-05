@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:medtech_mobile/features/auth/data/models/user_model.dart';
@@ -22,6 +23,7 @@ class SignInCubit extends Cubit<SignInState> {
     result.fold(
       (failure) => emit(SignInError(errMessage: failure.errMessage)),
       (userEntity) async {
+        log(userEntity.token);
         await LocalStorageService.setItem(
           LocalStorageKeys.user,
           jsonEncode(UserModel.fromEntity(userEntity).toJson()),

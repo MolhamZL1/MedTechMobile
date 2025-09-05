@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medtech_mobile/core/widgets/CustomImageNetwork.dart';
+import 'package:medtech_mobile/features/cart/data/models/cart_item_model.dart';
 
 import '../../../../product_details/presentation/views/product_details_view.dart';
 import '../../../domain/entities/cart_item_entity.dart';
@@ -137,6 +138,8 @@ class CartItemWidget extends StatelessWidget {
 
                     const SizedBox(height: 8),
 
+                    const SizedBox(height: 8),
+
                     // عدّاد الكمية
                     Row(
                       children: [
@@ -163,6 +166,24 @@ class CartItemWidget extends StatelessWidget {
                                 cartItemEntity,
                               ),
                         ),
+                        Spacer(),
+                        if (cartItemEntity.transactionType ==
+                            TransactionType.rent)
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 8,
+                              vertical: 4,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Text(
+                              'Rental',
+                              style: Theme.of(context).textTheme.bodySmall
+                                  ?.copyWith(color: Colors.white),
+                            ),
+                          ),
                       ],
                     ),
                   ],

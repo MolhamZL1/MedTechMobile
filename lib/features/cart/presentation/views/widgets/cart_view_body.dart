@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medtech_mobile/core/widgets/CustomLoadingCircle.dart';
+import 'package:medtech_mobile/features/cart/domain/entities/cart_item_entity.dart';
 import 'package:medtech_mobile/features/cart/presentation/cubits/fetch_Cart/fetch_cart_cubit.dart';
 import 'package:medtech_mobile/features/checkout/presentation/views/checkout_view.dart';
 
+import '../../../data/models/cart_item_model.dart';
 import 'CartItemWidget.dart';
 import 'SummaryOrderWidget.dart';
 
@@ -140,7 +142,22 @@ class CartviewBody extends StatelessWidget {
           ),
           child: ElevatedButton.icon(
             onPressed: () {
-              Navigator.pushNamed(context, CheckoutView.routeName);
+              if (context
+                  .read<FetchCartCubit>()
+                  .cartEntity!
+                  .cartItems
+                  .isEmpty) {
+                return;
+              }
+              Navigator.pushNamed(
+                context,
+                CheckoutView.routeName,
+                arguments:
+                    context
+                        .read<FetchCartCubit>()
+                        .cartEntity!
+                        .getRentedProducts(),
+              );
             },
             icon: Icon(Icons.check),
             label: Text("Checkout"),

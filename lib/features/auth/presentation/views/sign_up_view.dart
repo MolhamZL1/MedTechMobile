@@ -12,7 +12,10 @@ class SignUpView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SignUpCubit(getIt.get<AuthRepo>()),
-      child: const Scaffold(body: SignUpViewBody()),
+      child: const Scaffold(
+        backgroundColor: Colors.white,
+        body: SignUpViewBody(),
+      ),
     );
   }
 }

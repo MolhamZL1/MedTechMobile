@@ -38,4 +38,12 @@ class CustomValidator {
 
     return null;
   }
+
+  static String? addressValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Address is required';
+    }
+
+    return null;
+  }
 }

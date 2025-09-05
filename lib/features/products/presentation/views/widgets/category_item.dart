@@ -51,8 +51,11 @@ class SelectedCategoryItem extends StatelessWidget {
 }
 
 final categories = [
-  'الكل',
-  'المنتجات الطبية',
-  'المنتجات الطبية',
-  'المنتجات الطبية',
+  "All",
+  "Urology",
+  "Gynecology",
+  "General Surgery",
+  "Orthopedics",
+  "Pulmonology",
+  "ENT (Ear, Nose, Throat)",
 ];
