@@ -10,6 +10,8 @@ import 'package:medtech_mobile/features/checkout/domain/repos/checkout_repo.dart
 import 'package:medtech_mobile/features/favorites/domain/repo/favorite_repo.dart';
 import 'package:medtech_mobile/features/products/data/repo/products_repo_imp.dart';
 import 'package:medtech_mobile/features/products/domain/repo/products_repo.dart';
+import 'package:medtech_mobile/features/profile/data/repo/profile_repo_impl.dart';
+import 'package:medtech_mobile/features/profile/domain/repo/profile_repo.dart';
 
 import '../../features/auth/data/repos/auth_repo_imp.dart';
 import '../../features/auth/domain/repos/auth_repo.dart';
@@ -43,6 +45,9 @@ void setupSingltonGetIt() {
 
   getIt.registerSingleton<AuthRepo>(
     AuthRepoImp(databaseService: getIt.get<DatabaseService>()),
+  );
+  getIt.registerSingleton<ProfileRepo>(
+    ProfileRepoImpl(getIt.get<DatabaseService>(), BackendEndpoints.url),
   );
   getIt.registerSingleton<ProductsRepo>(
     ProductsRepoImp(databaseService: getIt.get<DatabaseService>()),

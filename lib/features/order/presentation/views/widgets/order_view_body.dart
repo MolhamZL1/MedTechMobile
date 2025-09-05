@@ -7,7 +7,7 @@ import 'package:medtech_mobile/features/order/presentation/views/widgets/downbar
 import 'package:medtech_mobile/features/order/presentation/views/widgets/ordercard.dart';
 import 'package:medtech_mobile/features/order/presentation/views/widgets/upbar.dart';
 import 'package:medtech_mobile/features/order/presentation/views/widgets/upbar_body.dart';
-import 'package:medtech_mobile/features/profile/presentation/views/widgets/pagescards/profile/editprofile/editprofileappbar.dart';
+import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/pagescards/profile/editprofile/editprofileappbar.dart';
 
 class OrderViewBody extends StatefulWidget {
   const OrderViewBody({super.key});

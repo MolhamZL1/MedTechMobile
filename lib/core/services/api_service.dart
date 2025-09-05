@@ -1,9 +1,31 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'database_service.dart';
 
 class ApiService implements DatabaseService {
+
+ 
   final Dio dio;
+ static const String _tokenKey = 'token';
+
+@override
+  Future<void> saveToken(String token) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(_tokenKey, token);
+     // log("Token saved in prefs: $token");
+      final savedToken = prefs.getString(_tokenKey); // تأكيد الحفظ
+  log("✅ Token saved in SharedPreferences: $savedToken"); 
+  }
+
+  @override
+  Future<String?> getToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString(_tokenKey);
+  }
+
 
   ApiService({required this.dio});
   @override
@@ -56,4 +78,8 @@ class ApiService implements DatabaseService {
   }) async {
     return await dio.put(endpoint + (rowid ?? ""), data: data);
   }
+  
+
+
+ 
 }

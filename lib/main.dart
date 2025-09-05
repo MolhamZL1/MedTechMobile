@@ -16,11 +16,13 @@ import 'package:medtech_mobile/features/product_details/presentation/views/widge
 import 'package:medtech_mobile/features/product_details/presentation/views/widgets/detaile_type_view/detals_type_list.dart';
 import 'package:medtech_mobile/features/product_details/presentation/views/widgets/detaile_type_view/dettailes_type.dart';
 import 'package:medtech_mobile/features/product_details/presentation/views/widgets/totuialssection.dart';
-import 'package:medtech_mobile/features/profile/presentation/views/widgets/pagescards/profile/editprofile/editprofile.dart';
-import 'package:medtech_mobile/features/profile/presentation/views/widgets/pagescards/profile/payment/paymentpage.dart';
-import 'package:medtech_mobile/features/profile/presentation/views/widgets/pagescards/setting/safety&privacy/safetypage.dart';
-import 'package:medtech_mobile/features/profile/presentation/views/widgets/pagescards/setting/settings/mainsettingpage.dart';
-import 'package:medtech_mobile/features/profile/presentation/views/widgets/profilecolumn/paymentcard.dart';
+import 'package:medtech_mobile/features/profile/domain/repo/profile_repo.dart';
+import 'package:medtech_mobile/features/profile/presentation/view/views/profile_view.dart';
+import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/pagescards/profile/editprofile/editprofile.dart';
+import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/pagescards/profile/payment/paymentpage.dart';
+import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/pagescards/setting/safety&privacy/safetypage.dart';
+import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/pagescards/setting/settings/mainsettingpage.dart';
+import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/profilecolumn/paymentcard.dart';
 import 'features/auth/domain/repos/auth_repo.dart';
 import 'features/auth/presentation/cubits/signin/sign_in_cubit.dart';
 import 'features/favorites/domain/repo/favorite_repo.dart';
@@ -29,6 +31,7 @@ import 'generated/l10n.dart';
 
 void main() {
   Bloc.observer = CustomBlocObserver();
+
   setupSingltonGetIt();
   runApp(const MedTech());
 }
@@ -62,7 +65,7 @@ class MedTech extends StatelessWidget {
 
         //      initialRoute: 'editprofile',
         //      routes: {
-        //   'editprofile': (context) => Safetypage(),
+        //   'editprofile': (context) => ProfileView(),
         // },
         debugShowCheckedModeBanner: false,
       ),

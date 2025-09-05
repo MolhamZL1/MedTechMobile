@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:medtech_mobile/core/errors/failures.dart';
 import 'package:medtech_mobile/core/services/database_service.dart';
+import 'package:medtech_mobile/core/services/get_it_service.dart';
 import 'package:medtech_mobile/core/utils/backend_endpoints.dart';
 import 'package:medtech_mobile/features/auth/data/models/user_model.dart';
 import 'package:medtech_mobile/features/auth/domain/entities/user_entity.dart';

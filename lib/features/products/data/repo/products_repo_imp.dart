@@ -33,4 +33,25 @@ class ProductsRepoImp extends ProductsRepo {
       return left(ServerFailure(errMessage: e.toString()));
     }
   }
+  @override
+  Future<Either<Failure, List<ProductEntity>>> searchProducts({
+    required String query,
+  }) async {
+    try {
+      var data = await databaseService.getData(
+        endpoint: BackendEndpoints.searchProducts,
+        quary: {"q": query},
+      );
+
+      List<ProductEntity> products = List<ProductEntity>.from(
+        data["products"].map((e) => ProductModel.fromJson(e).toEntity()),
+      );
+      return right(products);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
+    }
+  }
 }
