@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medtech_mobile/features/checkout/presentation/cubits/cubit/checkout_cubit.dart';
+import 'package:medtech_mobile/features/checkout/presentation/cubits/cubit/selection_cubit.dart';
 
 class CheckoutBottomBar extends StatefulWidget {
-  const CheckoutBottomBar();
+  const CheckoutBottomBar({
+    super.key,
+    required this.formKey,
+    required this.addressController,
+  });
+  final GlobalKey<FormState> formKey;
+  final TextEditingController addressController;
 
   @override
   State<CheckoutBottomBar> createState() => _CheckoutBottomBarState();
@@ -72,7 +81,18 @@ class _CheckoutBottomBarState extends State<CheckoutBottomBar> {
               width: double.infinity,
               height: 48,
               child: ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  if (widget.formKey.currentState!.validate()) {
+                    final state = context.read<RentalSelectionCubit>().state;
+
+                    final items = state.toRentedItemsList();
+
+                    context.read<CheckoutCubit>().checkout(
+                      address: widget.addressController.text,
+                      rentedItems: items,
+                    );
+                  }
+                },
                 icon: const Icon(Icons.check),
                 label: Text('Place Order'),
               ),

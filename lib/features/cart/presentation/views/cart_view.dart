@@ -18,9 +18,6 @@ class CartView extends StatelessWidget {
           create:
               (context) => FetchCartCubit(getIt.get<CartRepo>())..fetchCart(),
         ),
-        BlocProvider(
-          create: (context) => UpdateCartCubit(getIt.get<CartRepo>()),
-        ),
       ],
       child: const CartviewBody(),
     );

@@ -7,6 +7,13 @@ class InActiveNavigationBarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(image, height: 20, color: Colors.black54);
+    return SvgPicture.asset(
+      image,
+      height: 20,
+      color:
+          Theme.of(context).brightness == Brightness.dark
+              ? Colors.white
+              : Colors.black54,
+    );
   }
 }

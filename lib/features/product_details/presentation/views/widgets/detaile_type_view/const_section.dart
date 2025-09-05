@@ -21,6 +21,19 @@ class _ConstSectionState extends State<ConstSection> {
     }
   }
 
+  Future<void> _openWhatsApp(BuildContext context) async {
+    final uri = Uri(
+      scheme: 'https',
+      path: 'api.whatsapp.com/send?phone=$supportNumber',
+    );
+    final ok = await launchUrl(uri, mode: LaunchMode.externalApplication);
+    if (!ok && context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('تعذر فتح تطبيق الواتس اب ')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -61,7 +74,9 @@ class _ConstSectionState extends State<ConstSection> {
                 ),
               ),
               OutlinedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  _openWhatsApp(context);
+                },
                 icon: Icon(Icons.chat_bubble_outline),
                 label: Text("WhatsApp Chat"),
               ),

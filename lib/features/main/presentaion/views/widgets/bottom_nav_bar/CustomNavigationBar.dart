@@ -12,7 +12,7 @@ class CustomNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 70,
-      decoration: buildNavBarDecoration(),
+      decoration: buildNavBarDecoration(context),
       child: Row(
         children: List.generate(bottomNavigationBarItems.length, (index) {
           return Expanded(
@@ -31,13 +31,16 @@ class CustomNavigationBar extends StatelessWidget {
     );
   }
 
-  BoxDecoration buildNavBarDecoration() {
-    return const BoxDecoration(
+  BoxDecoration buildNavBarDecoration(BuildContext context) {
+    return BoxDecoration(
       borderRadius: BorderRadius.only(
         topLeft: Radius.circular(30),
         topRight: Radius.circular(30),
       ),
-      color: Colors.white,
+      color:
+          Theme.of(context).brightness == Brightness.dark
+              ? Color(0xff202020)
+              : Colors.white,
       boxShadow: [
         BoxShadow(
           color: Color(0x19000000),

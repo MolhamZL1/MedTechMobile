@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import '../../../domain/entities/product_entitie.dart';
@@ -20,6 +22,7 @@ class ProductsGridView extends StatelessWidget {
         childAspectRatio: 0.72,
       ),
       itemBuilder: (context, index) {
+        log(products[index].imagesUrl[0]);
         return CustomProductCard(productEntitie: products[index]);
       },
     );

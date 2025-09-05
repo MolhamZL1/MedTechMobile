@@ -60,23 +60,12 @@ class AuthRepoImp implements AuthRepo {
     required String password,
   }) async {
     try {
-      Response response = await databaseService.addData(
+      var data = await databaseService.addData(
         endpoint: BackendEndpoints.signIn,
         data: {"identifier": email, "password": password},
       );
 
-
-final userModel = UserModel.fromJson(response.data);
-
-await getIt.get<DatabaseService>().saveToken(userModel.token);
-final savedToken = await getIt.get<DatabaseService>().getToken();
-log("✅ Token after login: $savedToken");
-log("Token saved: ${userModel.token}");
-
-log("Token saved: ${userModel.token}");
-
-return right(userModel.toEntity());
-   
+      return right(UserModel.fromJson(data).toEntity());
     } catch (e) {
       log(e.toString());
       if (e is DioException) {
