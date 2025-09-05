@@ -16,7 +16,7 @@ class ApiService implements DatabaseService {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_tokenKey, token);
      // log("Token saved in prefs: $token");
-      final savedToken = prefs.getString(_tokenKey); // تأكيد الحفظ
+      final savedToken = prefs.getString(_tokenKey); 
   log("✅ Token saved in SharedPreferences: $savedToken"); 
   }
 

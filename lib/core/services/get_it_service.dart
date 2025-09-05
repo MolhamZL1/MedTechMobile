@@ -46,12 +46,9 @@ void setupSingltonGetIt() {
   getIt.registerSingleton<AuthRepo>(
     AuthRepoImp(databaseService: getIt.get<DatabaseService>()),
   );
-  getIt.registerSingleton<ProfileRepo>(
-    ProfileRepoImpl(getIt.get<DatabaseService>(), BackendEndpoints.url),
-  );
-  getIt.registerSingleton<ProductsRepo>(
-    ProductsRepoImp(databaseService: getIt.get<DatabaseService>()),
-  );
+getIt.registerSingleton<ProfileRepo>(
+  ProfileRepoImpl(databaseService: getIt.get<DatabaseService>()),
+);
   getIt.registerSingleton<CartRepo>(
     CartRepoImp(databaseService: getIt.get<DatabaseService>()),
   );

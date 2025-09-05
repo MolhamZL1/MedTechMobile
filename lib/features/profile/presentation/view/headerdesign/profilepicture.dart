@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medtech_mobile/core/utils/app_images.dart';
 
 class Profilepicture extends StatelessWidget {
  IconData? icon;
@@ -18,7 +19,7 @@ class Profilepicture extends StatelessWidget {
               backgroundColor: Colors.blue.shade100,
             backgroundImage: imageUrl != null
                   ? NetworkImage(imageUrl!) 
-                  : const AssetImage('assets/images/profile.jpg')
+                  : const AssetImage(AppImages.imagesUser)
                       as ImageProvider,
             ),
       

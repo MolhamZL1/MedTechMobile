@@ -17,4 +17,6 @@ class AppImages {
   static const String imagesShoppingCart = "assets/images/shopping-cart.svg";
 
   static const String imagesUser = "assets/images/user.svg";
+
+
 }

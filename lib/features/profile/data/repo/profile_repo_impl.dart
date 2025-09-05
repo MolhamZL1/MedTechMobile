@@ -1,45 +1,31 @@
-import 'dart:convert';
-import 'dart:developer';
-import 'package:http/http.dart' as http;
-import 'package:medtech_mobile/core/services/database_service.dart';
-import 'package:medtech_mobile/core/utils/backend_endpoints.dart';
-import '../model/profile_model.dart';
+// profile/data/repo/profile_repo_impl.dart
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:medtech_mobile/features/profile/domain/entites/profile_entity.dart';
+import '../../../../core/errors/failures.dart';
+import '../../../../core/services/database_service.dart';
+import '../../../../core/utils/backend_endpoints.dart';
 import '../../domain/repo/profile_repo.dart';
+import '../model/profile_model.dart';
 
-class ProfileRepoImpl implements ProfileRepo {
+class ProfileRepoImpl extends ProfileRepo {
   final DatabaseService databaseService;
-  final String baseUrl;
 
-  ProfileRepoImpl(this.databaseService, this.baseUrl);
+  ProfileRepoImpl({required this.databaseService});
 
   @override
-  Future<ProfileModel> getProfile() async {
+  Future<Either<Failure, ProfileEntity>> getProfile() async {
     try {
-      final token = await databaseService.getToken(); 
-     log("Token used for profile request: $token");
-
-      final endpoint = '${baseUrl.replaceAll(RegExp(r'/$'),
-       '')}/${BackendEndpoints.profile}';
-      final response = await http.get(
-        Uri.parse(endpoint),
-        headers: {
-          'Authorization': 'Bearer $token',
-          'Accept': 'application/json',
-        },
+      final data = await databaseService.getData(
+        endpoint: BackendEndpoints.profile,
       );
-
-      print('Status Code: ${response.statusCode}');
-      print('Response Body: ${response.body}');
-
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        return ProfileModel.fromJson(data);
-      } else {
-        throw Exception('Failed to load profile: ${response.statusCode}');
-      }
+      final profile = ProfileModel.fromJson(data).toEntity();
+      return right(profile);
     } catch (e) {
-      print('Error fetching profile: $e');
-      throw Exception('Failed to load profile');
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return left(ServerFailure(errMessage: e.toString()));
     }
   }
 }

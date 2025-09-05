@@ -2,6 +2,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:medtech_mobile/features/profile/domain/repo/profile_repo.dart';
 import 'package:medtech_mobile/features/profile/presentation/cubit/cubit/profile_state.dart';
+import 'package:meta/meta.dart';
+
+
 
 
 class ProfileCubit extends Cubit<ProfileState> {
@@ -11,11 +14,10 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   Future<void> fetchProfile() async {
     emit(ProfileLoading());
-    try {
-      final profile = await profileRepo.getProfile();
-      emit(ProfileLoaded(profile));
-    } catch (e) {
-      emit(ProfileError(e.toString()));
-    }
+    final result = await profileRepo.getProfile();
+    result.fold(
+      (failure) => emit(ProfileError(failure.errMessage)),
+      (profile) => emit(ProfileLoaded(profile)),
+    );
   }
 }
