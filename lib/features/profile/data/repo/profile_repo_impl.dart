@@ -15,11 +15,11 @@ class ProfileRepoImpl implements ProfileRepo {
   @override
   Future<ProfileModel> getProfile() async {
     try {
-      final token = await databaseService.getToken(); 
-     log("Token used for profile request: $token");
+      final token = "await databaseService.getToken()";
+      log("Token used for profile request: $token");
 
-      final endpoint = '${baseUrl.replaceAll(RegExp(r'/$'),
-       '')}/${BackendEndpoints.profile}';
+      final endpoint =
+          '${baseUrl.replaceAll(RegExp(r'/$'), '')}/${BackendEndpoints.profile}';
       final response = await http.get(
         Uri.parse(endpoint),
         headers: {

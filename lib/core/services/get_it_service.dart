@@ -8,6 +8,8 @@ import 'package:medtech_mobile/features/cart/domain/repos/cart_repo.dart';
 import 'package:medtech_mobile/features/checkout/data/repos/checkout_repo_imp.dart';
 import 'package:medtech_mobile/features/checkout/domain/repos/checkout_repo.dart';
 import 'package:medtech_mobile/features/favorites/domain/repo/favorite_repo.dart';
+import 'package:medtech_mobile/features/order/data/repo/order_repo_impl.dart';
+import 'package:medtech_mobile/features/order/domain/repos/order_repo.dart';
 import 'package:medtech_mobile/features/products/data/repo/products_repo_imp.dart';
 import 'package:medtech_mobile/features/products/domain/repo/products_repo.dart';
 import 'package:medtech_mobile/features/profile/data/repo/profile_repo_impl.dart';
@@ -63,5 +65,8 @@ void setupSingltonGetIt() {
   );
   getIt.registerSingleton<CheckoutRepo>(
     CheckoutRepoImp(databaseService: getIt.get<DatabaseService>()),
+  );
+  getIt.registerSingleton<OrderRepo>(
+    OrderRepoImpl(databaseService: getIt.get<DatabaseService>()),
   );
 }

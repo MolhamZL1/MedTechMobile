@@ -10,22 +10,32 @@ class CartEntity {
   CartEntity(this.cartItems, this.total);
   deleteitem(CartItemEntity cartItemEntity) {
     cartItems.remove(cartItemEntity);
-    total -= cartItemEntity.productEntity.salePrice * cartItemEntity.quantity;
+    if (cartItemEntity.transactionType == TransactionType.sale) {
+      total -= cartItemEntity.productEntity.salePrice * cartItemEntity.quantity;
+    }
   }
 
   additem(CartItemEntity cartItemEntity) {
     cartItems.add(cartItemEntity);
-    total += cartItemEntity.productEntity.salePrice * cartItemEntity.quantity;
+    log("renttt");
+    if (cartItemEntity.transactionType == TransactionType.sale) {
+      log("renttt");
+      total += cartItemEntity.productEntity.salePrice * cartItemEntity.quantity;
+    }
   }
 
   incrementQuantity(CartItemEntity cartItemEntity) {
     cartItemEntity.incrementQuantity();
-    total += cartItemEntity.productEntity.salePrice;
+    if (cartItemEntity.transactionType == TransactionType.sale) {
+      total += cartItemEntity.productEntity.salePrice;
+    }
   }
 
   decrementQuantity(CartItemEntity cartItemEntity) {
     cartItemEntity.decrementQuantity();
-    total -= cartItemEntity.productEntity.salePrice;
+    if (cartItemEntity.transactionType == TransactionType.sale) {
+      total -= cartItemEntity.productEntity.salePrice;
+    }
   }
 
   List<CartItemEntity> getRentedProducts() {

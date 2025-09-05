@@ -119,73 +119,78 @@ class CartItemWidget extends StatelessWidget {
                     const SizedBox(height: 8),
 
                     // السعر لكل وحدة + Line Total كبادج حلوة
-                    Row(
-                      children: [
-                        _PricePill(text: '\$${_fmt(unitPrice)} / unit'),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              'Line: \$${_fmt(lineTotal)}',
-                              style: Theme.of(context).textTheme.bodyMedium
-                                  ?.copyWith(fontWeight: FontWeight.w600),
+                    cartItemEntity.transactionType == TransactionType.sale
+                        ? Row(
+                          children: [
+                            _PricePill(text: '\$${_fmt(unitPrice)} / unit'),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  'Line: \$${_fmt(lineTotal)}',
+                                  style: Theme.of(context).textTheme.bodyMedium
+                                      ?.copyWith(fontWeight: FontWeight.w600),
+                                ),
+                              ),
                             ),
-                          ),
+                          ],
+                        )
+                        : _PricePill(
+                          text:
+                              '\$${_fmt(cartItemEntity.productEntity.rentalPrice)} / Per day',
                         ),
-                      ],
-                    ),
 
                     const SizedBox(height: 8),
 
                     const SizedBox(height: 8),
 
                     // عدّاد الكمية
-                    Row(
-                      children: [
-                        _QtyBtn(
-                          icon: Icons.remove_circle_outline,
-                          onTap:
-                              qty <= 1
-                                  ? null
-                                  : () => context
-                                      .read<FetchCartCubit>()
-                                      .decrement(cartItemEntity),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: Text(
-                            qty.toString(),
-                            style: Theme.of(context).textTheme.titleMedium,
-                          ),
-                        ),
-                        _QtyBtn(
-                          icon: Icons.add_circle_outline,
-                          onTap:
-                              () => context.read<FetchCartCubit>().increment(
-                                cartItemEntity,
+                    cartItemEntity.transactionType == TransactionType.sale
+                        ? Row(
+                          children: [
+                            _QtyBtn(
+                              icon: Icons.remove_circle_outline,
+                              onTap:
+                                  qty <= 1
+                                      ? null
+                                      : () => context
+                                          .read<FetchCartCubit>()
+                                          .decrement(cartItemEntity),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
                               ),
-                        ),
-                        Spacer(),
-                        if (cartItemEntity.transactionType ==
-                            TransactionType.rent)
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 4,
+                              child: Text(
+                                qty.toString(),
+                                style: Theme.of(context).textTheme.titleMedium,
+                              ),
                             ),
-                            decoration: BoxDecoration(
-                              color: Colors.green,
-                              borderRadius: BorderRadius.circular(12),
+                            _QtyBtn(
+                              icon: Icons.add_circle_outline,
+                              onTap:
+                                  () => context
+                                      .read<FetchCartCubit>()
+                                      .increment(cartItemEntity),
                             ),
-                            child: Text(
-                              'Rental',
-                              style: Theme.of(context).textTheme.bodySmall
-                                  ?.copyWith(color: Colors.white),
-                            ),
+                          ],
+                        )
+                        : Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
                           ),
-                      ],
-                    ),
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Text(
+                            'Rental',
+                            style: Theme.of(context).textTheme.bodySmall
+                                ?.copyWith(color: Colors.white),
+                          ),
+                        ),
                   ],
                 ),
               ),

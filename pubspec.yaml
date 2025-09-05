@@ -29,7 +29,6 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   animated_react_button: ^0.0.4
-  auto_size_text: ^3.0.0
   awesome_dialog: ^3.2.1
   cached_network_image: ^3.4.1
   chewie: ^1.12.1

@@ -25,8 +25,7 @@ class CheckoutRepoImp implements CheckoutRepo {
         "shippingAddress": address,
         "rentalDetails": rentedItems.map((e) => e.toJson()).toList(),
       };
-      log("i am here");
-      log(data.toString());
+
       await databaseService.addData(
         endpoint: BackendEndpoints.createCheckout,
         data: data,
@@ -34,7 +33,6 @@ class CheckoutRepoImp implements CheckoutRepo {
       return Right(null);
     } catch (e) {
       if (e is DioException) {
-        log(ServerFailure.fromDioError(e).errMessage);
         return Left(ServerFailure.fromDioError(e));
       }
       return Left(ServerFailure(errMessage: e.toString()));

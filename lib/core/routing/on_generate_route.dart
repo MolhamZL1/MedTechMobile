@@ -61,8 +61,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) {
           final args = settings.arguments;
-          List<CartItemEntity> cartItems = args as List<CartItemEntity>;
-          return CheckoutView(cartItems: cartItems);
+          CartEntity cartEntity = args as CartEntity;
+          return CheckoutView(cartEntity: cartEntity);
         },
       );
     case GoogleMapView.routeName:

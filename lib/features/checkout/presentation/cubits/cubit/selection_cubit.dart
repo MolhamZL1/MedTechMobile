@@ -62,16 +62,30 @@ class RentalSelectionState extends Equatable {
       }
     }
   }
+
+  /// يُرجع مجموع سعر الإيجار
+  num get totalRentCost {
+    num total = 0;
+    for (final e in selections.entries) {
+      final period = e.value;
+      final days = daysFor(e.key);
+      if (days > 0) {
+        total += days * period.pricePerDay;
+      }
+    }
+    return total;
+  }
 }
 
 class RentalSelectionCubit extends Cubit<RentalSelectionState> {
   RentalSelectionCubit() : super(const RentalSelectionState());
 
   /// cartItemId = نفس الـ id تبع CartItem بالباك إند (مهم للتطابق)
-  void setPeriod(num cartItemId, RentalPeriod period) {
+  void setPeriod(num cartItemId, RentalPeriod period, num rentCostPerDay) {
     final normalized = RentalPeriod(
       start: _normalizeUtcMidnight(period.start.toUtc()),
       end: _normalizeUtcMidnight(period.end.toUtc()),
+      rentCostPerDay,
     );
     final m = Map<num, RentalPeriod>.from(state.selections);
     m[cartItemId] = normalized;
@@ -83,10 +97,15 @@ class RentalSelectionCubit extends Cubit<RentalSelectionState> {
     num cartItemId,
     DateTime startLocal,
     DateTime endLocal,
+    num rentCostPerDay,
   ) {
     final startUtc = _normalizeUtcMidnight(startLocal.toUtc());
     final endUtc = _normalizeUtcMidnight(endLocal.toUtc());
-    setPeriod(cartItemId, RentalPeriod(start: startUtc, end: endUtc));
+    setPeriod(
+      cartItemId,
+      RentalPeriod(start: startUtc, end: endUtc, rentCostPerDay),
+      rentCostPerDay,
+    );
   }
 
   void clear(num cartItemId) {

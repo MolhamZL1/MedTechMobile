@@ -18,11 +18,12 @@ abstract class BackendEndpoints {
   static const String addToFavorite = "api/products/add-to-favorites";
 
   static const String createCheckout = "api/orders/create-order";
+  static const String getOrders = "api/orders/get-user-orders/";
 
   //
   static const String sendAiMessage = "api/ai-chat/message";
   static const String getAiMessages = "api/ai-chat/messages";
   //
   static const String profile = "api/user/get-profile/1";
-  static const String  searchProducts="api/products/search";
+  static const String searchProducts = "api/products/search";
 }
