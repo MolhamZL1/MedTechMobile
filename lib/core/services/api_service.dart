@@ -15,7 +15,6 @@ class ApiService implements DatabaseService {
   Future<void> saveToken(String token) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_tokenKey, token);
-     // log("Token saved in prefs: $token");
       final savedToken = prefs.getString(_tokenKey); 
   log("✅ Token saved in SharedPreferences: $savedToken"); 
   }
@@ -71,13 +70,23 @@ class ApiService implements DatabaseService {
   }
 
   @override
-  Future updateData({
-    required String endpoint,
-    String? rowid,
-    Map<String, dynamic>? data,
-  }) async {
+@override
+Future updateData({
+  required String endpoint,
+  String? rowid,
+  dynamic data,
+  String method = 'PATCH',
+}) async {
+  if (method == 'PATCH') {
+    return await dio.patch(endpoint + (rowid ?? ""), data: data);
+  } else if (method == 'PUT') {
     return await dio.put(endpoint + (rowid ?? ""), data: data);
+  } else {
+    return await dio.post(endpoint + (rowid ?? ""), data: data);
   }
+}
+
+
   
 
 

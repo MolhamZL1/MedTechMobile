@@ -21,7 +21,9 @@ abstract class DatabaseService {
   Future<dynamic> updateData({
     required String endpoint,
     String? rowid,
-    Map<String, dynamic>? data,
+    dynamic data,
+    String method = 'PATCH', 
+    // Map<String, dynamic>? data,
   });
 
 }

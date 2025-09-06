@@ -18,7 +18,7 @@ class Dcinfo extends StatelessWidget {
         child: Column(
         children: [
           Profilepicture(icon: Icons.message,
-        imageUrl: profile.image,
+      //  imageUrl: profile.image,
           ),
          Doctornamwtext(name: profile.username),
           Email(email: profile.email),

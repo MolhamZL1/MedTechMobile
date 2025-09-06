@@ -8,6 +8,7 @@ import 'package:medtech_mobile/features/auth/presentation/views/sign_in_view.dar
 import 'package:medtech_mobile/core/utils/app_themes.dart';
 import 'package:medtech_mobile/core/routing/on_generate_route.dart';
 import 'package:medtech_mobile/features/auth/presentation/views/verify_email_view.dart';
+import 'package:medtech_mobile/features/main/presentaion/cubits/cubit/nav_bar_cubit.dart';
 import 'package:medtech_mobile/features/main/presentaion/views/main_view.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:medtech_mobile/features/order/presentation/views/widgets/order_view_body.dart';
@@ -17,6 +18,7 @@ import 'package:medtech_mobile/features/product_details/presentation/views/widge
 import 'package:medtech_mobile/features/product_details/presentation/views/widgets/detaile_type_view/dettailes_type.dart';
 import 'package:medtech_mobile/features/product_details/presentation/views/widgets/totuialssection.dart';
 import 'package:medtech_mobile/features/profile/domain/repo/profile_repo.dart';
+import 'package:medtech_mobile/features/profile/presentation/cubit/cubit/profile_cubit.dart';
 import 'package:medtech_mobile/features/profile/presentation/view/views/profile_view.dart';
 import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/pagescards/profile/editprofile/editprofile.dart';
 import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/pagescards/profile/payment/paymentpage.dart';
@@ -46,6 +48,14 @@ class MedTech extends StatelessWidget {
         BlocProvider(create: (context) => SignInCubit(getIt.get<AuthRepo>())),
         BlocProvider(
           create: (_) => AddtoFavoriteCubit(getIt.get<FavoriteRepo>()),
+        ),
+           BlocProvider(
+          create: (_) => ProfileCubit(
+            profileRepo: getIt.get<ProfileRepo>(),
+          )..fetchProfile(), // 👈 حتى يجيب بيانات البروفايل أول ما يشتغل
+        ),
+        BlocProvider(
+          create: (_) => NavBarCubit(), // 👈 أضفنا الـ NavBarCubit كمان
         ),
       ],
       child: MaterialApp(

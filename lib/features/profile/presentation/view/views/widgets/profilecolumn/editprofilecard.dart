@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medtech_mobile/features/profile/presentation/cubit/cubit/profile_cubit.dart';
 import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/pagescards/profile/editprofile/editprofile.dart';
 
 class Editprofilecard extends StatelessWidget {
@@ -8,11 +10,18 @@ class Editprofilecard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-  Navigator.of(context).push(
+          final cubit = context.read<ProfileCubit>(); 
+Navigator.push(
+  context,
   MaterialPageRoute(
-    builder: (context) => Editprofile(), 
+    builder: (_) => Editprofile(cubit: cubit),
   ),
-);
+).then((updated) {
+  if (updated == true) {
+    cubit.fetchProfile();
+  }
+});
+
       },
       child: Card(
         child: Padding(

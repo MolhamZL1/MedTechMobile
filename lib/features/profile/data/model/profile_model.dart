@@ -1,4 +1,4 @@
-// profile/data/model/profile_model.dart
+
 import 'package:medtech_mobile/features/profile/domain/entites/profile_entity.dart';
 
 
