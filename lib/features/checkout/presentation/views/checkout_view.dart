@@ -13,9 +13,9 @@ import '../../../cart/domain/repos/cart_repo.dart';
 import 'widgets/CheckoutBottomBar.dart';
 
 class CheckoutView extends StatefulWidget {
-  const CheckoutView({super.key, required this.cartItems});
+  const CheckoutView({super.key, required this.cartEntity});
   static const String routeName = '/checkout';
-  final List<CartItemEntity> cartItems;
+  final CartEntity cartEntity;
 
   @override
   State<CheckoutView> createState() => _CheckoutViewState();
@@ -38,10 +38,11 @@ class _CheckoutViewState extends State<CheckoutView> {
         appBar: AppBar(title: const Text('Checkout'), centerTitle: true),
         bottomNavigationBar: CheckoutBottomBar(
           addressController: addressController,
+          cartEntity: widget.cartEntity,
           formKey: formKey,
         ),
         body: CheckoutViewBody(
-          cartItems: widget.cartItems,
+          cartItems: widget.cartEntity.getRentedProducts(),
           addressController: addressController,
           formKey: formKey,
         ),

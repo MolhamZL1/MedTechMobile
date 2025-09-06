@@ -1,24 +1,34 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
+import 'package:medtech_mobile/core/errors/failures.dart';
+import 'package:medtech_mobile/core/services/database_service.dart';
+import 'package:medtech_mobile/core/utils/backend_endpoints.dart';
 import 'package:medtech_mobile/features/order/data/model/order_model.dart';
 import 'package:medtech_mobile/features/order/domain/entities/order_entities.dart';
 import 'package:medtech_mobile/features/order/domain/repos/order_repo.dart';
-
+import 'dart:developer';
 
 class OrderRepoImpl implements OrderRepo {
-  final String baseUrl;
-
-  OrderRepoImpl({required this.baseUrl});
+  final DatabaseService databaseService;
+  OrderRepoImpl({required this.databaseService});
 
   @override
-  Future<List<OrderEntity>> getOrders() async {
-    final response = await http.get(Uri.parse('$baseUrl/orders'));
-
-    if (response.statusCode == 200) {
-      final List data = jsonDecode(response.body);
-      return data.map((e) => OrderModel.fromJson(e)).toList();
-    } else {
-      throw Exception('فشل في جلب الطلبات');
+  Future<Either<Failure, List<OrderEntity>>> getOrders() async {
+    try {
+      var data = await databaseService.getData(
+        endpoint: BackendEndpoints.getOrders,
+        rowid: "1",
+      );
+      List<OrderEntity> orders = List<OrderEntity>.from(
+        data.map((e) => OrderModel.fromJson(e).toEntity()),
+      );
+      return right(orders);
+    } catch (e) {
+      log(e.toString());
+      if (e is DioException) {
+        return left(ServerFailure.fromDioError(e));
+      }
+      return Left(ServerFailure(errMessage: e.toString()));
     }
   }
 }

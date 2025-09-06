@@ -152,11 +152,7 @@ class CartviewBody extends StatelessWidget {
               Navigator.pushNamed(
                 context,
                 CheckoutView.routeName,
-                arguments:
-                    context
-                        .read<FetchCartCubit>()
-                        .cartEntity!
-                        .getRentedProducts(),
+                arguments: context.read<FetchCartCubit>().cartEntity,
               );
             },
             icon: Icon(Icons.check),

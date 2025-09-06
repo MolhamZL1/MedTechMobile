@@ -13,7 +13,11 @@ class SummaryOrderWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: Column(children: [_buildRow('Total', orderPrice, isBold: true)]),
+        child: Column(
+          children: [
+            _buildRow('Total (Only purchases) ', orderPrice, isBold: true),
+          ],
+        ),
       ),
     );
   }

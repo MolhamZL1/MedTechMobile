@@ -1,12 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class DatabaseService {
- 
-
-  
-  Future<void> saveToken(String token);
-  Future<String?> getToken();
-
   Future addData({
     required String endpoint,
     required Map<String, dynamic> data,
@@ -25,5 +19,4 @@ abstract class DatabaseService {
     String method = 'PATCH', 
     // Map<String, dynamic>? data,
   });
-
 }

@@ -6,8 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'database_service.dart';
 
 class ApiService implements DatabaseService {
-
- 
   final Dio dio;
  static const String _tokenKey = 'token';
 

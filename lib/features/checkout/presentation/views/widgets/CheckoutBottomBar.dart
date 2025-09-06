@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:medtech_mobile/core/widgets/show_err_dialog.dart';
+import 'package:medtech_mobile/features/cart/domain/entities/cart_entity.dart';
 import 'package:medtech_mobile/features/checkout/presentation/cubits/cubit/checkout_cubit.dart';
 import 'package:medtech_mobile/features/checkout/presentation/cubits/cubit/selection_cubit.dart';
 
@@ -8,7 +10,9 @@ class CheckoutBottomBar extends StatefulWidget {
     super.key,
     required this.formKey,
     required this.addressController,
+    required this.cartEntity,
   });
+  final CartEntity cartEntity;
   final GlobalKey<FormState> formKey;
   final TextEditingController addressController;
 
@@ -17,10 +21,14 @@ class CheckoutBottomBar extends StatefulWidget {
 }
 
 class _CheckoutBottomBarState extends State<CheckoutBottomBar> {
-  // قيم وهمية
-  final int _itemsCount = 3;
-  final double _subtotal = 1250.0;
-  final double _shipping = 20.0;
+  late double purchaseTotal;
+
+  @override
+  void initState() {
+    purchaseTotal = widget.cartEntity.total.toDouble();
+
+    super.initState();
+  }
 
   String _money(num n) {
     final s = n.toStringAsFixed(2);
@@ -30,7 +38,10 @@ class _CheckoutBottomBarState extends State<CheckoutBottomBar> {
   @override
   Widget build(BuildContext context) {
     final t = Theme.of(context);
-    final total = _subtotal + _shipping;
+    final total =
+        purchaseTotal +
+        context.watch<RentalSelectionCubit>().state.totalRentCost.toDouble();
+    ;
 
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
@@ -62,12 +73,23 @@ class _CheckoutBottomBarState extends State<CheckoutBottomBar> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _LineRow(label: 'Items', value: '$_itemsCount'),
+                  _LineRow(
+                    label: 'Purchases Total',
+                    value: _money(purchaseTotal),
+                  ),
                   const SizedBox(height: 6),
-                  _LineRow(label: 'Subtotal', value: _money(_subtotal)),
+                  _LineRow(
+                    label:
+                        'Rentals Total(${context.read<RentalSelectionCubit>().state.selections.length})',
+                    value: _money(
+                      context
+                          .watch<RentalSelectionCubit>()
+                          .state
+                          .totalRentCost
+                          .toDouble(),
+                    ),
+                  ),
                   const SizedBox(height: 6),
-                  _LineRow(label: 'Shipping', value: _money(_shipping)),
-                  const Divider(height: 16),
                   _LineRow(
                     label: 'Total',
                     value: _money(total),
@@ -82,6 +104,18 @@ class _CheckoutBottomBarState extends State<CheckoutBottomBar> {
               height: 48,
               child: ElevatedButton.icon(
                 onPressed: () {
+                  if (context
+                          .read<RentalSelectionCubit>()
+                          .state
+                          .selections
+                          .length <
+                      widget.cartEntity.getRentedProducts().length) {
+                    return showerrorDialog(
+                      context: context,
+                      title: "Error",
+                      description: "Please Set Periods for All Rented Products",
+                    );
+                  }
                   if (widget.formKey.currentState!.validate()) {
                     final state = context.read<RentalSelectionCubit>().state;
 

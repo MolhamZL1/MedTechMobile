@@ -10,13 +10,8 @@ class RentedProductsHorizontal extends StatefulWidget {
   final List<CartItemEntity> products;
 
   /// still optional: تستقبل آخر نسخة من الـ Map عند أي تغيير إذا بتحب
-  final void Function(Map<num, RentalPeriod> selections)? onChanged;
 
-  const RentedProductsHorizontal({
-    super.key,
-    required this.products,
-    this.onChanged,
-  });
+  const RentedProductsHorizontal({super.key, required this.products});
 
   @override
   State<RentedProductsHorizontal> createState() =>
@@ -111,7 +106,6 @@ class _RentedProductsHorizontalState extends State<RentedProductsHorizontal> {
     if (range == null) {
       if (hadSelectionBefore) {
         cubit.clear(p.id);
-        widget.onChanged?.call(cubit.state.selections);
       }
       return;
     }
@@ -135,14 +129,17 @@ class _RentedProductsHorizontalState extends State<RentedProductsHorizontal> {
     }
 
     // نجاح: خزّن عبر الكيوبت (UTC midnight ضمن RentalPeriod.fromLocalDays)
-    cubit.setPeriodFromLocalDays(p.id, startLocal, endLocal);
-    widget.onChanged?.call(cubit.state.selections);
+    cubit.setPeriodFromLocalDays(
+      p.id,
+      startLocal,
+      endLocal,
+      p.productEntity.rentalPrice,
+    );
   }
 
   void _clear(CartItemEntity p) {
     final cubit = context.read<RentalSelectionCubit>();
     cubit.clear(p.id);
-    widget.onChanged?.call(cubit.state.selections);
   }
 
   @override
