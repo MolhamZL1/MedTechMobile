@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 class customAppBar extends StatelessWidget implements PreferredSizeWidget {
   String title;
   IconData? icon;
-  // Color? color1;
+
    customAppBar({super.key,required this.title, this.icon,
-  //  required this.color1,
+
    });
 
   @override

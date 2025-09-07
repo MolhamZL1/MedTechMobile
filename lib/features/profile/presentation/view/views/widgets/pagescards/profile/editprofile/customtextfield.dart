@@ -30,12 +30,11 @@ class Customtextfield extends StatelessWidget {
         width: 1,
       ),
     ),
-    
-    // البوردر عند الفوكس (الضغط على الفيلد)
+   
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
       borderSide: BorderSide(
-        color: Colors.blue, // لون البوردر وقت الفوكس
+        color: Colors.blue, 
         width: 1,
       ),
       

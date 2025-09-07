@@ -3,8 +3,9 @@ import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/
 import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/pagescards/profile/editprofile/picturesection.dart';
 
 class Namesection extends StatelessWidget {
-   TextEditingController namecontroller =TextEditingController();
-   Namesection({super.key});
+  final TextEditingController nameController;
+
+  const Namesection({super.key, required this.nameController});
 
   @override
   Widget build(BuildContext context) {
@@ -12,10 +13,12 @@ class Namesection extends StatelessWidget {
       padding: const EdgeInsets.all(6),
       child: Column(
         children: [
-        
-                 Customtextfield(text: "الاسم الكامل ",
-                  icon: Icons.person,controller: namecontroller,
-                   title: "د.احمد "),
+          Customtextfield(
+            text: "الاسم الكامل ",
+            icon: Icons.person,
+            controller: nameController,
+            title: "د.احمد ",
+          ),
         ],
       ),
     );

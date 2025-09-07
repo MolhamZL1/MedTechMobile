@@ -35,4 +35,5 @@ abstract class BackendEndpoints {
 
   //
   static const String getMainView = "api/views/main-view";
+  static const String editprofile = "api/user/me";
 }

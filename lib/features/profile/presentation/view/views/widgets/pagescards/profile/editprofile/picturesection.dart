@@ -15,7 +15,8 @@ class Picturesection extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Column(
         children: [
-           Profilepicture(icon: Icons.camera_alt,
+           Profilepicture(
+            icon: Icons.camera_alt,
            ),
           Clickforedittext(),
         ],
