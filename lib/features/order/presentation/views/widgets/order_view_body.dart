@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medtech_mobile/core/widgets/CustomLoadingCircle.dart';
+import 'package:medtech_mobile/features/contracts/presentation/views/contracts_view.dart';
 import 'package:medtech_mobile/features/order/presentation/cubits/order/order_cubit.dart';
 import 'package:medtech_mobile/features/order/presentation/cubits/order/order_state.dart';
 
@@ -25,10 +26,20 @@ class _OrderViewBodyState extends State<OrderViewBody> {
               "Orders",
               style: Theme.of(context).textTheme.headlineSmall,
             ),
-            trailing: Text(
-              "${context.watch<OrderCubit>().orders.length} items",
-              style: Theme.of(context).textTheme.bodyMedium,
+            trailing: TextButton(
+              onPressed: () {
+                Navigator.pushNamed(context, ContractsView.routeName);
+              },
+              child: Text("Contracts"),
             ),
+          ),
+          Row(
+            children: [
+              Text(
+                "${context.watch<OrderCubit>().orders.length} items",
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+            ],
           ),
           Expanded(
             child: BlocBuilder<OrderCubit, OrderState>(
@@ -235,11 +246,13 @@ class _StatusChip extends StatelessWidget {
 
   static (Color, Color) _colorsFor(String s, ColorScheme cs) {
     final v = s.toUpperCase();
-    if (v == 'PENDING') return (cs.secondaryContainer, cs.onSecondaryContainer);
-    if (v == 'APPROVED') return (Colors.blue.shade100, Colors.blue.shade900);
-    if (v == 'REJECTED') return (Colors.red.shade100, Colors.red.shade900);
+    if (v == 'PENDING') return (cs.primaryContainer, cs.onPrimaryContainer);
+    if (v == 'PAID') return (Colors.blue.shade100, Colors.blue.shade900);
+    if (v == 'SHIPPED') return (Colors.blue.shade200, Colors.blue.shade700);
+    if (v == 'DELIVERED') return (Colors.green.shade100, Colors.green.shade900);
     if (v == 'CANCELLED') return (Colors.grey.shade300, Colors.grey.shade900);
-    if (v == 'COMPLETED') return (Colors.green.shade100, Colors.green.shade900);
+    if (v == 'RETURNED')
+      return (Colors.orange.shade100, Colors.orange.shade900);
     return (cs.surfaceVariant, cs.onSurfaceVariant);
   }
 }

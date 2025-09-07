@@ -55,14 +55,14 @@ class _SignInViewBodyState extends State<SignInViewBody> {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                CustomCheckBox(
-                  value: isRememberMeValue,
-                  onChanged: (p0) {
-                    isRememberMeValue = p0!;
-                    setState(() {});
-                  },
-                  title: "Remember Me",
-                ),
+                // CustomCheckBox(
+                //   value: isRememberMeValue,
+                //   onChanged: (p0) {
+                //     isRememberMeValue = p0!;
+                //     setState(() {});
+                //   },
+                //   title: "Remember Me",
+                // ),
                 Spacer(),
                 GestureDetector(
                   onTap: () {
@@ -107,7 +107,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
             ),
             SizedBox(height: 15),
             DontHaveAnAccountSection(),
-            CustomOrDivider(text: 'OR'),
+            //  CustomOrDivider(text: 'OR'),
           ],
         ),
       ),

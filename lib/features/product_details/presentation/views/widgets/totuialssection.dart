@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medtech_mobile/features/product_details/presentation/views/widgets/toturialcarddesign/tutorialcard.dart';
 import 'package:medtech_mobile/features/products/domain/entities/vedio_entity.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../vedio/vedio_view.dart';
 
@@ -19,15 +20,7 @@ class Totuialssection extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder:
-                      (context) => FullscreenVideoPage(
-                        videoUrl: vedioEntitys[index].url,
-                      ),
-                ),
-              );
+              launchUrl(Uri.parse(vedioEntitys[index].url));
             },
             child: tutorialcard(vedioEntity: vedioEntitys[index]),
           );

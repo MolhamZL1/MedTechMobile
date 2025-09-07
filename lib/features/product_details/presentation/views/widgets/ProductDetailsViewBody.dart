@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medtech_mobile/core/utils/app_colors.dart';
 import 'package:medtech_mobile/core/widgets/CustomImageNetwork.dart';
+import 'package:medtech_mobile/features/maintainance/presentation/views/maintainance_view.dart';
 import 'package:medtech_mobile/features/product_details/presentation/views/widgets/detaile_type_view/detals_type_list.dart';
 import 'package:medtech_mobile/features/product_details/presentation/views/widgets/optionbuttonsection.dart';
 import 'package:medtech_mobile/features/product_details/presentation/views/widgets/pricesection.dart';
@@ -95,6 +96,21 @@ class ProductDetailsViewBody extends StatelessWidget {
             ),
           ),
           SizedBox(height: 16),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  MaintainanceView.routeName,
+                  arguments: productEntitie.id.toString(),
+                );
+              },
+              child: Text("Maintainance request"),
+              style: ElevatedButton.styleFrom(backgroundColor: AppColors.error),
+            ),
+          ),
+          SizedBox(height: 16),
+
           ConstSection(),
           SizedBox(height: 16),
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medtech_mobile/features/favorites/presentation/views/favorite_view.dart';
 import 'package:medtech_mobile/features/favorites/presentation/views/widgets/FavoriteViewBody.dart';
 
 class Favoritecard extends StatelessWidget {
@@ -8,11 +9,7 @@ class Favoritecard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-         Navigator.of(context).push(
-  MaterialPageRoute(
-    builder: (context) => FavoriteViewBody(), 
-  ),
-);
+        Navigator.pushNamed(context, FavoriteView.routName);
       },
       child: Card(
         child: Padding(
@@ -23,9 +20,7 @@ class Favoritecard extends StatelessWidget {
                 width: 50,
                 height: 50,
                 decoration: BoxDecoration(
-                  color: Colors.red.withOpacity(
-                    0.1,
-                  ), 
+                  color: Colors.red.withOpacity(0.1),
                   shape: BoxShape.circle,
                 ),
                 child: const Center(
@@ -36,13 +31,11 @@ class Favoritecard extends StatelessWidget {
                   ),
                 ),
               ),
-      
+
               SizedBox(width: 10),
               Text(" المنتجات المفضلة "),
-                  const Spacer(),
-              IconButton(onPressed: () {  },
-              icon: Icon(Icons.arrow_drop_down),
-              ),
+              const Spacer(),
+              IconButton(onPressed: () {}, icon: Icon(Icons.arrow_drop_down)),
             ],
           ),
         ),

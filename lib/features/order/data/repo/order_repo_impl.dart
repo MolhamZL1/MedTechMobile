@@ -13,11 +13,13 @@ class OrderRepoImpl implements OrderRepo {
   OrderRepoImpl({required this.databaseService});
 
   @override
-  Future<Either<Failure, List<OrderEntity>>> getOrders() async {
+  Future<Either<Failure, List<OrderEntity>>> getOrders({
+    required String id,
+  }) async {
     try {
       var data = await databaseService.getData(
         endpoint: BackendEndpoints.getOrders,
-        rowid: "1",
+        rowid: id,
       );
       List<OrderEntity> orders = List<OrderEntity>.from(
         data.map((e) => OrderModel.fromJson(e).toEntity()),

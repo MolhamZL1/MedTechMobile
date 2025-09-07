@@ -12,6 +12,7 @@ abstract class BackendEndpoints {
   static const String changePassword = "api/auth/change-password";
   //
   static const String getProducts = "api/products/get-products";
+  static const String getFavorites = "api/products/favorites";
   //
   static const String getCartItems = "api/products/cart";
   static const String updateCartItem = "api/products/add-to-cart";
@@ -26,4 +27,12 @@ abstract class BackendEndpoints {
   //
   static const String profile = "api/user/get-profile/1";
   static const String searchProducts = "api/products/search";
+  //
+  static const String getContracts = "api/orders/get-user-contracts";
+  static const String extendContract = "api/orders/extend-contract/";
+  static const String requestMaintainance =
+      "api/maintenance/maintenance-request";
+
+  //
+  static const String getMainView = "api/views/main-view";
 }

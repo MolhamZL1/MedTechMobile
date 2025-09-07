@@ -1,7 +1,7 @@
 import 'package:animated_react_button/animated_react_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medtech_mobile/features/favorites/presentation/cubits/cubit/addto_favorite_cubit.dart';
+import 'package:medtech_mobile/features/favorites/presentation/cubits/add/addto_favorite_cubit.dart';
 
 class CustomFavoriteButton extends StatefulWidget {
   const CustomFavoriteButton({
@@ -28,7 +28,7 @@ class _CustomFavoriteButtonState extends State<CustomFavoriteButton> {
   Widget build(BuildContext context) {
     return AnimatedReactButton(
       reactColor: Colors.red,
-      //isFavorite: isFavorite,
+      isFavorite: isFavorite,
       onPressed: () {
         isFavorite = !isFavorite;
         setState(() {});

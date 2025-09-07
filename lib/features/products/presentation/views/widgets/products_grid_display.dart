@@ -11,14 +11,17 @@ class ProductsGridDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       key: const ValueKey('products'),
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 35, child: CategoriesList()),
           const SizedBox(height: 15),
-          Text(
-            "${context.watch<ProductsCubit>().products.length} منتجات",
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Text(
+              "${context.watch<ProductsCubit>().products.length} منتجات",
+            ),
           ),
           const SizedBox(height: 10),
           Expanded(

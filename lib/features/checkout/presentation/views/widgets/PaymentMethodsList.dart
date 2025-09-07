@@ -15,7 +15,7 @@ class _PaymentMethodsListState extends State<PaymentMethodsList> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 96,
+      height: 100,
       child: ListView.separated(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         scrollDirection: Axis.horizontal,

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:medtech_mobile/features/main/domain/entity/main_view_entity.dart';
 
-import '../../../data/models/DashboardActionButtonModel.dart';
 import 'DashboardActionButton.dart';
 
 class ActionButtonSection extends StatelessWidget {
-  const ActionButtonSection({super.key});
+  const ActionButtonSection({super.key, required this.mainViewEntity});
+  final MainViewEntity mainViewEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +27,26 @@ class ActionButtonSection extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
-            children: List.generate(
-              dashboardInfoActionButtonList.length,
-              (index) => Expanded(
+            children: [
+              Expanded(
                 child: DashboardActionButton(
-                  dashboardActionButtonModel:
-                      dashboardInfoActionButtonList[index],
+                  number: mainViewEntity.ordersCount.toString(),
+                  title: "All Orders",
                 ),
               ),
-            ),
+              Expanded(
+                child: DashboardActionButton(
+                  number: mainViewEntity.rentalCount.toString(),
+                  title: "Rental Devices",
+                ),
+              ),
+              Expanded(
+                child: DashboardActionButton(
+                  number: mainViewEntity.maintainanceCount.toString(),
+                  title: "Maintain Dev",
+                ),
+              ),
+            ],
           ),
         ),
       ],

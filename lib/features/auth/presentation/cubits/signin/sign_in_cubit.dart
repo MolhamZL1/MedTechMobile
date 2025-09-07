@@ -5,6 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:medtech_mobile/features/auth/data/models/user_model.dart';
 import 'package:medtech_mobile/features/auth/domain/repos/auth_repo.dart';
 import 'package:meta/meta.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../../core/services/local_storage_service.dart';
 
@@ -23,7 +24,14 @@ class SignInCubit extends Cubit<SignInState> {
     result.fold(
       (failure) => emit(SignInError(errMessage: failure.errMessage)),
       (userEntity) async {
-        log(userEntity.token);
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString(LocalStorageKeys.token, userEntity.token);
+        //
+        await prefs.setString(
+          LocalStorageKeys.user,
+          jsonEncode(UserModel.fromEntity(userEntity).toJson()),
+        );
+        //
         await LocalStorageService.setItem(
           LocalStorageKeys.user,
           jsonEncode(UserModel.fromEntity(userEntity).toJson()),
@@ -38,6 +46,9 @@ class SignInCubit extends Cubit<SignInState> {
   }
 
   Future<void> signout() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    await prefs.clear();
     await LocalStorageService.clear();
   }
 }

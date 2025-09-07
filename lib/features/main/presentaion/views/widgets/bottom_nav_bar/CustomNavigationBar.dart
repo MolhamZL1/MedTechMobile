@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:medtech_mobile/features/main/presentaion/cubits/cubit/nav_bar_cubit.dart';
+import 'package:medtech_mobile/features/main/presentaion/cubits/nav_bar/nav_bar_cubit.dart';
 import 'package:medtech_mobile/features/main/presentaion/views/widgets/bottom_nav_bar/NaivgationBarItem.dart';
 
 import 'bottom_navigation_bar_entity.dart';

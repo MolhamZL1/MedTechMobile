@@ -8,9 +8,9 @@ class OrderCubit extends Cubit<OrderState> {
 
   OrderCubit(this.orderRepo) : super(OrderInitial());
   List<OrderEntity> orders = [];
-  Future<void> fetchOrders() async {
+  Future<void> fetchOrders({required String id}) async {
     emit(OrderLoading());
-    final result = await orderRepo.getOrders();
+    final result = await orderRepo.getOrders(id: id);
     result.fold((l) => emit(OrderError(l.errMessage)), (r) {
       orders = r;
       emit(OrderLoaded(r));

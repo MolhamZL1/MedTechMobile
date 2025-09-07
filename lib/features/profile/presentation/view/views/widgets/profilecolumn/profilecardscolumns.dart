@@ -11,10 +11,11 @@ class Profilecardscolumns extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-     Editprofilecard(),
-     Sitecard(),
-     Paymentcard(),
-     Favoritecard(),
-    ],);
+        Editprofilecard(),
+        //  Sitecard(),
+        //  Paymentcard(),
+        Favoritecard(),
+      ],
+    );
   }
 }

@@ -1,16 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:medtech_mobile/features/main/domain/entity/adv_entity.dart';
 
 class OfferSlide {
-  final String imageUrl;
-  final String title;
-  final String? subtitle;
+  final AdvEntity advEntity;
 
-  const OfferSlide({
-    required this.imageUrl,
-    required this.title,
-    this.subtitle,
-  });
+  const OfferSlide({required this.advEntity});
 }
 
 class AutoOfferCarousel extends StatefulWidget {
@@ -152,7 +147,7 @@ class _OfferCard extends StatelessWidget {
           children: [
             Positioned.fill(
               child: Image.network(
-                slide.imageUrl,
+                slide.advEntity.imageUrl,
                 fit: BoxFit.cover,
                 errorBuilder:
                     (_, __, ___) => Container(
@@ -179,7 +174,7 @@ class _OfferCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    slide.title,
+                    slide.advEntity.title,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: t.textTheme.titleMedium?.copyWith(
@@ -188,10 +183,10 @@ class _OfferCard extends StatelessWidget {
                       letterSpacing: .2,
                     ),
                   ),
-                  if (slide.subtitle != null) ...[
+                  if (slide.advEntity.bio != null) ...[
                     const SizedBox(height: 2),
                     Text(
-                      slide.subtitle!,
+                      slide.advEntity.bio!,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: t.textTheme.bodySmall?.copyWith(

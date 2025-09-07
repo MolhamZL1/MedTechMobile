@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medtech_mobile/core/services/get_it_service.dart';
 import 'package:medtech_mobile/features/ai%20chat/presentation/views/ai_chat_view.dart';
 import 'package:medtech_mobile/features/favorites/domain/repo/favorite_repo.dart';
-import 'package:medtech_mobile/features/favorites/presentation/cubits/cubit/addto_favorite_cubit.dart';
-import 'package:medtech_mobile/features/main/presentaion/cubits/cubit/nav_bar_cubit.dart';
+import 'package:medtech_mobile/features/favorites/presentation/cubits/add/addto_favorite_cubit.dart';
+import 'package:medtech_mobile/features/main/presentaion/cubits/nav_bar/nav_bar_cubit.dart';
 import 'package:medtech_mobile/features/main/presentaion/views/widgets/bottom_nav_bar/CustomNavigationBar.dart';
 
 import 'widgets/AiFAB.dart';
