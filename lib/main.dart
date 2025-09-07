@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medtech_mobile/core/services/custom_bloc_observer.dart';
@@ -24,6 +26,9 @@ import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/
 import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/pagescards/setting/safety&privacy/safetypage.dart';
 import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/pagescards/setting/settings/mainsettingpage.dart';
 import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/profilecolumn/paymentcard.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'features/auth/data/models/user_model.dart';
+import 'features/auth/domain/entities/user_entity.dart';
 import 'features/auth/domain/repos/auth_repo.dart';
 import 'features/auth/presentation/cubits/signin/sign_in_cubit.dart';
 import 'features/favorites/domain/repo/favorite_repo.dart';
@@ -54,9 +59,7 @@ class MedTech extends StatelessWidget {
               (_) => ProfileCubit(profileRepo: getIt.get<ProfileRepo>())
                 ..fetchProfile(), // 👈 حتى يجيب بيانات البروفايل أول ما يشتغل
         ),
-        BlocProvider(
-          create: (_) => NavBarCubit(), // 👈 أضفنا الـ NavBarCubit كمان
-        ),
+        BlocProvider(create: (_) => NavBarCubit()),
       ],
       child: MaterialApp(
         theme: AppTheme.lightTheme,
@@ -71,14 +74,38 @@ class MedTech extends StatelessWidget {
         ],
         supportedLocales: S.delegate.supportedLocales,
         locale: Locale("en"),
-        initialRoute: MainView.routeName,
-
-        //      initialRoute: 'editprofile',
-        //      routes: {
-        //   'editprofile': (context) => ProfileView(),
-        // },
+        initialRoute: StartScreen.routeName,
         debugShowCheckedModeBanner: false,
       ),
     );
+  }
+}
+
+class StartScreen extends StatefulWidget {
+  const StartScreen({super.key});
+  static const routeName = "/start-screen";
+
+  @override
+  State<StartScreen> createState() => _StartScreenState();
+}
+
+class _StartScreenState extends State<StartScreen> {
+  UserEntity? user;
+  @override
+  void initState() {
+    getToken();
+
+    super.initState();
+  }
+
+  getToken() async {
+    final prfs = await SharedPreferences.getInstance();
+    user = UserModel.fromJson(jsonDecode(prfs.getString("user")!)).toEntity();
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return (user != null) ? const MainView() : const SignInView();
   }
 }

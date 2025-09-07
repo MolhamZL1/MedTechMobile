@@ -14,7 +14,5 @@ abstract class DatabaseService {
     required String endpoint,
     String? rowid,
     dynamic data,
-    String method = 'PATCH', 
-    // Map<String, dynamic>? data,
   });
 }

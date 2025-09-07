@@ -71,7 +71,7 @@ class ApiService implements DatabaseService {
   Future updateData({
     required String endpoint,
     String? rowid,
-    Map<String, dynamic>? data,
+    dynamic data,
   }) async {
     final Response res = await dio.put(endpoint + (rowid ?? ''), data: data);
     return res.data;
