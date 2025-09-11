@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 
 abstract class BackendEndpoints {
   static const String url = // "https://0e03b862fd24.ngrok-free.app/";
-      kIsWeb ? "http://localhost:8383/" : "http://172.20.10.2:8383/";
+      kIsWeb ? "http://localhost:8383/" : "http://10.0.2.2:8383/";
   static const String signIn = "api/auth/login";
   static const String signOut = "api/auth/signout";
   static const String signUp = "api/auth/register-with-email";

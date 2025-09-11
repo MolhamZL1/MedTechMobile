@@ -1,31 +1,13 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:medtech_mobile/core/services/custom_bloc_observer.dart';
 import 'package:medtech_mobile/core/services/get_it_service.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/forget_password_view.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/resetpassword.dart';
 import 'package:medtech_mobile/features/auth/presentation/views/sign_in_view.dart';
 import 'package:medtech_mobile/core/utils/app_themes.dart';
 import 'package:medtech_mobile/core/routing/on_generate_route.dart';
-import 'package:medtech_mobile/features/auth/presentation/views/verify_email_view.dart';
 import 'package:medtech_mobile/features/main/presentaion/views/main_view.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:medtech_mobile/features/order/presentation/views/widgets/order_view_body.dart';
-import 'package:medtech_mobile/features/product_details/presentation/views/product_details_view.dart';
-import 'package:medtech_mobile/features/product_details/presentation/views/widgets/addtocardsection/addtocard.dart';
-import 'package:medtech_mobile/features/product_details/presentation/views/widgets/detaile_type_view/detals_type_list.dart';
-import 'package:medtech_mobile/features/product_details/presentation/views/widgets/detaile_type_view/dettailes_type.dart';
-import 'package:medtech_mobile/features/product_details/presentation/views/widgets/totuialssection.dart';
-import 'package:medtech_mobile/features/profile/domain/repo/profile_repo.dart';
-import 'package:medtech_mobile/features/profile/presentation/cubit/cubit/profile_cubit.dart';
-import 'package:medtech_mobile/features/profile/presentation/view/views/profile_view.dart';
-import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/pagescards/profile/editprofile/editprofile.dart';
-import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/pagescards/profile/payment/paymentpage.dart';
-import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/pagescards/setting/safety&privacy/safetypage.dart';
-import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/pagescards/setting/settings/mainsettingpage.dart';
-import 'package:medtech_mobile/features/profile/presentation/view/views/widgets/profilecolumn/paymentcard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'features/auth/data/models/user_model.dart';
 import 'features/auth/domain/entities/user_entity.dart';
@@ -34,9 +16,12 @@ import 'features/auth/presentation/cubits/signin/sign_in_cubit.dart';
 import 'features/favorites/domain/repo/favorite_repo.dart';
 import 'features/favorites/presentation/cubits/add/addto_favorite_cubit.dart';
 import 'features/main/presentaion/cubits/nav_bar/nav_bar_cubit.dart';
+import 'features/profile/domain/repo/profile_repo.dart';
+import 'features/profile/presentation/cubit/cubit/profile_cubit.dart';
 import 'generated/l10n.dart';
 
 void main() {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = CustomBlocObserver();
 
   setupSingltonGetIt();
@@ -91,21 +76,36 @@ class StartScreen extends StatefulWidget {
 
 class _StartScreenState extends State<StartScreen> {
   UserEntity? user;
+  bool _isLoading = true;
+
   @override
   void initState() {
-    getToken();
-
     super.initState();
+    _loadUser();
   }
 
-  getToken() async {
-    final prfs = await SharedPreferences.getInstance();
-    user = UserModel.fromJson(jsonDecode(prfs.getString("user")!)).toEntity();
-    setState(() {});
+  Future<void> _loadUser() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final raw = prefs.getString("user");
+      if (raw != null && raw.isNotEmpty) {
+        user = UserModel.fromJson(jsonDecode(raw)).toEntity();
+      } else {
+        user = null;
+      }
+    } catch (e) {
+      user = null;
+    } finally {
+      if (!mounted) return;
+      setState(() => _isLoading = false);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
     return (user != null) ? const MainView() : const SignInView();
   }
 }

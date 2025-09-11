@@ -8,11 +8,7 @@ class Customlogoimage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(55.0),
-      child: Image.asset(
-        AppImages.imagesMedtechlogo,
-        height: 200.0,
-        width: 100.0,
-      ),
+      child: Image.asset(AppImages.iconAppLogo, height: 200.0, width: 100.0),
     );
   }
 }
