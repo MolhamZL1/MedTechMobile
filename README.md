@@ -1,16 +1,25 @@
-# medtech_mobile
+📱 MedTech Mobile
 
-A new Flutter project.
+Flutter app for buying, renting, and maintaining medical equipment.
 
-## Getting Started
+✨ Features
 
-This project is a starting point for a Flutter application.
+🛒 Browse and purchase medical devices
 
-A few resources to get you started if this is your first Flutter project:
+📅 Rent devices for a specific period
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+🛠️ Submit and track maintenance requests
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+📊 Track orders and rentals in real-time
+
+🔔 Push & in-app notifications
+
+👤 Manage user profile and settings
+
+❤️ Wishlist (favorite devices)
+
+🌙 Dark/Light mode
+
+🌐 Supports Arabic (RTL) & English (LTR)
+
+🖼️Mobile App Interfaces
