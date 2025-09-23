@@ -1,4 +1,4 @@
-📱 MedTech Mobile
+📱 BitarMed Mobile
 
 Flutter app for buying, renting, and maintaining medical equipment.
 
