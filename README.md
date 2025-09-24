@@ -23,3 +23,4 @@ Flutter app for buying, renting, and maintaining medical equipment.
 🌐 Supports Arabic (RTL) & English (LTR)
 
 🖼️Mobile App Interfaces
+![Screen Shots](assets/images/screen_shots.png)
